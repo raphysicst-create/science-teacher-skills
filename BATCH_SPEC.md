@@ -6,10 +6,10 @@
 
 ## 0. 사전 조건
 
-- [ ] `science.md` 실제 수업 1회 이상 생성 테스트 완료 (중학교 + 초등 각 1회 권장)
-- [ ] `curriculum-kr-mcp.md` 호출 시퀀스가 실 MCP에서 작동 확인 (특히 `get_topic`의
-      관찰 증거 → look-for 매핑, `get_prerequisites(depth:"all")`)
-- [ ] 원본 대비 수정 결정 사항을 이 파일 하단 "확정 치환 규칙"에 기록
+- [x] `science.md` 실제 수업 1회 이상 생성 테스트 완료 — 중학교 [9과12-01] · 초등 [4과10-02] 각 1회 (2026-08-01)
+- [x] `curriculum-kr-mcp.md` 호출 시퀀스가 실 MCP에서 작동 확인 — 중등 6종 세션 연결 호출,
+      초등 9종 stdio 프로브. `get_topic`의 관찰 증거 → look-for 매핑, `get_prerequisites(depth:"all")` 포함
+- [x] 원본 대비 수정 결정 사항을 이 파일 하단 "확정 치환 규칙"에 기록
 
 ## 1. 저장소 골격
 
@@ -96,6 +96,73 @@ kordoc은 3단계(HWPX 렌더링) 전까지 번들하지 않는다 — 렌더 �
 6. 초등·중등 MCP 실연결 상태에서 과목당 1회 생성 스모크 테스트
 7. README.md 작성 (원본 attribution + 데이터 출처 명시) → npm/GitHub 공개
 
-## 확정 치환 규칙 (과학 검증 후 기록)
+## 확정 치환 규칙 (과학 파일럿 검증 완료 — 2026-08-01)
 
-- (검증하며 채울 것)
+배치 작업은 아래를 **기계적으로 적용**한다. 검증 근거는 `docs/superpowers/pilot-notes.md`.
+
+### A. SKILL.md 치환 지점 (14곳 — 이 목록이 diff의 전부다)
+
+과학 파일럿에서 확정. 2단계에서는 ①만 다시 손대고 나머지는 그대로 둔다.
+
+1. frontmatter `name`(`ko12-lesson-planning`) + `description` 한국어 전체 — **2단계에서
+   "과학 전용 프리뷰" 문구를 제거하고 4과목으로 되돌린다**
+2. SPDX 주석에 contributors 줄 + 원본 출처 줄
+3. 제목 + 도입부의 KG 언급 → 학습맵 MCP
+4. "Keeping the teacher posted" 예시 문장
+5. Step 0.1 과목 신호 4줄 (한국 코드 체계) + 레퍼런스 매핑 — **2단계에서 4과목 전부 활성화**
+6. Step 0.2 Curriculum → **Textbook** (검정 교과서 중립)
+7. Step 0.3 Connector 도구명 (`search_standards`, `get_standard`)
+8. Step 2 본문 (`curriculum-kr-mcp.md` + 한국어 미연결 푸터)
+9. Copyright guardrail → 저작권 가드레일 (출판사명 금지)
+10. Step 4 draft offer 질문·선택지
+11. Step 4 후속 선택지 2개
+12. Step 5 plain-language 예시 + "워드 문서"
+13. Step 5 framework 약어 금지 예시 (범주명)
+14. 5b 구두 수업 안내 / 5c 인쇄물 제안·만족도 질문·반복 옵션
+
+**건드리지 않은 것**(회귀 위험): Step 1 전체, Step 3 전체, Step 5의 밀도 규칙 · Everything
+matches · Document integrity · 5a 스키마 · 5b 렌더 명령 · 5d · 5e. diff 규모 64+/59- (471줄 중).
+
+### B. MCP 응답 형식 (문서가 가정하면 안 되는 것)
+
+| 항목 | 중등 | 초등 |
+|---|---|---|
+| 도구 수 | 11 | 9 (`get_transitions` 없음) |
+| 검색 파라미터 | `query`, `schoolLevel`, `gradeBand`("7-9"/"10"/"10-12"), `subject`, `domain` | `query`, `gradeBand`("1-2"/"3-4"/"5-6"), `subject`, `domain` |
+| 검색 결과 요약 필드 | `summary` | **`focus`** (잘림) |
+| `get_standard` | `subject` 파라미터 있음(공유 코드용) | 없음 |
+| 원문 | `officialText` = verbatim (`sourceLocator`에 PDF 쪽·sha256) | `officialText` = **조립값**, `sourceTextIncluded: false` |
+| 선수관계 | 희소 (공식 근거만, 213건) | 조밀 (1,894건) |
+
+- `summary`(중등)는 `summaryKind: "mechanical-derivative"` — **인용 금지**. 원문은 `officialText`뿐.
+- **초등 성취기준은 verbatim이라고 말하지 않는다.** 수업안에 출처 확인 문구를 단다.
+- 선수 edge가 없으면 훈련 지식으로 쓰되 "추정" 표시 (치명적 실패 아님). 전이가 없으면 심화 연계 문장 생략.
+
+### C. lesson.json 작성 규칙 (렌더러 무수정 전제)
+
+- **`shared.grade`는 영문 학년을 먼저 쓴다** — `"Grade 8 · 중학교 2학년"`. 렌더러가 첫 번째
+  숫자로 답란 크기를 정하므로 `"중학교 2학년"`만 쓰면 2학년으로 읽혀 답란이 초등 저학년 크기가 된다.
+  이 값은 산출물에 출력되지 않는다 (교사가 보는 학년은 각 문서 `meta`에 한국어로 따로 쓴다).
+- `phase_header` 분 합계 == `shared.duration`을 **반드시** 맞춘다.
+- 성취기준 원문은 수업안에 정확히 1회 (`from_shared: standard`). 다른 곳은 코드로만 참조.
+- 검증: `python tests/check_lesson.py <lesson.json> <outdir> --official "<officialText>"`
+
+### D. 렌더러 영어 크롬 (1단계에서 수용, 3단계 재검토)
+
+렌더러가 하드코딩한 영어 라벨이 한국어 문서에 그대로 나온다:
+- 성취기준 콜아웃 제목 `— Target standard`
+- 교사 문서의 학생 과제 리드인 `Students see:`
+
+1단계는 렌더러 동결(DESIGN §5-5)이므로 수정하지 않았다. HWPX 어댑터를 만드는 **3단계에서
+최소 i18n 패치를 함께 결정**한다 (두 문자열 상수화가 전부).
+
+### E. 실행 환경
+
+- Git Bash `python3`(3.14, WindowsApps)에서 `render_all.sh`의 자체 pip 설치 경로 정상 작동. 우회 불필요.
+- 콘솔 한글 깨짐은 Git Bash cp949 출력 문제이며 docx 내용과 무관 (U+FFFD 검사로 확인).
+
+### F. 과목별 추가 판단 지점 (2단계에서 사람 확인 — 자동 결정 금지)
+
+§4의 3개 항목(수학·국어·사회) 그대로 유효. 여기에 파일럿에서 나온 항목 하나를 더한다:
+- **성취기준 유형 분기**(설명·모형형 / 실험 설계형 / 자료 해석형)는 과학에서 확립했다. 수학·사회·국어에서
+  이 분기가 어떤 형태로 대응하는지는 과목별 판단이 필요하다 (예: 국어의 수용/생산 활동 구분).

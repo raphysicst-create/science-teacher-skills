@@ -1,6 +1,6 @@
 # ko12-teacher-skills — 기초 설계 문서 (DESIGN.md)
 
-**버전**: 0.1 (초안 — 과학 파일럿 검증 전)
+**버전**: 0.2 (과학 파일럿 검증 완료 — 2026-08-01)
 **상태**: 이 문서가 프로젝트의 canonical 기준이다. 구현 파일(레퍼런스·스펙·스크립트)과
 이 문서가 충돌하면 이 문서를 고치거나 구현을 고친다 — 둘이 어긋난 채 두지 않는다.
 
@@ -102,7 +102,10 @@ plugin/
 - **기각한 대안**: 과학과 교과 역량 프레임. 역량은 총론-각론 연계 서술이라 개별 차시
   목표로 내리면 진술이 공허해지기 쉽고, 성취기준 코드와의 대응이 3범주보다 느슨하다.
 - **재검토 조건**: 과학 파일럿에서 3범주 진술이 실제 수업 목표로 부자연스럽다고 판단되면.
-  ⚠ 이 결정은 현장 검증 전이며, 파일럿의 1순위 확인 항목이다.
+- **파일럿 결과(2026-08-01)**: 중·초 수업 각 1회에서 3범주 분리 진술이 모두 성립했다. 지식·이해와
+  과정·기능은 자연스러웠고, **가치·태도가 가장 쓰기 어려웠다** — 관찰 가능한 태도로 진술하지 않으면
+  공허해지기 쉽다(파일럿에서는 "근거를 들어 지적하는 태도", "끝까지 듣고 본 것을 근거로 말하는 태도"로
+  구체화). ⚠ **현직 교사의 최종 판정은 아직 받지 않았다** — 이것이 이 ADR의 마지막 미결 항목이다.
 
 ### ADR-2. 학년군 분기: 초3–4 / 초5–6 / 중1–3 / 고
 
@@ -225,7 +228,10 @@ plugin/
 
 | 문서 | 역할 | 상태 |
 |---|---|---|
-| **DESIGN.md (이 문서)** | canonical 기준 — 왜 | v0.1 |
-| plugin/skills/ko12-lesson-planning/references/curriculum-kr-mcp.md | Step 2 호출 시퀀스 — 표준 조회 방법 | 초안, 파일럿 검증 대기 |
-| plugin/skills/ko12-lesson-planning/references/science.md | 과학 pedagogy — 골든 레퍼런스 | 초안, 파일럿 검증 대기 |
-| BATCH_SPEC.md | 2단계 실행 지시서 — 어떻게 | 초안, "확정 치환 규칙" 절은 파일럿 후 기입 |
+| **DESIGN.md (이 문서)** | canonical 기준 — 왜 | v0.2 |
+| plugin/skills/ko12-lesson-planning/SKILL.md | 오케스트레이터 (원본 최소 diff) | 파일럿 검증본 |
+| plugin/skills/ko12-lesson-planning/references/curriculum-kr-mcp.md | Step 2 호출 시퀀스 — 표준 조회 방법 | 파일럿 검증본 (실 MCP 대조 보정 완료) |
+| plugin/skills/ko12-lesson-planning/references/science.md | 과학 pedagogy — 골든 레퍼런스 | 파일럿 검증본 |
+| BATCH_SPEC.md | 2단계 실행 지시서 — 어떻게 | "확정 치환 규칙" 기입 완료 |
+| docs/superpowers/pilot-notes.md | 파일럿 실측 기록 — 무엇을 확인했나 | 1단계 완료 |
+| tests/check_lesson.py | DoD 자동 검증기 | 파일럿 2건 통과 |
