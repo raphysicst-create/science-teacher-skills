@@ -226,6 +226,6 @@ plugin/
 | 문서 | 역할 | 상태 |
 |---|---|---|
 | **DESIGN.md (이 문서)** | canonical 기준 — 왜 | v0.1 |
-| curriculum-kr-mcp.md | Step 2 호출 시퀀스 — 표준 조회 방법 | 초안, 파일럿 검증 대기 |
-| science.md | 과학 pedagogy — 골든 레퍼런스 | 초안, 파일럿 검증 대기 |
+| plugin/skills/ko12-lesson-planning/references/curriculum-kr-mcp.md | Step 2 호출 시퀀스 — 표준 조회 방법 | 초안, 파일럿 검증 대기 |
+| plugin/skills/ko12-lesson-planning/references/science.md | 과학 pedagogy — 골든 레퍼런스 | 초안, 파일럿 검증 대기 |
 | BATCH_SPEC.md | 2단계 실행 지시서 — 어떻게 | 초안, "확정 치환 규칙" 절은 파일럿 후 기입 |
