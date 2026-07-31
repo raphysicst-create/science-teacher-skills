@@ -1,0 +1,53 @@
+{
+  "shared": {
+    "grade": "중1",
+    "subject": "과학",
+    "duration": 45,
+    "standard_code": "[9과01-01]",
+    "standard_text": "(스모크 테스트용 임시 문장) 과학의 탐구 과정을 이해하고, 일상생활의 문제를 과학적으로 탐구할 수 있다.",
+    "exit_ticket": {
+      "teacher": "수합 후 이해함 / 거의 / 재지도 필요 3칸으로 분류한다.",
+      "student": "오늘 관찰한 현상을 한 문장으로 설명해 보세요."
+    }
+  },
+  "documents": [
+    {
+      "id": "lesson_plan",
+      "audience": "teacher",
+      "eyebrow": "과학 · 중1 · 45분",
+      "title": "한글 렌더링 스모크 테스트 — 수업안",
+      "sections": [
+        {
+          "heading": "한눈에 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "standard" },
+            { "type": "paragraph", "text": "현상 던지기(10분) → 탐구 활동(20분) → 논증 토의(10분) → 형성 확인(5분)." },
+            { "type": "table", "headers": ["단계", "분", "핵심"], "rows": [["현상 던지기", "10", "설명하지 않고 제시"], ["탐구 활동", "20", "같게 할 것 / 다르게 할 것 확인"]] },
+            { "type": "callout", "kind": "teacher-note", "label": "주의", "text": "학생이 증거를 다루기 전에 결론을 내려주지 않는다." }
+          ]
+        },
+        {
+          "heading": "정리 문항",
+          "blocks": [ { "type": "from_shared", "key": "exit_ticket" } ]
+        }
+      ]
+    },
+    {
+      "id": "student_materials",
+      "audience": "student",
+      "eyebrow": "과학 탐구",
+      "title": "무엇이 보이나요?",
+      "sections": [
+        {
+          "heading": "탐구하기",
+          "blocks": [
+            { "type": "callout", "kind": "student-task", "label": "과제 1", "text": "관찰한 것을 그림과 낱말로 기록해 보세요." },
+            { "type": "fill_table", "headers": ["관찰한 것", "궁금한 점"], "blank_rows": 3 },
+            { "type": "answer_box", "ruled": true },
+            { "type": "from_shared", "key": "exit_ticket" }
+          ]
+        }
+      ]
+    }
+  ]
+}
