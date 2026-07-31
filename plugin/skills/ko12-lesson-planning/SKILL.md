@@ -1,23 +1,35 @@
 ---
-name: k12-lesson-planning
+name: ko12-lesson-planning
 description: >
-  Creates a lesson plan, student-facing materials, and observation template. Load this skill BEFORE asking the teacher any clarifying question about grade, subject, topic, standard, or timing. Use when a K-12 teacher needs a math, ELA, science, or social studies lesson built from scratch — even if grade, subject, or topic isn't yet stated. Do NOT load for grading, a rubric, assessment feedback, a quiz, or a standards lookup — answer those directly. Triggers on explicit requests (lesson plan, mini-lesson, unit plan, daily plan) and implicit teacher intent: "I'm teaching long division to 5th graders," "need to teach photosynthesis tomorrow." Core signal: teacher needs new instructional content created. A new lesson that asks for differentiated, tiered, or leveled materials is still ONE planning request — this skill produces those materials inside the lesson package; do not also invoke k12-lesson-differentiation. Not for differentiating an existing lesson (use k12-lesson-differentiation) or passage rewrites.
+  수업안·학생 자료·관찰 템플릿을 만든다. 학년·과목·주제·성취기준·차시 분량에 대해 교사에게
+  무엇이든 묻기 전에 이 스킬을 먼저 로드할 것. 한국 초·중·고 교사가 새 수업을 만들 때 사용 —
+  학년이나 주제가 아직 안 나왔어도 로드한다. 채점, 루브릭, 평가 피드백, 퀴즈, 단순 성취기준
+  조회에는 로드하지 않는다 — 직접 답한다. 명시적 요청(수업안, 지도안, 교수학습과정안, 차시
+  계획, 단원 계획)과 암묵적 신호("다음 주에 광합성 가르쳐야 해요", "중1 여러 가지 힘 수업
+  준비해야 하는데") 모두에서 발동한다. 핵심 신호: 교사가 새 수업 자료 생성을 필요로 한다.
+  수준별·단계별 자료를 포함한 새 수업도 하나의 설계 요청이다 — 이 스킬이 그 자료까지 수업
+  패키지 안에서 만든다. 기존 수업의 차별화(별도 스킬 영역)나 지문 수준 조정에는 쓰지 않는다.
+  ※ 이 버전은 과학 전용 프리뷰 — 수학·국어·사회는 준비 중.
 license: Complete terms in LICENSE
 ---
 
 <!--
 SPDX-FileCopyrightText: 2026 Anthropic, PBC
 SPDX-FileCopyrightText: 2026 Learning Commons
+SPDX-FileCopyrightText: 2026 ko12-teacher-skills contributors
 SPDX-License-Identifier: Apache-2.0
+
+원본: anthropics/k12-teacher-skills v0.6.0 — skills/k12-lesson-planning/SKILL.md
 -->
 
-# K-12 Lesson Planning
+# 한국 초·중등 수업 설계 (ko12-lesson-planning)
 
 Produces a teacher-ready, standards-aligned lesson plan + student-facing materials + teacher
 observation template as editable Word documents in a single output turn, rendered from one material-source JSON via
 bundled scripts. Each subject has its own pedagogy and
 output mapping — these live in subject-specific reference files. This skill routes to the
-right one. Works with or without the Learning Commons Knowledge Graph.
+right one. Works with or without the Korean curriculum learning-map MCPs (한국 교육과정
+학습맵 — 초등·중등).
 
 "The teacher" throughout this skill is the user you are talking with — the same person, never
 a third party. "Teacher-facing" names a document's audience: that user, as opposed to their
@@ -28,9 +40,8 @@ students.
 ## Keeping the teacher posted
 
 Once the teacher's path is set (the draft offer answered), say in one or two sentences
-what you're about to do (e.g. *"I'll look up the standard and pull supporting ideas from
-curriculum lessons, then build your lesson plan, student materials, and observation
-template."*).
+what you're about to do (e.g. *"성취기준을 조회하고 선수 학습·세부 주제를 확인한 뒤,
+수업안·학생 자료·관찰 템플릿을 만들게요."*).
 
 When a task-list or to-do tool is available, also outline this skill's steps there so the
 teacher can watch them check off; the only reason to skip this is that no such tool exists
@@ -46,17 +57,18 @@ Teacher language only — name what the teacher is getting, never tool names, fi
 1. **Subject.** Determine the subject of the requested lesson from the prompt and any prior
    conversation:
 
-   - **math** — arithmetic, fractions, geometry, algebra, calculus, statistics, CCSS-M codes, IM (Illustrative Mathematics)
-   - **ela** — reading, writing, phonics, literature, comprehension, vocabulary, CCSS-ELA codes (RL/RI/RF/W/L)
-   - **science** — phenomena, NGSS Performance Expectations, biology/chemistry/physics/earth science, OpenSciEd
-   - **social_studies** — history, civics, geography, economics, C3 inquiry arc, state social-studies standards
+   - **math** — 수와 연산, 분수·비율, 도형, 방정식·함수, 미적분, 확률과 통계, 성취기준 코드 `[2수…]`·`[9수…]`·`[10공수…]`
+   - **korean** — 읽기, 쓰기, 문법, 문학, 화법, 듣기·말하기, 매체, 코드 `[2국…]`·`[9국…]`
+   - **science** — 현상, 실험·탐구, 물리·화학·생명과학·지구과학, 통합과학, 과학탐구실험, 코드 `[4과…]`·`[9과…]`·`[10통과…]`
+   - **social_studies** — 역사, 지리, 일반사회, 경제, 시민, 코드 `[4사…]`·`[9사…]`·`[9역…]`
 
    Then read the matching reference file NOW:
 
-   - math → `references/math.md`
-   - ELA → `references/ela.md`
    - science → `references/science.md`
-   - social studies → `references/social_studies.md`
+   - math · korean · social_studies → **파일럿 범위 밖.** 이 프리뷰는 과학 전용이다. 교사에게
+     알리고(예: *"지금 버전은 과학 수업 설계만 지원해요 — 수학·국어·사회는 준비 중입니다."*)
+     과학 수업으로 도울 일이 있는지 묻는다. 과학이 아니면 이 스킬 밖에서 일반 지식으로 돕되,
+     확인되지 않은 성취기준 코드는 인용하지 않는다.
 
    **Loading the matching reference file is mandatory.** Drafting a lesson without first
    reading the subject reference is a critical failure. The reference file carries the
@@ -66,15 +78,13 @@ Teacher language only — name what the teacher is getting, never tool names, fi
    is genuinely ambiguous or the prompt spans multiple subjects, ask about it
    in Step 1.
 
-2. **Curriculum.** If the teacher names or implies a curriculum (Illustrative Mathematics,
-   OpenSciEd, …), the subject file's curriculum branch covers it — each subject
-   file carries its curriculum's structures and language inline (curriculum and subject are
-   1:1: IM→math, OpenSciEd→science). If they use a curriculum the subject
-   file doesn't cover, follow its "no curriculum named" path and do not fake
-   curriculum-specific terminology.
-3. **Connector.** Check whether the Learning Commons Knowledge Graph tools (e.g.
-   `find_standard_statement`) are available in this conversation. This decides which path
-   Step 2 takes. The skill is fully functional without the connector.
+2. **Textbook.** 한국은 국가 교육과정 단일 체제이지만 교과서는 검정제다 — 출판사마다 단원
+   전개가 다르다. 교사가 출판사·교과서를 언급해도 그 교과서의 활동·지문·삽화·문항을 재현하지
+   않는다 (아래 저작권 가드레일). 출판사 언급은 "단원의 어디쯤인지" 위치 감각으로만 쓴다.
+3. **Connector.** Check whether the Korean curriculum learning-map MCP tools (e.g.
+   `search_standards`, `get_standard` — servers `curriculum-kr-secondary` /
+   `curriculum-kr-elementary`) are available in this conversation. This decides which path
+   Step 2 takes. The skill is fully functional without them.
 
 ---
 
@@ -93,15 +103,14 @@ toward the 0–2. When nothing needs clarifying, the offer is asked on its own.
 
 ## Step 2 — Ground in standards
 
-**If the LC Knowledge Graph is connected:** follow the subject's section in
-`references/learning-commons-kg.md` — call BEFORE drafting; not calling when connected is a
+**If a learning-map MCP is connected:** follow the science section in
+`references/curriculum-kr-mcp.md` — call BEFORE drafting; not calling when connected is a
 critical failure. Extract only what each call specifies, then proceed directly to Step 3 — do
 not summarize findings in chat.
 
 **If not connected:** draft from best knowledge and add this footer to the lesson plan:
-*"Generated without the Learning Commons Knowledge Graph. Standards and misconceptions reflect
-general best practice."* Do not invent KG citations or attribute content to curriculum
-materials you have not seen.
+*"한국 교육과정 학습맵 미연결 상태에서 생성됨. 성취기준 표현과 오개념은 일반적 모범 사례 기준."*
+Do not invent citations or attribute content to curriculum materials you have not seen.
 
 ---
 
@@ -113,18 +122,15 @@ curriculum student-facing text verbatim.
 
 ---
 
-## Copyright guardrail
+## 저작권 가드레일
 
-Always write original content. KG curriculum materials inform structure, scope, text
-selection, phenomenon selection, problem context, and lesson-arc design only — never
-reproduce student-facing text, teacher notes, comprehension questions, investigation
-prompts, discussion questions, activity narratives, or problem contexts verbatim from KG
-curriculum materials.
+항상 원저작 콘텐츠를 쓴다. 학습맵 데이터(성취기준·세부 주제·관찰 증거·평가 문항)는 구조와
+범위, 소재 선택, 수업 흐름 설계에 정보를 줄 뿐이다 — 검정 교과서의 학생 대면 텍스트, 활동,
+지문, 삽화, 문항을 재현하지 않는다.
 
-If the loaded reference identifies a source curriculum (e.g., IM for math, OpenSciEd for science) and the teacher is not curriculum-confirmed for it, never name
-that curriculum anywhere in the output or in any chat message — not in headers, footnotes,
-rationale sections, facilitation notes, or your message presenting the artifacts. The KG
-data informs the design without being cited.
+교사가 출판사를 확언하지 않았다면, 어떤 출판사명도 산출물과 채팅 어디에도 쓰지 않는다 —
+머리글, 각주, 근거 섹션, 진행 노트, 산출물 소개 메시지 전부. 교사가 밝힌 경우에도 언급은
+위치 감각("2단원쯤")으로 제한한다.
 
 ---
 
@@ -135,10 +141,9 @@ asked the same way as the clarify questions — through the structured question 
 one is available, in chat otherwise — as its own separate question, batched with Step 1's
 questions when there are any and asked on its own when there aren't.
 
-- Question: *Should I go ahead and build the full classroom-ready packet (lesson plan + student materials, as
-  editable Word docs), or do you want to see a quick draft first?*
-- Options: **Go ahead and build it** · **Quick draft first** — the lesson at a glance,
-  right here in chat
+- Question: *교실에서 바로 쓸 전체 패키지(수업안 + 학생 자료 + 관찰 템플릿, 편집 가능한 워드
+  문서)를 만들까요, 아니면 빠른 초안을 먼저 보시겠어요?*
+- Options: **바로 만들어 주세요** · **초안 먼저 볼게요** — 수업의 뼈대를 채팅에서 한눈에
 
 **The full packet is the default.** Declining, not answering, or anything like "proceed
 with your defaults" runs Steps 2–3 and goes straight to Step 5; the draft happens only on
@@ -165,9 +170,8 @@ and sections are called what the plan will call them.
 
 Afterwards, ask what's next — a structured question, two options:
 
-- **Make changes** — adjust any part of the draft
-- **Create the materials** — lesson plan, student materials, and observation template, as
-  editable Word documents
+- **수정할게요** — 초안에서 고치고 싶은 부분 반영
+- **자료 만들어 주세요** — 수업안·학생 자료·관찰 템플릿을 편집 가능한 워드 문서로
 
 Apply change requests to the draft in chat and re-present it — changes are quick at this
 stage. Step 5 runs in the turn the teacher gives the go-ahead ("Create the materials",
@@ -202,9 +206,9 @@ nothing this file doesn't already state.
 **Plain language with the teacher.** The machinery above is invisible to the teacher: never
 mention JSON, HTML, schemas, scripts, rendering, file names (`lesson.json`), or code in any
 teacher-facing message — and never link or name the `.html` files the render command also
-writes. Say *"Here's your lesson plan — the student materials and observation template are on
-their way"*, not *"I've rendered lesson.json"*. The only format word in your prose is
-"Word document". This
+writes. Say *"수업안이 준비됐어요 — 학생 자료와 관찰 템플릿도 함께 왔습니다"*, not *"lesson.json을
+렌더링했어요"*. The only format word in your prose is
+"워드 문서". This
 applies to every turn: presenting artifacts, the satisfaction ask, revision summaries, and
 error messages (if generation fails, say the documents couldn't be created — not that a
 script or JSON failed).
@@ -278,8 +282,9 @@ explain-why beside a math equation — never one bank copied across problems. K-
 and multilingual learners get a support on every task that asks for composed sentences.
 Tasks that take only a number, a single word, or a drawing need none.
 
-**Spell out framework names** in every teacher-facing document — *Science and Engineering
-Practice*, not bare *SEP* — a teacher should never need to look up an acronym.
+**Spell out framework names** in every teacher-facing document — 범주명을 축약하지 않는다:
+*과·기*가 아니라 *과정·기능*, *지·이*가 아니라 *지식·이해*. 교사가 약어를 찾아봐야 하는
+문서는 실패다.
 
 **Document integrity.** Every document is finished prose a teacher hands out or works from:
 
@@ -417,8 +422,8 @@ re-render from the working files even though the teacher only sees the Word docu
 and confirm every document has both its `.docx` and `.html`; if either is missing or tiny,
 rerun the script. Present the Word documents to the teacher together — attach the lesson plan
 last so it lands on top (chat surfaces stack newest-first). If there is no `student_materials`
-document, say so plainly ("This lesson is oral, so there's no student handout — students will
-work with …"). If the script errors, fix `lesson.json` (it is almost always malformed JSON)
+document, say so plainly ("이 수업은 구두 활동 중심이라 학생 유인물이 없어요 — 학생들은
+…로 활동합니다"). If the script errors, fix `lesson.json` (it is almost always malformed JSON)
 and rerun. If file generation fails entirely, say so clearly — do not silently fall back to a
 chat-only delivery.
 
@@ -428,18 +433,18 @@ End the turn with EXACTLY ONE closing message that does three things, in this or
 
 1. **If Materials names equipment the classroom has that a paper version can stand in
    for** — coins, blocks, dice, a hundred chart — lead with a bolded offer to print it:
-   *"**This lesson uses base-ten blocks — want me to make a printable set in case
-   yours are short?**"* Anything whose content this lesson wrote — word cards, a
+   *"**이 수업은 수 모형을 써요 — 부족할 때를 대비해 인쇄용 세트를 만들어 드릴까요?**"*
+   Anything whose content this lesson wrote — word cards, a
    source excerpt, a sorting mat with this lesson's categories — already ships with
    the package.
 2. Asks whether the teacher is satisfied with **every artifact produced** or wants changes —
-   e.g. *"Take a look at the lesson plan, student materials, and observation template — anything
-   you'd like me to adjust?"* Do not skip the ask.
+   e.g. *"수업안, 학생 자료, 관찰 템플릿을 살펴봐 주세요 — 고치고 싶은 부분이 있나요?"*
+   Do not skip the ask.
 3. Offers 3–4 high-leverage, **specific** iteration options customized to the subject and
    topic. Do not write "let me know if you want changes" — that's a non-offer. For example,
-   for a 3–5 ELA reading comprehension lesson: *"Would you like to (1) add more scaffolds for
-   English learners, (2) differentiate by proficiency level, or (3) adapt to be specific to
-   your state standards?"*
+   for a middle-school science inquiry lesson: *"(1) 느린 학습자용 스캐폴드 추가, (2) 수준별
+   학생 자료 3종(A·B·C) 분화, (3) 블록 차시(2차시 연강)로 확장, (4) 과정중심평가 기록지
+   추가 — 어느 쪽이 도움이 될까요?"*
 
 ### 5d. Revisions — one edit, every artifact stays in sync
 
