@@ -21,8 +21,19 @@ Learning Commons Knowledge Graph 호출 시퀀스를 한국 2022 개정 교육�
 
 | 학교급 | 서버 | 도구 접두 신호 |
 | --- | --- | --- |
-| 초등 (1–6학년) | `curriculum-kr-elementary` | 성취기준 코드 `[2xx…]` `[4xx…]` `[6xx…]` |
-| 중·고 (보통교과) | `curriculum-kr-secondary` | 코드 `[9xx…]` (중), `[10xx…]` `[12xx…]` (고) — `schoolLevel: "middle" | "high"` 필터 지원 |
+| 초등 (1–6학년) | `curriculum-kr-elementary` | 성취기준 코드 `[2xx…]` `[4xx…]` `[6xx…]` — `gradeBand: "1-2" \| "3-4" \| "5-6"` |
+| 중·고 (보통교과) | `curriculum-kr-secondary` | 코드 `[9xx…]` (중), `[10xx…]` `[12xx…]` (고) — `schoolLevel: "middle" \| "high"`, `gradeBand: "7-9" \| "10" \| "10-12"` |
+
+**두 서버의 차이 (실측):**
+- 초등에는 `get_transitions`가 없다 (중→고 전이는 중등 전용). 초등은 9종, 중등은 11종.
+- 초등 `search_standards` 결과의 요약 필드는 `summary`가 아니라 **`focus`**이며 문장이 잘려 있다.
+  초등 `get_standard`에는 `subject` 파라미터가 없다.
+- ⚠ **초등 성취기준 원문은 verbatim이 아니다.** 초등 레코드는 `sourceTextIncluded: false`이고
+  `sourceBasis`에 "표준 본문은 저작권 정책상 재수록하지 않는다"고 명시돼 있다. `officialText`
+  필드는 존재하지만 `focus + "할 수 있다"`로 조립된 값이다. 따라서 **초등 수업안에서는 성취기준을
+  verbatim으로 인용했다고 말하지 않는다** — 콜아웃에 이 문장을 쓰되 수업안 푸터에 다음을 단다:
+  *"초등 성취기준 문장은 학습맵의 요약 필드에서 재구성된 것입니다. 공식 고시문과 대조해 확인하세요."*
+  중등은 `sourceLocator`(PDF 쪽·sha256)를 갖춘 verbatim이므로 이 제한이 없다.
 
 라우팅 규칙:
 - 교사가 말한 **학년**으로 서버를 정한다. 중학교 수업이면 secondary만 호출한다.
