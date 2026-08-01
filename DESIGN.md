@@ -25,7 +25,7 @@ Commons KG에 결합되어 있어 한국 교사에게는 세 가지가 어긋난
 
 ### 1.3 범위에 포함
 
-- `ko12-lesson-planning` 스킬 (1차) · `ko12-lesson-differentiation` 스킬 (2차)
+- `ko12-lesson-planning` 스킬 (1차, 완료) · `ko12-lesson-differentiation` 스킬 (2차, 완료)
 - 과목: 과학 단일 (초·중등 과학, 고교 통합과학·과학탐구실험·선택 과학)
 - 학교급: 초3 – 고3 보통교과 (초1–2는 과학 교과가 없어 특례 처리, ADR-2)
 - MCP 번들: 한국 학습맵 2종
@@ -223,7 +223,7 @@ plugin/
 |---|---|---|
 | **1. 과학 파일럿** | 골격 + .mcp.json + curriculum-kr-mcp.md + science.md + SKILL.md diff | 실 MCP 연결 상태에서 중학교 1회·초등 1회 수업 생성. 체크: 성취기준 원문 verbatim 인용 ○ / look-for에 관찰 증거 반영 ○ / 3범주 목표 진술 자연스러움 ○(ADR-1 검증) / 시간 배분 현실성 ○ |
 | **2. HWPX** (완료 2026-08-01) | render_lesson_hwpx.py (OWPML 직접 생성, ADR-4 개정판) | 표 포함 수업안이 한글에서 깨짐 없이 열림, docx 병행 유지 — 11개 문서 전수: 구조 검증·한컴 COM 실열림 PASS, 고정 높이 행 docx 렌더러와 전 항목 일치 |
-| **3. 공개** | README(attribution 포함), GitHub 공개(완료 2026-08-01), example_lesson.json 과학 소재 한국어 예시로 교체(완료 2026-08-01), differentiation 스킬 2차 포팅 | 외부인이 README만으로 설치·1회 생성 성공 |
+| **3. 공개** | README(attribution 포함), GitHub 공개(완료 2026-08-01), example_lesson.json 과학 소재 한국어 예시로 교체(완료 2026-08-01), differentiation 스킬 2차 포팅(완료 2026-08-01) | 외부인이 README만으로 설치·1회 생성 성공 |
 
 **각 단계는 공개 가능한 상태로 끝난다** — 3단계까지 미루지 않는다. 1단계 완료 시점에
 "과학 전용 프리뷰"로 저장소를 공개하는 것이 기본값이다 (가시성 정체 패턴의 구조적 차단).
@@ -244,6 +244,7 @@ plugin/
 | plugin/skills/ko12-lesson-planning/SKILL.md | 오케스트레이터 (원본 최소 diff) | 파일럿 검증본 |
 | plugin/skills/ko12-lesson-planning/references/curriculum-kr-mcp.md | Step 2 호출 시퀀스 — 표준 조회 방법 | 파일럿 검증본 (실 MCP 대조 보정 완료) |
 | plugin/skills/ko12-lesson-planning/references/science.md | 과학 pedagogy 레퍼런스 | 파일럿 검증본 |
+| plugin/skills/ko12-lesson-differentiation/ | 차별화 스킬 (SKILL.md + science.md + curriculum-kr-mcp.md + scripts) | 2차 포팅 완료 (2026-08-01). R1–R8을 3범주 프레임으로 재작성, 실생성 4문서 검증 |
 | plugin/skills/ko12-lesson-planning/scripts/render_lesson_hwpx.py | HWPX 어댑터 (OWPML 직접 생성) | 2단계 구현·전수 검증 완료. 타이포그래피 보정 1회(2026-08-01), 한글 세부 조판은 추가 작업 대기 |
 | plugin/skills/ko12-lesson-planning/references/example_lesson.json | 산출 JSON 스키마 예시 | 과학·한국어판으로 교체 (2026-08-01). 파일럿 #1 기반 + 번호 과제·힌트 카드 문서로 스키마 폭 유지 |
 | docs/superpowers/pilot-notes.md | 파일럿·구현 실측 기록 — 무엇을 확인했나 | 1·2단계 기록 |
