@@ -2,3 +2,9 @@ __pycache__/
 *.pyc
 pilot/*/out/
 tests/smoke/out/
+
+# HWPX 검증 툴체인 — Hwp_doc에서 이식한 로컬 전용 도구.
+# 출처가 서드파티(github.com/Canine89/hwpxskill)이고 스킬 폴더에 라이선스 파일이
+# 없어, Apache-2.0 배포 저장소인 여기에 벤더링하지 않는다. 재이식 절차는
+# docs/superpowers/pilot-notes.md 참조.
+.claude/
