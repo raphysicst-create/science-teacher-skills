@@ -1,6 +1,6 @@
 # science-teacher-skills — 기초 설계 문서 (DESIGN.md)
 
-**버전**: 0.3 (과학 전용 범위 확정 — 2026-08-01)
+**버전**: 0.4 (2단계 HWPX 완료 — 2026-08-01)
 **상태**: 이 문서가 프로젝트의 canonical 기준이다. 구현 파일(레퍼런스·스펙·스크립트)과
 이 문서가 충돌하면 이 문서를 고치거나 구현을 고친다 — 둘이 어긋난 채 두지 않는다.
 
@@ -222,7 +222,7 @@ plugin/
 | 단계 | 내용 | 완료 기준 |
 |---|---|---|
 | **1. 과학 파일럿** | 골격 + .mcp.json + curriculum-kr-mcp.md + science.md + SKILL.md diff | 실 MCP 연결 상태에서 중학교 1회·초등 1회 수업 생성. 체크: 성취기준 원문 verbatim 인용 ○ / look-for에 관찰 증거 반영 ○ / 3범주 목표 진술 자연스러움 ○(ADR-1 검증) / 시간 배분 현실성 ○ |
-| **2. HWPX** | render_lesson_hwpx.py (OWPML 직접 생성, ADR-4 개정판) | 표 포함 수업안이 한글에서 깨짐 없이 열림, docx 병행 유지 |
+| **2. HWPX** (완료 2026-08-01) | render_lesson_hwpx.py (OWPML 직접 생성, ADR-4 개정판) | 표 포함 수업안이 한글에서 깨짐 없이 열림, docx 병행 유지 — 11개 문서 전수: 구조 검증·한컴 COM 실열림 PASS, 고정 높이 행 docx 렌더러와 전 항목 일치 |
 | **3. 공개** | README(attribution 포함), npm/GitHub, differentiation 스킬 2차 포팅, example_lesson.json 과학 소재 한국어 예시로 교체 | 외부인이 README만으로 설치·1회 생성 성공 |
 
 **각 단계는 공개 가능한 상태로 끝난다** — 3단계까지 미루지 않는다. 1단계 완료 시점에
@@ -244,6 +244,7 @@ plugin/
 | plugin/skills/ko12-lesson-planning/SKILL.md | 오케스트레이터 (원본 최소 diff) | 파일럿 검증본 |
 | plugin/skills/ko12-lesson-planning/references/curriculum-kr-mcp.md | Step 2 호출 시퀀스 — 표준 조회 방법 | 파일럿 검증본 (실 MCP 대조 보정 완료) |
 | plugin/skills/ko12-lesson-planning/references/science.md | 과학 pedagogy 레퍼런스 | 파일럿 검증본 |
-| docs/superpowers/pilot-notes.md | 파일럿 실측 기록 — 무엇을 확인했나 | 1단계 완료 |
+| plugin/skills/ko12-lesson-planning/scripts/render_lesson_hwpx.py | HWPX 어댑터 (OWPML 직접 생성) | 2단계 구현·전수 검증 완료 |
+| docs/superpowers/pilot-notes.md | 파일럿·구현 실측 기록 — 무엇을 확인했나 | 1·2단계 기록 |
 | tests/check_lesson.py | DoD 자동 검증기 (결정론) | 파일럿 2건 통과 |
 | evals/ | 산출물 채점 루브릭 — 업스트림 원본 (LLM-judge용, tests/의 결정론 검증을 보완) | 원본 이식 (2026-08-01) 후 과학 전용으로 축소 — 수학·국어·사회 루브릭 3파일 삭제, 5파일 68항목 유지. 이식 시점 전수 판정(88항목: ✅63 그대로 사용 · 🔧20 보정 · ❌4 재설계 · ⏸1 보류)은 삭제분 20항목을 포함한 수치. evals-ko 보정판 미착수 |

@@ -423,6 +423,13 @@ document, say so plainly ("이 수업은 구두 활동 중심이라 학생 유�
 and rerun. If file generation fails entirely, say so clearly — do not silently fall back to a
 chat-only delivery.
 
+교사가 **한글(HWP/HWPX) 파일**을 요청하면 같은 lesson.json에서 추가로 렌더한다 — docx를
+대체하지 않고 병행한다:
+
+```bash
+python3 scripts/render_lesson_hwpx.py lesson.json --outdir "$OUTPUT_DIR"
+```
+
 ### 5c. The satisfaction ask + iteration options (every output turn)
 
 End the turn with EXACTLY ONE closing message that does three things, in this order:
