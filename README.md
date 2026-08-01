@@ -1,12 +1,12 @@
 # ko12-teacher-skills
 
-**한국 2022 개정 교육과정 기반 수업 설계 Claude 스킬 — 과학 전용 프리뷰 (v0.1.0-preview.1)**
+**한국 2022 개정 교육과정 기반 과학 수업 설계 Claude 스킬 (v0.1.0-preview.1)**
 
 Anthropic의 [k12-teacher-skills](https://github.com/anthropics/k12-teacher-skills)를 한국
 초·중등 체제로 이식했습니다. 성취기준·선수관계·세부 학습 주제는 한국 교육과정 학습맵 MCP
 2종에서 가져오고, 수업 자료는 편집 가능한 워드 문서로 나옵니다.
 
-> ⚠ 지금은 **과학만** 지원합니다. 수학·국어·사회는 2단계에서 추가됩니다.
+> 이 플러그인은 **과학 전용**입니다. 다른 과목은 다루지 않습니다.
 
 ## 무엇을 만드나
 
@@ -75,9 +75,7 @@ MCP), 과목 pedagogy(NGSS 3차원 → 2022 개정 내용 체계 3범주), 교�
 | 단계 | 내용 | 상태 |
 |---|---|---|
 | 1 | 과학 파일럿 — 골격, 학습맵 연결, 실 수업 생성 검증 | ✅ 완료 (2026-08-01) |
-| 2 | 수학·사회 배치 포팅, 국어 재저작 | 준비 중 |
-| 3 | HWPX 산출 ([kordoc](https://github.com/chrisryugj/kordoc) 어댑터) | 예정 |
-| 4 | 수업 차별화 스킬 포팅, 공개 배포 | 예정 |
+| 2 | HWPX 산출 ([kordoc](https://github.com/chrisryugj/kordoc) 어댑터) | 예정 |
+| 3 | 수업 차별화 스킬 포팅, 공개 배포 | 예정 |
 
-설계 근거와 결정 기록은 [DESIGN.md](DESIGN.md), 2단계 실행 지시서는
-[BATCH_SPEC.md](BATCH_SPEC.md)에 있습니다.
+설계 근거와 결정 기록은 [DESIGN.md](DESIGN.md)에 있습니다.
