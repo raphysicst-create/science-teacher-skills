@@ -77,7 +77,7 @@ plugin/
 |---|---|---|---|---|
 | A | Learning Commons KG | 학습맵 MCP 2종 (초등/중등) | `learning-commons-kg.md` → `curriculum-kr-mcp.md` 파일 치환 | 1 |
 | B | 미국 과학 pedagogy 레퍼런스 (science.md) | 2022 개정 체제 과학 레퍼런스 | 치환 규칙 적용해 재작성 | 1 |
-| C | docx 렌더링 | HWPX (kordoc) 추가 | 렌더 스크립트에 어댑터 추가, docx 병행 유지 | 2 |
+| C | docx 렌더링 | HWPX 추가 (OWPML 직접 생성) | 렌더 스크립트에 어댑터 추가, docx 병행 유지 | 2 |
 
 ```
                     ┌─ SKILL.md (오케스트레이터, 최소 diff)
@@ -87,7 +87,7 @@ plugin/
    Step 3 ──────────┼─ science.md
                     │
    Step 5 ──────────┴─ scripts/ ── render_lesson_docx.py (유지)
-                                └─ render_lesson_hwpx.py (2단계, kordoc CLI 어댑터)
+                                └─ render_lesson_hwpx.py (2단계, OWPML 직접 생성)
 ```
 
 ---
@@ -133,18 +133,29 @@ plugin/
   보내는 게 맞는 물건.
 - **재검토 조건**: 병렬 검색의 소음이 크면 초등 조회를 명시 요청 시에만으로 조인다.
 
-### ADR-4. 렌더링: docx 유지, HWPX는 3단계 추가
+### ADR-4. 렌더링: docx 유지, HWPX는 2단계에 OWPML 직접 생성으로 추가
 
-- **결정**: 1단계는 원본 docx/html 렌더러 무수정. HWPX는 2단계에서 kordoc **CLI 직접
-  호출 어댑터**(`render_lesson_hwpx.py`)로 추가하며 docx를 대체하지 않고 병행한다.
+- **결정 (2026-08-01 개정)**: 1단계는 원본 docx/html 렌더러 무수정. HWPX는 2단계에서
+  `render_lesson_hwpx.py`가 lesson.json → OWPML(section0.xml) **직접 생성**하는 방식으로
+  추가하며 docx를 대체하지 않고 병행한다. 치수의 단일 소스는 원본 렌더러의 pt 명세
+  (lesson_common.py의 학년 밴드 프로필·표 높이)다.
 - **근거**: (a) 수업 자료는 docx로도 한국 학교에서 문제없다 — HWPX의 실수요는
-  기안문·공문 맥락. (b) 스킬은 한 턴 결정론적 렌더를 보장해야 하므로 MCP 도구 연결
-  여부에 의존하는 경로보다 스크립트 내 CLI 호출이 안정적. (c) 렌더러 교체를 pedagogy
+  기안문·공문 맥락. (b) 스킬은 한 턴 결정론적 렌더를 보장해야 하므로 외부 도구 연결
+  여부에 의존하지 않는 스크립트 내 생성이 안정적. (c) 렌더러 교체를 pedagogy
   검증과 분리해야 실패 지점을 격리할 수 있다.
-- **기각한 대안**: kordoc MCP 번들 + 모델이 generate_document 호출 — 렌더 일관성이
-  모델 판단에 노출됨.
-- **재검토 조건**: block-document JSON → 마크다운 → kordoc 변환에서 표·수식 손실이
-  확인되면 (kordoc의 profile 추출 기능으로 서식 프로필 경로 검토).
+- **기각한 대안**: (a) kordoc MCP 번들 + 모델이 generate_document 호출 — 렌더 일관성이
+  모델 판단에 노출됨. (b) **kordoc CLI 마크다운 경유 어댑터 (원안)** — 재검토 조건이
+  실측으로 발동되어 기각 (아래).
+- **재검토 이력 (2026-08-01, 원안 기각)**: 파일럿 6종을 kordoc 경유로 시험 생성한 실측에서
+  내용·인코딩은 보존됐으나 마크다운 단계에서 pt 명세가 전부 탈락했다 — 답란 높이 붕괴
+  (108pt→45pt 등), 콜아웃 박스 소실, 상단 여백 4배. 보정은 section0.xml 직접 패치로만
+  가능했다 (docs/superpowers/pilot-notes.md "HWPX 레이아웃 보정"). 결론: 마크다운을
+  경유하지 않는다.
+- **검증 경로**: 로컬 HWPX 툴체인(구조 검증 + 한컴 COM 실열림·쪽수 실측)을 QA로 쓴다.
+  출처(Canine89/hwpxskill)가 라이선스 미표기임을 확인(2026-08-01)했으므로 저장소에
+  벤더링하지 않는다 (.gitignore 처리, 배포물 아님). 어댑터 자체는 오리지널 코드로 작성한다.
+- **미해결 (어댑터 구현 범위)**: 콜아웃 테두리·표 헤더 음영(borderFill), 큰 고정높이 표
+  앞의 쪽 나눔 로직, number_line 블록의 OWPML 대응.
 
 ### ADR-5. (폐기 2026-08-01) 다과목 포팅 순서
 
@@ -210,7 +221,7 @@ plugin/
 | 단계 | 내용 | 완료 기준 |
 |---|---|---|
 | **1. 과학 파일럿** | 골격 + .mcp.json + curriculum-kr-mcp.md + science.md + SKILL.md diff | 실 MCP 연결 상태에서 중학교 1회·초등 1회 수업 생성. 체크: 성취기준 원문 verbatim 인용 ○ / look-for에 관찰 증거 반영 ○ / 3범주 목표 진술 자연스러움 ○(ADR-1 검증) / 시간 배분 현실성 ○ |
-| **2. HWPX** | render_lesson_hwpx.py (kordoc CLI 어댑터) | 표 포함 수업안이 한글에서 깨짐 없이 열림, docx 병행 유지 |
+| **2. HWPX** | render_lesson_hwpx.py (OWPML 직접 생성, ADR-4 개정판) | 표 포함 수업안이 한글에서 깨짐 없이 열림, docx 병행 유지 |
 | **3. 공개** | README(attribution 포함), npm/GitHub, differentiation 스킬 2차 포팅, example_lesson.json 과학 소재 한국어 예시로 교체 | 외부인이 README만으로 설치·1회 생성 성공 |
 
 **각 단계는 공개 가능한 상태로 끝난다** — 3단계까지 미루지 않는다. 1단계 완료 시점에
