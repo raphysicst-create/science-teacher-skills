@@ -659,10 +659,13 @@ def render(data: dict, out_path: str) -> int:
     for blk in preamble_blocks(doc):
         emit_block(w, blk, theme)
     for section in doc.get("sections", []):
-        if section.get("title"):
-            w.para([_run(str(section["title"]), CH_H1)], PP_SEC, est_pt=26.0)
+        heading = str(section.get("heading", "")).rstrip(": ")
+        if heading:
+            w.para([_run(heading, CH_H1)], PP_SEC, est_pt=26.0)
         for blk in section.get("blocks", []):
             emit_block(w, blk, theme)
+    if doc.get("footer_note"):
+        w.para([_run(str(doc["footer_note"]), CH_GRAY_SMALL)], est_pt=14.0)
 
     container = ('<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>\n'
                  '<ocf:container xmlns:ocf="urn:oasis:names:tc:opendocument:xmlns:'
