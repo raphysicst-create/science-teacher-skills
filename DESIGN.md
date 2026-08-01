@@ -1,4 +1,4 @@
-# ko12-teacher-skills — 기초 설계 문서 (DESIGN.md)
+# science-teachers-skills — 기초 설계 문서 (DESIGN.md)
 
 **버전**: 0.3 (과학 전용 범위 확정 — 2026-08-01)
 **상태**: 이 문서가 프로젝트의 canonical 기준이다. 구현 파일(레퍼런스·스펙·스크립트)과
