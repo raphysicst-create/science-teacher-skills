@@ -64,7 +64,7 @@ CH_BODY, CH_BOLD, CH_ITALIC, CH_BOLDITALIC = 0, 1, 2, 3
 CH_SMALL, CH_TITLE, CH_H1, CH_H2, CH_H3 = 4, 5, 6, 7, 8
 CH_GRAY_SMALL, CH_GRAY = 11, 12
 # paraPr id 대응
-PP_BODY, PP_TITLE, PP_SEC, PP_H3, PP_LIST, PP_CENTER = 0, 1, 2, 3, 5, 8
+PP_BODY, PP_TITLE, PP_SEC, PP_H3, PP_LIST, PP_CENTER, PP_CELL = 0, 1, 2, 3, 5, 8, 9
 # borderFill id 대응
 BF_NONE, BF_SOLID, BF_SHADE, BF_CALLOUT, BF_RULE, BF_LIGHT = 1, 2, 3, 4, 5, 6
 
@@ -167,26 +167,31 @@ def build_header_xml() -> str:
         + _border_fill(BF_CALLOUT, sides="SOLID", width="0.12 mm", fill="#F6F8F9")
         + _border_fill(BF_RULE, bottom_only=True, width="0.12 mm", color="#C9CFD4")
         + _border_fill(BF_LIGHT, sides="SOLID", width="0.12 mm", color="#C9CFD4"))
+    # 본문도 고딕(함초롬돋움) — 원본 디자인이 산세리프(Helvetica) 계열이다.
     char_prs = (
-        _char_pr(0, 1000) + _char_pr(1, 1000, bold=True)
-        + _char_pr(2, 1000, italic=True) + _char_pr(3, 1000, bold=True, italic=True)
+        _char_pr(0, 1000, gothic=True) + _char_pr(1, 1000, bold=True, gothic=True)
+        + _char_pr(2, 1000, italic=True, gothic=True)
+        + _char_pr(3, 1000, bold=True, italic=True, gothic=True)
         + _char_pr(4, 900, gothic=True) + _char_pr(5, 1800, bold=True, gothic=True)
         + _char_pr(6, 1400, bold=True, gothic=True)
         + _char_pr(7, 1200, bold=True, gothic=True)
         + _char_pr(8, 1100, bold=True, gothic=True)
-        + _char_pr(9, 1000) + _char_pr(10, 1000, italic=True)
+        + _char_pr(9, 1000, gothic=True) + _char_pr(10, 1000, italic=True, gothic=True)
         + _char_pr(11, 900, gothic=True, color="#666666")
-        + _char_pr(12, 1000, color="#666666"))
+        + _char_pr(12, 1000, gothic=True, color="#666666"))
+    # 왼쪽 정렬 — 양쪽 정렬(JUSTIFY)은 한글에서 자간을 불규칙하게 늘린다.
+    # 본문 150% + 문단 뒤 7pt: 원본 docx(단행+8pt after)/html(1.55) 리듬의 절충.
     para_prs = (
-        _para_pr(0, align="JUSTIFY")
+        _para_pr(0, align="LEFT", spacing=150, nxt=700)
         + _para_pr(1, heading="OUTLINE", level=0, prev=800, nxt=200, spacing=180)
         + _para_pr(2, heading="OUTLINE", level=1, prev=600, nxt=150, spacing=170)
         + _para_pr(3, heading="OUTLINE", level=2, prev=400, nxt=100)
         + _para_pr(4, heading="OUTLINE", level=3, prev=300, nxt=100)
-        + _para_pr(5, indent=400, spacing=130)
+        + _para_pr(5, indent=400, spacing=140, nxt=200)
         + _para_pr(6, indent=600, spacing=150)
         + _para_pr(7, indent=600)
-        + _para_pr(8, align="CENTER"))
+        + _para_pr(8, align="CENTER", spacing=140)
+        + _para_pr(9, align="LEFT", spacing=140, nxt=200))   # 표 셀 본문 (촘촘)
     return (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>\n'
         '<hh:head xmlns:hh="http://www.hancom.co.kr/hwpml/2011/head" '
@@ -205,7 +210,7 @@ def build_header_xml() -> str:
                   'checkable="0"/>' for lv in range(1, 8))
         + '</hh:numbering></hh:numberings>'
         '<hh:bullets itemCnt="0"/>'
-        f'<hh:paraProperties itemCnt="9">{para_prs}</hh:paraProperties>'
+        f'<hh:paraProperties itemCnt="10">{para_prs}</hh:paraProperties>'
         '<hh:styles itemCnt="1"><hh:style id="0" type="PARA" name="바탕글" '
         'engName="Normal" paraPrIDRef="0" charPrIDRef="0" nextStyleIDRef="0" '
         'langIDRef="1042" lockForm="0"/></hh:styles>'
@@ -376,7 +381,7 @@ class SectionWriter:
                 + "".join(self.parts) + "</hs:sec>")
 
 
-def _cell_paras(text, base=CH_BODY, para_pr=PP_BODY) -> list[str]:
+def _cell_paras(text, base=CH_BODY, para_pr=PP_CELL) -> list[str]:
     out = []
     for runs in _md_runs(text, base):
         out.append(f'<hp:p paraPrIDRef="{para_pr}" styleIDRef="0">{"".join(runs)}</hp:p>')
@@ -443,7 +448,7 @@ def emit_callout(w, blk, theme):
     text = blk.get("text") or blk.get("body") or blk.get("content") or ""
     paras = []
     head = f"{icon} " + (label or "")
-    paras += [f'<hp:p paraPrIDRef="{PP_BODY}" styleIDRef="0">'
+    paras += [f'<hp:p paraPrIDRef="{PP_CELL}" styleIDRef="0">'
               f'{_run(head.strip() + (" " if text else ""), CH_BOLD)}</hp:p>']
     if text:
         paras += _cell_paras(text)
@@ -531,7 +536,7 @@ def emit_table(w, blk, theme):
         for i, v in enumerate(cells_txt):
             bold = (large and v.strip() != "") or (not headers and i == 0 and v.strip() != "")
             base = CH_H1 if large and v.strip() else (CH_BOLD if bold else CH_BODY)
-            pp = PP_CENTER if large else PP_BODY
+            pp = PP_CENTER if large else PP_CELL
             cells.append((_cell_paras(v, base, pp) if v else [], BF_SOLID))
         out_rows.append({"cells": cells, "height_u": h_u})
     # 2열 라벨/값 표는 30/70 분할이 읽기 좋다 (보정본 어휘 표 관행)
