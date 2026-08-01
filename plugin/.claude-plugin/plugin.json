@@ -1,8 +1,8 @@
 {
-  "name": "science-teachers-skills",
+  "name": "science-teacher-skills",
   "version": "0.1.0-preview.1",
   "description": "한국 2022 개정 교육과정 기반 과학 수업 설계 스킬. Anthropic k12-teacher-skills의 한국 이식판(과학 전용) — 성취기준·선수관계·세부 주제는 한국 교육과정 학습맵 MCP(초등·중등)에서 가져온다.",
   "author": {
-    "name": "science-teachers-skills contributors"
+    "name": "science-teacher-skills contributors"
   }
 }

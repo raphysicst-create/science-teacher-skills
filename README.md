@@ -1,4 +1,4 @@
-# science-teachers-skills
+# science-teacher-skills
 
 **한국 2022 개정 교육과정 기반 과학 수업 설계 Claude 스킬 (v0.1.0-preview.1)**
 
@@ -27,7 +27,7 @@ Claude Code에서:
 
 ```
 /plugin marketplace add <이 저장소 URL>
-/plugin install science-teachers-skills
+/plugin install science-teacher-skills
 ```
 
 또는 저장소를 clone한 뒤 `plugin/` 폴더를 플러그인 경로로 지정합니다.

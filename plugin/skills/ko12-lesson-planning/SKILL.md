@@ -16,7 +16,7 @@ license: Complete terms in LICENSE
 <!--
 SPDX-FileCopyrightText: 2026 Anthropic, PBC
 SPDX-FileCopyrightText: 2026 Learning Commons
-SPDX-FileCopyrightText: 2026 science-teachers-skills contributors
+SPDX-FileCopyrightText: 2026 science-teacher-skills contributors
 SPDX-License-Identifier: Apache-2.0
 
 원본: anthropics/k12-teacher-skills v0.6.0 — skills/k12-lesson-planning/SKILL.md

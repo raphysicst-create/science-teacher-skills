@@ -1,7 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2026 Anthropic, PBC
 SPDX-FileCopyrightText: 2026 Learning Commons
-SPDX-FileCopyrightText: 2026 science-teachers-skills contributors
+SPDX-FileCopyrightText: 2026 science-teacher-skills contributors
 SPDX-License-Identifier: Apache-2.0
 
 원본: k12-teacher-skills .../references/science.md
