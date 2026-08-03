@@ -12,6 +12,11 @@
 
 사용:
     python docs/evals_port_review.py [BEFORE_REF] > docs/evals-port-review.html
+    python docs/evals_port_review.py --unchanged [BEFORE_REF] > docs/evals-unchanged-criteria.md
+
+`--unchanged`는 **손대지 않은 항목**을 전문으로 뽑는다. 대조 페이지가 "무엇을 왜 바꿨나"를
+보인다면 이쪽은 그 주장의 나머지 절반이다 — 바꾸지 않았다고 말한 것이 정말 원본 그대로인지
+독자가 대조할 수 있어야 "고장난 것만 고쳤다"가 검증 가능한 진술이 된다.
 
 BEFORE_REF 기본값은 보정 직전 커밋(a76d683). 현재본은 작업 트리에서 읽는다.
 표준 라이브러리만 쓴다 (렌더러·검증기와 동일한 의존성 원칙).
@@ -385,9 +390,105 @@ baseline과의 점수 델타를 봐야 한다. 루브릭을 자기 유리하게 
 <script>%s</script>"""
 
 
+BUCKET_KO = {
+    "P": "Pedagogy — 교육적 설계",
+    "R": "Rigor — 인지적 요구 수준",
+    "O": "Output / Formatting — 산출물 형식",
+    "M": "Model Scaffolding — 모델의 대화 행동",
+}
+
+
+def markdown_unchanged(data: list, before_ref: str) -> str:
+    """손대지 않은 항목을 전문으로 뽑는다."""
+    kept = [(f, [i for i in f["items"] if i["status"] == "same"]) for f in data]
+    kept = [(f, items) for f, items in kept if items]
+    total = sum(len(items) for _, items in kept)
+    # 두 루브릭 파일은 ID 공간이 독립이라 P5·O2 등이 양쪽에 존재한다. 뭉치면 중복으로 보이므로
+    # 분포는 파일별 열로 가른다.
+    buckets: dict = {}
+    for f, items in kept:
+        for i in items:
+            b = i["after"]["bucket"].split(" ")[0]
+            buckets.setdefault(b, {}).setdefault(f["label"], []).append(i["id"])
+
+    out = [
+        "# 원본 그대로 둔 evals 항목",
+        "",
+        f"업스트림 `k12-teacher-skills`의 채점 루브릭 중 한국판 보정에서 **한 글자도 고치지 "
+        f"않은 {total}항목**의 전문이다. 현재 전체 69항목 가운데 나머지 31항목(변경 29 · 신설 2)은 "
+        "[`evals-port-review.html`](evals-port-review.html)에서 원본과 나란히 볼 수 있다.",
+        "",
+        "이 파일이 있는 이유는 대조 페이지와 짝을 이루기 위해서다. 그쪽이 *무엇을 왜 바꿨나*를 "
+        "보인다면, 이 파일은 **바꾸지 않았다고 말한 것이 정말 원본 그대로인지** 독자가 확인할 "
+        "수 있게 한다. 둘이 다 있어야 \"고장난 것만 고쳤다\"가 검증 가능한 진술이 된다.",
+        "",
+        f"대조 기준: `{before_ref}` (보정 직전) → 현재 작업 트리. "
+        "`python docs/evals_port_review.py --unchanged`로 재생성한다.",
+        "",
+        "> 아래 본문은 **업스트림 원문 그대로**이며 번역하지 않았다 — 한 글자도 고치지 않았다는 "
+        "것이 이 문서의 요점이라 옮기는 순간 그 주장이 성립하지 않는다. "
+        "저작권 표기는 Anthropic, PBC / Learning Commons, Apache-2.0.",
+        "",
+        "## 분포",
+        "",
+        "두 루브릭 파일은 ID 공간이 서로 독립이다 — `P5`·`O2` 같은 ID가 양쪽에 따로 존재하므로 "
+        "열을 갈라 적는다.",
+        "",
+    ]
+    labels = [f["label"] for f, _ in kept]
+    out.append("| 버킷 | " + " | ".join(f"{l} ({len(items)})" for (f, items), l
+                                        in zip(kept, labels)) + " |")
+    out.append("| :--- | " + " | ".join([":---"] * len(labels)) + " |")
+    for b in ("P", "R", "O", "M"):
+        per = buckets.get(b)
+        if not per:
+            continue
+        cells = [" · ".join(f"`{i}`" for i in per.get(l, [])) or "—" for l in labels]
+        out.append(f"| {BUCKET_KO[b]} | " + " | ".join(cells) + " |")
+    n_o = sum(len(v) for v in buckets.get("O", {}).values())
+    n_p = sum(len(v) for v in buckets.get("P", {}).values())
+    n_m = sum(len(v) for v in buckets.get("M", {}).values())
+    out += [
+        "",
+        f"분포가 한쪽으로 쏠려 있고, 그게 이 이식의 성격을 말해 준다. **산출물 형식(O)은 "
+        f"{n_o}항목이 그대로 왔다** — 학생이 쓸 공간이 충분한가, 교사용 내용이 학생 문서에 "
+        "새지 않았나, 문서끼리 모순되지 않나 같은 것은 교육과정 체제와 무관하게 성립한다. "
+        f"반면 **pedagogy(P {n_p})와 모델 대화 행동(M {n_m})은 유지된 비율이 낮다** — "
+        "목표 진술 프레임, 성취기준 인용 규칙, 무엇을 먼저 물어야 하는가는 체제에 직접 매여 "
+        "있기 때문이다. 바꾼 쪽이 어디에 몰렸는지는 "
+        "[`evals-port-review.html`](evals-port-review.html)에서 확인할 수 있다.",
+        "",
+    ]
+
+    for f, items in kept:
+        if not items:
+            continue
+        out += ["---", "",
+                f"## {f['label']}",
+                "",
+                f"`{f['path_after']}` — 전체 {f['n_after']}항목 중 유지 {len(items)}항목",
+                ""]
+        for i in items:
+            r = i["after"]
+            out += [f"### `{r['id']}` · {r['criterion']}", "",
+                    f"**Bucket** — {r['bucket']}", "",
+                    f"**What pass requires** — {r['requires']}", ""]
+            if r["notes"]:
+                out += [f"**Notes** — {r['notes']}", ""]
+            if r["cond"]:
+                out += [f"**Conditional** — `{r['cond']}`", ""]
+    return "\n".join(out).rstrip() + "\n"
+
+
 def main() -> int:
-    before_ref = sys.argv[1] if len(sys.argv) > 1 else BEFORE_REF_DEFAULT
+    argv = sys.argv[1:]
+    unchanged = "--unchanged" in argv
+    argv = [a for a in argv if a != "--unchanged"]
+    before_ref = argv[0] if argv else BEFORE_REF_DEFAULT
     data = collect(before_ref)
+    if unchanged:
+        sys.stdout.write(markdown_unchanged(data, before_ref))
+        return 0
     n = {"A": 0, "B": 0, "C": 0}
     for f in data:
         for i in f["items"]:
