@@ -29,14 +29,18 @@ Anthropic의 [k12-teacher-skills](https://github.com/anthropics/k12-teacher-skil
 
 ## 설치
 
-Claude Code에서:
+Claude Code에서 두 줄이면 됩니다.
 
 ```
-/plugin marketplace add <이 저장소 URL>
-/plugin install science-teacher-skills
+/plugin marketplace add raphysicst-create/science-teacher-skills
+/plugin install science-teacher-skills@science-teacher-skills
 ```
 
-또는 저장소를 clone한 뒤 `plugin/` 폴더를 플러그인 경로로 지정합니다.
+터미널에서 하려면 같은 인자로 `claude plugin marketplace add …` / `claude plugin install …`을
+쓰면 됩니다. 설치 후 Claude Code를 재시작하면 스킬 2종(`ko12-lesson-planning`,
+`ko12-lesson-differentiation`)과 학습맵 MCP 2종이 함께 올라옵니다.
+
+저장소를 clone해서 쓰려면 clone한 폴더의 경로를 `marketplace add`에 그대로 넘깁니다.
 
 학습맵 MCP 2종은 `plugin/.mcp.json`에 번들되어 있어 `npx`로 자동 실행됩니다 — 따로 설치할
 것이 없습니다. 워드 문서 렌더에는 Python 3와 `python-docx`가 필요하며, 없으면 렌더 스크립트가
