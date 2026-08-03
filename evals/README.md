@@ -5,13 +5,34 @@ The goal is AI-generated instructional materials that are explainable and able t
 
 Each rubric criterion represents a specific aspect of an LLM-generated classroom artifact and is designed to be leveraged in LLM-as-judge prompts, though they can also be applied by human evaluators or adapted for deterministic scoring. We publish them openly so that other developers, researchers, and AI-in-education practitioners can inspect our standards, reuse them, and help improve them. This is a living framework: the criteria here are grounded in extensive literature review and expert input, and we intend to revise them as the field learns more and receives feedback.
 
+## Korean port (2026-08-03)
+
+These rubrics are a port of the upstream `k12-teacher-skills` evals to the Korean 2022 revised national curriculum, science only. The P/R/O/M framework, IDs, and the great majority of criteria are unchanged — what changed is every place where a criterion encoded a US-specific assumption and would therefore have scored a correct Korean output as a failure.
+
+| Upstream assumption | Replaced with | Criteria |
+| :---- | :---- | :---- |
+| NGSS three dimensions (SEP / DCI / CCC) | 2022 개정 내용 체계 3범주 (지식·이해 / 과정·기능 / 가치·태도) | `P-S1`, `P-S4`, `P10` (differentiation) |
+| Crosscutting concept named and applied | 가치·태도 stated observably and actually observed | `P-S4` |
+| CER writing at every grade | 주장-증거(-추론), gated by 학년군 | `R-S1` |
+| Model revision in every lesson | Branches on the standard's verb — 실험 설계형 substitutes 설계 검토 | `P-S5` |
+| State / state-standards question | 학년·학교급 question, plus the 초1–2 no-science-subject case | `M-CLARIFY-GRADE`, `M-CLARIFY-G12` |
+| Standard text always verbatim | 중등 verbatim; 초등 is a mechanical derivative and must carry a check-the-official-text footer | `P1`, `M1` |
+| Prerequisite always sourceable | Learning-map edge preferred; explicitly marked 추정 accepted when the map has none | `P2` (both rubrics) |
+| At least 3 misconceptions | 2–3, since `science.md` caps the section at 3 | `P4a` |
+| IM / OpenSciEd curriculum bleed-through | 검정 textbook publisher neutrality | `M5`, `P9` |
+| Below / At / Above tiers, Groups A–C | 가 / 나 / 다 모둠 (기초 / 보통 / 심화) | `O1`, `P4`, `R2`, `O5` |
+| WIDA English Language Development | 다문화·한국어 지원, 개별화교육계획 | `M4` |
+| Math/ELA examples (number line, tape diagram, story map) | Science representations | `P6` |
+
+Each ported criterion's `Notes` column records what it replaced and why, so the diff against upstream stays auditable. Upstream's math, ELA, and social-studies rubrics are not included — this port is science-only.
+
 ---
 
 ## **Evals contents**
 | Rubric | Description |
 | :---- | :---- |
-| k12-lesson-planning/rubrics/ | Rubrics for scoring lesson-plan outputs: `shared.csv` (core criteria for all lessons) plus the subject-specific `science.csv`. This science-only port keeps only the science rubric; the upstream repository also ships rubrics for its other subjects. |
-| k12-lesson-differentiation/rubrics/ | Rubrics for scoring differentiation outputs: `differentiation.csv` (tiered differentiation criteria) and `clarifying_question.csv` (scorer for model clarification behavior) |
+| ko12-lesson-planning/rubrics/ | Rubrics for scoring lesson-plan outputs: `shared.csv` (33 core criteria) plus the subject-specific `science.csv` (7). This science-only port keeps only the science rubric; the upstream repository also ships rubrics for its other subjects. |
+| ko12-lesson-differentiation/rubrics/ | Rubrics for scoring differentiation outputs: `differentiation.csv` (27 tiered-differentiation criteria) and `clarifying_question.csv` (2 scorers for model clarification behavior) |
 
 ---
 
@@ -26,11 +47,11 @@ Each rubric is a CSV with the following fields:
 | `Criterion` | Short name for the criterion |
 | `What pass requires` | The specific, scoreable condition that constitutes a pass |
 | `Notes` | Rationale or design notes |
-| `Conditional` | If non-empty, the criterion applies only when this condition is met (e.g., `K-5`, `Gr6-12-quantitative-data`) |
+| `Conditional` | If non-empty, the criterion applies only when this condition is met (e.g., `중·고-정량자료`, `초1-2`, `grade-unknown`) |
 
 For lesson plan generation, apply `shared.csv` first, then layer in `science.csv`. Subject-specific criteria extend the shared set.
 
-Conditional criteria (marked in the `Conditional` column) apply only when the specified condition is met — for example, a criterion that applies only to grade 6–12 lessons with quantitative data. If the condition isn't met, the criterion is skipped (not failed).
+Conditional criteria (marked in the `Conditional` column) apply only when the specified condition is met — for example, a criterion that applies only to 중·고 lessons whose data is quantitative. If the condition isn't met, the criterion is skipped (not failed).
 
 Criteria score independently — a failing `R2` tells you something specific about cognitive demand, not just that the output is "bad." Depending on your situation, consider tracking per-criterion pass rates across a prompt suite rather than relying on aggregate scores, since aggregate pass rates can mask meaningful gaps.
 
@@ -81,7 +102,7 @@ Pedagogy criteria evaluate whether the output reflects sound instructional desig
 
 Key pedagogical commitments threaded through the P criteria:
 
-* **Curriculum coherence.** Skills should help teachers work within their adopted curriculum. When a  teacher uses a high-quality instructional material (HQIM), outputs should be coherent with that curriculum's design logic.  
+* **Textbook neutrality.** Korea runs a single national curriculum with 검정 (state-authorized) textbooks from multiple publishers. Outputs align to the 성취기준 itself and never reproduce a publisher's activities, readings, illustrations, or items — replacing upstream's HQIM-coherence commitment, which assumed adopted-curriculum variation that does not exist here.  
 * **Discipline-specific instructional models.** Science rubrics require inquiry, writing, and quantitative reasoning.  
 * **Anticipating struggle.** Rather than only naming "misconceptions" (which implies incorrect beliefs), P criteria require attention to *points of difficulty* more broadly: patterns, why they arise, and teacher moves for each. Generic "some students may struggle" language fails.
 
@@ -109,4 +130,6 @@ Model Scaffolding criteria evaluate the model's conversational behavior, not the
 
 ## **Data dependency**
 
-These skills depend on Learning Commons' Knowledge Graph (KG) — a curated, structured dataset of academic standards, learning progressions, misconceptions, and high-quality instructional materials. Rubric criteria that reference specific KG-sourced content (e.g., standard progressions, IM misconceptions, learning components) will require KG access to score accurately against real model outputs. To get set up with the Learning Commons MCP, [see here](https://learningcommons.org).
+In this port the Learning Commons Knowledge Graph is replaced by the two Korean curriculum learning-map MCP servers (`curriculum-kr-secondary`, `curriculum-kr-elementary`), which supply 성취기준 official text, prerequisite edges, and transitions. Criteria that reference map-sourced content — P1 (official text), P2 (prerequisites), P-S5 (standard-type branch) — need those servers connected to score accurately against real outputs.
+
+Two data limits are baked into the criteria rather than assumed away. Elementary records carry `sourceTextIncluded: false`, so 초등 standard text is a mechanical derivative and P1 scores it differently from 중등. Many standards return `directEdges: []`, so P2 accepts a prerequisite explicitly marked 추정 — demanding a sourced edge unconditionally would reward fabrication.
