@@ -262,4 +262,5 @@ plugin/
 | plugin/skills/ko12-lesson-planning/references/example_lesson.json | 산출 JSON 스키마 예시 | 과학·한국어판으로 교체 (2026-08-01). 파일럿 #1 기반 + 번호 과제·힌트 카드 문서로 스키마 폭 유지 |
 | docs/superpowers/pilot-notes.md | 파일럿·구현 실측 기록 — 무엇을 확인했나 | 1–3단계 기록 (3단계: 마켓플레이스 배포·설치본 스모크·경로 강건화·docx 제거, 2026-08-03) |
 | tests/check_lesson.py | DoD 자동 검증기 (결정론, 표준 라이브러리만) | hwpx 텍스트 추출 기반으로 재작성 (2026-08-03, ADR-4 재개정에 따라) |
+| docs/evals-port-review.html | evals 한국판 보정 전수 대조 — 항목별 원본/보정 나란히, 변경 성격 3분류(A 측정 대상 부재 / B 우리 스펙 편 / C 계측기 수리) | `docs/evals_port_review.py`가 생성 (2026-08-03). 판정표는 그 스크립트의 `CLASSIFICATION`에 있다 |
 | evals/ | 산출물 채점 루브릭 (LLM-judge용, tests/의 결정론 검증을 보완) | **한국판 보정 완료 (2026-08-03)** — 69항목. 폴더명 `ko12-*`로 정렬. 재설계 4(P-S1·P-S4 NGSS 3차원→3범주, M-CLARIFY-STATE→학년 확인 + 초1–2 특례) · 보정 22 · 나머지 원본 유지. 채점 기준 열의 미국 체제 잔재 0건 전수 확인. 각 항목 Notes에 원본 대비 개변 사유 기록 |
