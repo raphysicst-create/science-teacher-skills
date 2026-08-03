@@ -1,26 +1,22 @@
-"""렌더된 docx의 한글 무결성 검사: U+FFFD 없음 + 핵심 한글 문자열 존재."""
+"""렌더된 hwpx의 한글 무결성 검사: U+FFFD 없음 + 핵심 한글 문자열 존재.
+
+표준 라이브러리만 사용한다 (렌더러와 동일한 의존성 원칙).
+"""
 import glob
+import os
 import sys
 
-from docx import Document
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-
-def all_text(path):
-    doc = Document(path)
-    parts = [p.text for p in doc.paragraphs]
-    for tbl in doc.tables:
-        for row in tbl.rows:
-            for cell in row.cells:
-                parts.append(cell.text)
-    return "\n".join(parts)
+from check_lesson import hwpx_text  # noqa: E402
 
 
 def main(outdir):
-    paths = sorted(glob.glob(f"{outdir}/*.docx"))
-    assert paths, f"no docx in {outdir}"
+    paths = sorted(glob.glob(f"{outdir}/*.hwpx"))
+    assert paths, f"no hwpx in {outdir}"
     combined = ""
     for p in paths:
-        text = all_text(p)
+        text = hwpx_text(p)
         assert "�" not in text, f"replacement character in {p}"
         combined += text
         print(f"ok: {p} ({len(text)} chars)")

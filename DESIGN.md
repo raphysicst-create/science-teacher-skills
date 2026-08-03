@@ -67,7 +67,8 @@ plugin/
 - **KG는 선택적 강화다.** 미연결 시에도 스킬이 완전 동작한다 (면책 푸터로 강등).
   이식판에서도 학습맵 MCP는 필수 의존이 아니다.
 - **산출 일관성은 스키마가 보장한다.** 문서 4종이 하나의 material-source JSON에서
-  렌더되어 드리프트가 불가능하다. 이 스키마와 렌더러는 무수정 유지가 원칙이다.
+  렌더되어 드리프트가 불가능하다. 이 스키마는 무수정 유지가 원칙이다 (렌더러 구성은
+  ADR-4 이력 — 2026-08-03부터 산출은 HWPX + HTML).
 
 ---
 
@@ -77,7 +78,7 @@ plugin/
 |---|---|---|---|---|
 | A | Learning Commons KG | 학습맵 MCP 2종 (초등/중등) | `learning-commons-kg.md` → `curriculum-kr-mcp.md` 파일 치환 | 1 |
 | B | 미국 과학 pedagogy 레퍼런스 (science.md) | 2022 개정 체제 과학 레퍼런스 | 치환 규칙 적용해 재작성 | 1 |
-| C | docx 렌더링 | HWPX 추가 (OWPML 직접 생성) | 렌더 스크립트에 어댑터 추가, docx 병행 유지 | 2 |
+| C | docx 렌더링 | HWPX + HTML (OWPML 직접 생성) | 어댑터 추가(2단계) 후 docx 산출 제거(3단계, 2026-08-03) | 2–3 |
 
 ```
                     ┌─ SKILL.md (오케스트레이터, 최소 diff)
@@ -86,8 +87,8 @@ plugin/
                     │                       └─ curriculum-kr-elementary (MCP)
    Step 3 ──────────┼─ science.md
                     │
-   Step 5 ──────────┴─ scripts/ ── render_lesson_docx.py (유지)
-                                └─ render_lesson_hwpx.py (2단계, OWPML 직접 생성)
+   Step 5 ──────────┴─ scripts/ ── render_all.sh ── render_documents.py (HTML)
+                                              └── render_lesson_hwpx.py (OWPML 직접 생성)
 ```
 
 ---
@@ -157,6 +158,13 @@ plugin/
   벤더링하지 않는다 (.gitignore 처리, 배포물 아님). 어댑터 자체는 오리지널 코드로 작성한다.
 - **미해결 (어댑터 구현 범위)**: 콜아웃 테두리·표 헤더 음영(borderFill), 큰 고정높이 표
   앞의 쪽 나눔 로직, number_line 블록의 OWPML 대응.
+- **재개정 (2026-08-03, docx 산출 제거 — 소유자 결정)**: 산출을 **HWPX + HTML**로
+  확정하고 docx 산출을 제거했다. `render_lesson_docx.py` 삭제, `render_all.sh`가 한
+  명령으로 HTML과 HWPX를 모두 렌더(HWPX가 기본이자 교사 전달물, 요청 시 옵션이던 것을
+  격상). 근거: (a) 실사용 대상이 한국 학교라 docx 수요가 없었다. (b) python-docx 의존이
+  사라져 렌더 의존성이 표준 라이브러리 0으로 줄었다. 대가: docx 렌더러 파일의 업스트림
+  추적 종료 — 산출 스키마와 HTML 렌더러가 남은 업스트림 추적점이다. tests/check_lesson.py도
+  hwpx 텍스트 추출 기반으로 재작성.
 
 ### ADR-5. (폐기 2026-08-01) 다과목 포팅 순서
 
@@ -184,8 +192,10 @@ plugin/
 4. **교과서 출판사 중립.** 검정 교과서의 활동·지문·삽화·문항을 재현하지 않는다. 교사가
    확언하지 않은 출판사명은 산출물·채팅 어디에도 쓰지 않는다. (원본 IM/OSE 가드레일의
    한국판 — 저작권과 공정성 양쪽 근거)
-5. **산출 스키마 동결.** material-source JSON 스키마와 렌더러 인터페이스는 HWPX 단계
-   (2단계) 전까지 무수정. 렌더러 호환이 곧 원본 업스트림 추적 가능성이다.
+5. **산출 스키마 동결.** material-source JSON 스키마는 무수정 유지 — 스키마 호환이 곧
+   원본 업스트림 추적 가능성이다. 렌더러 구성은 ADR-4 이력을 따른다(2026-08-03부터
+   HWPX + HTML, docx 렌더러 제거). "하나의 소스에서 전 문서 렌더 → 드리프트 불가" 속성은
+   형식과 무관하게 유지한다.
 6. **탐구 우선, 설명 후행.** 학생이 증거를 다루기 전에 교사가 결론을 내려주지 않는다 —
    전 학년군 공통의 pedagogy 불변 원칙 (원본에서 계승, 한국 체제와도 정합).
 
@@ -223,7 +233,7 @@ plugin/
 |---|---|---|
 | **1. 과학 파일럿** | 골격 + .mcp.json + curriculum-kr-mcp.md + science.md + SKILL.md diff | 실 MCP 연결 상태에서 중학교 1회·초등 1회 수업 생성. 체크: 성취기준 원문 verbatim 인용 ○ / look-for에 관찰 증거 반영 ○ / 3범주 목표 진술 자연스러움 ○(ADR-1 검증) / 시간 배분 현실성 ○ |
 | **2. HWPX** (완료 2026-08-01) | render_lesson_hwpx.py (OWPML 직접 생성, ADR-4 개정판) | 표 포함 수업안이 한글에서 깨짐 없이 열림, docx 병행 유지 — 11개 문서 전수: 구조 검증·한컴 COM 실열림 PASS, 고정 높이 행 docx 렌더러와 전 항목 일치 |
-| **3. 공개** | README(attribution 포함), GitHub 공개(완료 2026-08-01), example_lesson.json 과학 소재 한국어 예시로 교체(완료 2026-08-01), differentiation 스킬 2차 포팅(완료 2026-08-01), 마켓플레이스 매니페스트(완료 2026-08-03) | 외부인이 README만으로 설치·1회 생성 성공 |
+| **3. 공개** | README(attribution 포함), GitHub 공개(완료 2026-08-01), example_lesson.json 과학 소재 한국어 예시로 교체(완료 2026-08-01), differentiation 스킬 2차 포팅(완료 2026-08-01), 마켓플레이스 매니페스트(완료 2026-08-03), 설치본 스모크 검증(완료 2026-08-03), docx 산출 제거·HWPX 기본화(완료 2026-08-03, ADR-4 재개정) | 외부인이 README만으로 설치·1회 생성 성공 — 충족(2026-08-03, pilot/smoke-test) |
 
 **각 단계는 공개 가능한 상태로 끝난다** — 3단계까지 미루지 않는다. 1단계 완료 시점에
 "과학 전용 프리뷰"로 저장소를 공개하는 것이 기본값이다 (가시성 정체 패턴의 구조적 차단).
@@ -248,6 +258,6 @@ plugin/
 | plugin/skills/ko12-lesson-differentiation/ | 차별화 스킬 (SKILL.md + science.md + curriculum-kr-mcp.md + scripts) | 2차 포팅 완료 (2026-08-01). R1–R8을 3범주 프레임으로 재작성, 실생성 4문서 검증 |
 | plugin/skills/ko12-lesson-planning/scripts/render_lesson_hwpx.py | HWPX 어댑터 (OWPML 직접 생성) | 2단계 구현·전수 검증 완료. 타이포그래피 보정 1회(2026-08-01), 한글 세부 조판은 추가 작업 대기 |
 | plugin/skills/ko12-lesson-planning/references/example_lesson.json | 산출 JSON 스키마 예시 | 과학·한국어판으로 교체 (2026-08-01). 파일럿 #1 기반 + 번호 과제·힌트 카드 문서로 스키마 폭 유지 |
-| docs/superpowers/pilot-notes.md | 파일럿·구현 실측 기록 — 무엇을 확인했나 | 1·2단계 기록 |
-| tests/check_lesson.py | DoD 자동 검증기 (결정론) | 파일럿 2건 통과 |
+| docs/superpowers/pilot-notes.md | 파일럿·구현 실측 기록 — 무엇을 확인했나 | 1–3단계 기록 (3단계: 마켓플레이스 배포·설치본 스모크·경로 강건화·docx 제거, 2026-08-03) |
+| tests/check_lesson.py | DoD 자동 검증기 (결정론, 표준 라이브러리만) | hwpx 텍스트 추출 기반으로 재작성 (2026-08-03, ADR-4 재개정에 따라) |
 | evals/ | 산출물 채점 루브릭 — 업스트림 원본 (LLM-judge용, tests/의 결정론 검증을 보완) | 원본 이식 (2026-08-01) 후 과학 전용으로 축소 — 수학·국어·사회 루브릭 3파일 삭제, 5파일 68항목 유지. 이식 시점 전수 판정(88항목: ✅63 그대로 사용 · 🔧20 보정 · ❌4 재설계 · ⏸1 보류)은 삭제분 20항목을 포함한 수치. evals-ko 보정판 미착수 |

@@ -87,8 +87,8 @@ def css(theme: Theme) -> str:
 
 
 def render_block(blk: dict, theme: Theme) -> str:
-    # Adding a block type or text field? Render it in render_lesson_docx.py in
-    # the same commit — the html and docx renderers must emit the same text.
+    # Adding a block type or text field? Render it in render_lesson_hwpx.py in
+    # the same commit — the html and hwpx renderers must emit the same text.
     t = _btype(blk)
     if t == "paragraph":
         return f"<p>{md(blk.get('text', ''))}</p>"
@@ -206,7 +206,7 @@ def render_block(blk: dict, theme: Theme) -> str:
                 cells = r[:cols]
                 cells += [""] * (cols - len(cells))
                 # Underscore runs are write-in blanks, not text (same rule as `table`,
-                # and as the docx fill_table path which forwards through _emit_table).
+                # and as the hwpx fill_table path which forwards through _emit_table).
                 cells = ["" if str(c).strip().strip("_") == "" and "_" in str(c) else c
                          for c in cells]
                 tds = "".join(

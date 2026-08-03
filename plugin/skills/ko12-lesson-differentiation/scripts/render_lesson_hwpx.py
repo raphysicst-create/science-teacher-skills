@@ -13,8 +13,8 @@ table_row_height/workspace_height 계산이며, docx 렌더와 같은 값이 1/1
 
 패키지 구조·페이지 여백·서식 참조표(charPr/paraPr/borderFill)는 파일럿 6종에서
 구조 검증 + 한컴 실열림 + PDF 대조를 통과한 보정본(pilot/*/out/*.hwpx)의 값을
-기준으로 한다. 교사 대면 크롬(성취기준 라벨, 분 표기)은 한국어로 방출한다 —
-docx 렌더러는 동결이라 영어 크롬을 유지하므로, 이 비대칭은 의도된 것이다.
+기준으로 한다. 교사 대면 크롬(성취기준 라벨, 분 표기)은 한국어로 방출한다 — HWPX가 교사에게
+전달되는 산출물이기 때문이다. (HTML 미리보기 쪽 크롬은 아직 원본 영어를 쓴다.)
 
 Usage:
     python render_lesson_hwpx.py lesson.json --outdir out

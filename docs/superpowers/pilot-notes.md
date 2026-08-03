@@ -274,3 +274,107 @@ line-height 1.55)에 맞춰 보정:
 
 **미착수(의도적):** example_differentiation.json 한국어판 — SKILL.md가 "읽기는 필수
 아님"으로 규정하고 스키마 골격을 자체 포함하므로 공개 차단 요인이 아니다.
+
+## 3단계 — 마켓플레이스 배포·설치 검증 (2026-08-03)
+
+**차단 요인이었던 것:** README가 `/plugin marketplace add <저장소 URL>`을 안내했으나 저장소
+루트에 `.claude-plugin/marketplace.json`이 없었다. 플러그인 매니페스트(`plugin/.claude-plugin/
+plugin.json`)만으로는 GitHub 경로 설치가 성립하지 않는다 — 3단계 완료 기준의 실제 차단
+요인이었고, 공개 이후 아무도 README대로 설치할 수 없는 상태였다.
+
+**추가한 것:** 루트 `.claude-plugin/marketplace.json`. 플러그인 본체는 `source: "./plugin"`,
+`category`는 공식 마켓플레이스가 실제로 쓰는 값 목록에서 고른 `learning`. 업스트림
+`k12-teacher-skills`에는 이 파일이 없다(사용자가 플러그인 디렉터리를 직접 가리켜 설치한
+이력으로 확인) — 즉 이식판 고유 산물이다.
+
+**검증 (2회, 경로를 달리해서):**
+- `claude plugin validate .` / `./plugin` 모두 통과
+- 로컬 경로로 `marketplace add` → `install` → `details`: 스킬 2종·MCP 2종 인식
+- 푸시 후 **GitHub 경로**로 재실행(외부인과 동일 조건): clone → validate → install 통과,
+  `marketplace list`에 `Source: GitHub (raphysicst-create/science-teacher-skills)`로 기록
+
+**토큰 비용 실측:** always-on ~1,020 tok. 스킬 호출 시 planning ~15.2k / differentiation ~7.8k.
+
+## 3단계 — 설치본 스모크 테스트 (2026-08-03)
+
+저장소 작업 폴더가 아니라 **중립 폴더에서 새 세션**을 열어 실행했다 — 저장소에서 열면
+모델이 설치본이 아닌 저장소 파일을 직접 읽어 "설치 경로에서 도는가"라는 질문 자체가
+검증되지 않는다. 업스트림 영문 스킬 2종은 `disable`로 내려 경합을 제거했다.
+
+투입: *"중2 과학, 광합성에 영향을 주는 요인을 알아보는 실험 설계 45분 수업 만들어 줘.
+한글(HWPX) 파일도 같이 뽑아 줘."* (성취기준 `[9과12-01]`, 실험 설계형 분기)
+
+**결과 — 통과:**
+- 산출 10종(docx·html·hwpx 각 3 + lesson.json), `render_all.sh` `EXIT_CODE=0`
+- `tests/check_lesson.py` 통과: 렌더 3/3, 인용 1회, 시간 `7+15+8+7+5+3=45`, 3범주 전부
+- HWPX 구조 검증 3/3 `VALID`, 레이아웃 경고 0
+- U+FFFD 0건
+- `get_transitions` 빈 결과에 심화 연계 문장을 **생략**(지어내지 않음), `get_prerequisites`
+  `directEdges: []`를 **"추정"으로 표시** — 레퍼런스 규정대로 동작
+
+**verbatim 독립 검증:** 생성된 `standard_text`가 이미 MCP 대조를 마친 `example_lesson.json`의
+원문과 **문자 단위로 일치**. 다만 그 예시가 하필 같은 성취기준이라 복사 여부를 확인했더니,
+`shared` 키 중 내용까지 같은 것은 메타데이터 5개(`duration`·`subject`·`standard_code`·
+`standard_text`·`grade`)뿐이고 수업 내용 키는 전부 달랐다(예시 `bubble_data`/`hint_cards`/
+`q1–q3` vs 스모크 `temp_data`/`review_task`). **베낀 것이 아니라 새로 설계했다.**
+
+**미검증으로 남긴 것:** 한컴 COM 실열림. 구조 검증 통과·동일 렌더러의 2단계 COM 11/11
+이력으로 위험은 낮으나, 이 3개 파일에 대한 실열림 증거는 없다.
+
+### 발견한 결함 — SKILL.md 상대 경로 (수정함)
+
+스모크가 통과한 **방식**이 문제였다. 실행된 명령이
+`cd ".../skills/ko12-lesson-planning" && bash scripts/render_all.sh …` — 모델이 스킬
+디렉터리로 `cd`해 우회했다. SKILL.md의 상대 경로 `scripts/render_all.sh`는 설치된
+플러그인에서 교사의 작업 폴더 기준으로는 풀리지 않는다. 성공이 설계가 아니라 **모델의
+즉흥 판단**에 기댄 것이고, 추론 한 번만 어긋나면 `No such file or directory`로 죽는다.
+(`python3` → `python` 치환도 같은 성격의 즉흥이었다 — 실측상 이 환경에 `python3` 3.14.6이
+정상 존재해 불필요한 치환이었다.)
+
+**수정:** 호출 지점 4곳(스킬 2종 × `render_all.sh`·HWPX)을 절대 경로 형태로 교체.
+
+```bash
+SKILL_DIR="<이 SKILL.md가 있는 폴더의 절대 경로>"
+bash "$SKILL_DIR/scripts/render_all.sh" lesson.json "$OUTPUT_DIR"
+```
+
+`SKILL_DIR`을 블록마다 반복 선언하는 이유 — Claude Code는 Bash 호출 간 셸 변수를 유지하지
+않는다. 앞에 "작업 폴더에서 실행하고 스킬 폴더로 `cd`하지 말 것"을 이유와 함께 명시했다.
+
+**`${CLAUDE_PLUGIN_ROOT}`는 기각했다(초안에서 제안했다가 실측으로 철회).** Bash 환경에 이
+변수가 **없고**(`미설정` 확인), 설치된 어떤 플러그인의 SKILL.md도 쓰지 않는다 — superpowers
+기준 `hooks.json` 전용 규약이다. 넣었으면 빈 문자열로 확장돼 항상 깨졌다. 대신 모델이 스킬
+발동 시 항상 확보하는 정보(SKILL.md의 절대 경로)에 앵커했다.
+
+**검증:** 낯선 CWD(스크래치패드)에서 새 명령 그대로 `render_all.sh` `EXIT=0`(docx 3·html 3·
+lesson.json), HWPX 명령 `EXIT=0`(hwpx 3). 두 SKILL.md에 잔여 상대 경로 호출 0건.
+
+## 3단계 — docx 산출 제거, HWPX 기본화 (2026-08-03, ADR-4 재개정)
+
+소유자 결정으로 산출을 **HWPX + HTML**로 확정하고 docx를 제거했다. 근거는 (a) 실사용
+대상이 한국 학교라 docx 수요가 없었고, (b) python-docx 의존이 사라져 렌더 의존성이 표준
+라이브러리 0이 된다는 것. 대가는 docx 렌더러 파일의 업스트림 추적 종료 — 산출 스키마와
+HTML 렌더러가 남은 추적점이다.
+
+**변경:** `render_lesson_docx.py` ×2 삭제(636행씩), `tests/smoke/check_docx.py` 삭제 —
+총 1,305행 제거. `render_all.sh` ×2는 pip 설치 시도·분기 로직을 걷어내고 두 줄로:
+`render_documents.py`(HTML) + `render_lesson_hwpx.py`(HWPX). `render_documents.py`의
+`--format` 인자는 선택지가 사라져 제거. HWPX가 요청 시 옵션에서 **기본 전달물**로 승격.
+SKILL.md 2종의 교사 대면 허용 형식 단어를 "워드 문서" → "한글 문서"/"한글 파일"로 교체.
+
+**검증기 재작성:** `check_lesson.py`를 hwpx 텍스트 추출 기반으로, `check_docx.py` →
+`check_hwpx.py`. 둘 다 표준 라이브러리만 쓴다.
+
+**재작성 중 잡은 버그 1건:** 새 `hwpx_text()`가 성취기준 인용을 2회로 오판했다.
+`root.iter()`가 표를 품은 문단에서 셀 텍스트를 이중 집계한 것 — 중첩 `hp:p`를 건너뛰도록
+고쳤다(`_para_text()`). **렌더러가 아니라 검증기 쪽 결함이었다.** 수정 후 글자 수
+5543/1479/1653이 이전 docx 측정치 5515/1525/1698과 근사해 정합성도 확인됐다.
+
+**전수 검증:** planning·differentiation `render_all.sh` 각각 낯선 CWD에서 `EXIT=0`(docx
+산출 0개 확인), `check_lesson.py` DoD 통과, `check_hwpx.py` 통과, HWPX 구조 3/3 `VALID`
+경고 0, 잔여 python-docx 의존 0건(실행 코드·주석 전부), `claude plugin validate` 통과.
+
+**버전:** `0.1.0-preview.1` → `0.2.0-preview.1`.
+
+**git 처리:** `pilot/smoke-test/`는 재생성 가능한 산출물이라 `.gitignore`에 넣었다 —
+240KB 바이너리를 저장소에 두지 않는다.

@@ -8,3 +8,6 @@ tests/smoke/out/
 # 없어, Apache-2.0 배포 저장소인 여기에 벤더링하지 않는다. 재이식 절차는
 # docs/superpowers/pilot-notes.md 참조.
 .claude/
+
+# 스모크·검증 산출물 (재생성 가능 — 저장소에 두지 않는다)
+pilot/smoke-test/

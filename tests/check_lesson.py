@@ -3,29 +3,59 @@
 사용: python tests/check_lesson.py <lesson.json> <outdir> [--official "성취기준 공식 원문"]
 
 검사 항목:
-  1. 렌더 무결성 — documents[] 전부 docx로 나왔고 U+FFFD 없음
+  1. 렌더 무결성 — documents[] 전부 hwpx·html 쌍으로 나왔고 U+FFFD 없음
   2. 성취기준 verbatim — shared.standard_text가 --official과 문자 단위로 일치
   3. 인용 1회 — 렌더된 교사 문서 전체에서 성취기준 원문이 정확히 한 번
   4. 시간 — phase_header minutes 합계 == shared.duration
   5. 3범주 — 지식·이해 / 과정·기능 / 가치·태도가 수업안에 모두 진술됨
+
+표준 라이브러리만 사용한다 (렌더러와 동일한 의존성 원칙).
 """
 import argparse
 import json
 import os
 import sys
-
-from docx import Document
+import xml.etree.ElementTree as ET
+import zipfile
 
 CATEGORIES = ["지식·이해", "과정·기능", "가치·태도"]
 
 
-def docx_text(path):
-    doc = Document(path)
-    parts = [p.text for p in doc.paragraphs]
-    for tbl in doc.tables:
-        for row in tbl.rows:
-            for cell in row.cells:
-                parts.append(cell.text)
+def _para_text(p):
+    """한 문단(hp:p)의 텍스트.
+
+    텍스트 런(hp:t)은 서식 경계에서 쪼개지므로 문단 안에서 이어 붙인다 — 성취기준 원문
+    같은 연속 문자열 검사가 런 분절에 깨지지 않게. 단, 표 셀 안의 문단은 자기 차례에
+    따로 세므로 **중첩된 hp:p는 건너뛴다** (안 그러면 표를 품은 문단이 셀 텍스트를 전부
+    다시 삼켜 인용 횟수가 두 배로 잡힌다).
+    """
+    out = []
+
+    def walk(node):
+        for child in node:
+            if child.tag.endswith("}p"):
+                continue
+            if child.tag.endswith("}t"):
+                out.append("".join(child.itertext()))
+            else:
+                walk(child)
+
+    walk(p)
+    return "".join(out)
+
+
+def hwpx_text(path):
+    """HWPX(zip)의 섹션 XML에서 문단 단위 텍스트 추출 (문서 순서 유지)."""
+    parts = []
+    with zipfile.ZipFile(path) as z:
+        for name in sorted(n for n in z.namelist()
+                           if n.startswith("Contents/section") and n.endswith(".xml")):
+            root = ET.fromstring(z.read(name))
+            for p in root.iter():
+                if p.tag.endswith("}p"):
+                    run = _para_text(p)
+                    if run:
+                        parts.append(run)
     return "\n".join(parts)
 
 
@@ -51,17 +81,20 @@ def main():
     failures = []
     texts = {}
 
-    # 1. 렌더 무결성
+    # 1. 렌더 무결성 (hwpx + html 쌍)
     for doc in data["documents"]:
-        path = os.path.join(args.outdir, doc["id"] + ".docx")
+        html_path = os.path.join(args.outdir, doc["id"] + ".html")
+        if not (os.path.exists(html_path) and os.path.getsize(html_path) > 0):
+            failures.append(f"[렌더] html 누락 또는 빈 파일: {html_path}")
+        path = os.path.join(args.outdir, doc["id"] + ".hwpx")
         if not os.path.exists(path):
             failures.append(f"[렌더] 누락: {path}")
             continue
-        text = docx_text(path)
+        text = hwpx_text(path)
         texts[doc["id"]] = text
         if "�" in text:
             failures.append(f"[렌더] 깨진 문자: {path}")
-        print(f"  렌더 ok: {doc['id']}.docx ({len(text)}자)")
+        print(f"  렌더 ok: {doc['id']}.hwpx ({len(text)}자)")
 
     # 2. 성취기준 verbatim
     st = shared["standard_text"]

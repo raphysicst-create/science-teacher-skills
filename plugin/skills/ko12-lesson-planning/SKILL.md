@@ -25,7 +25,7 @@ SPDX-License-Identifier: Apache-2.0
 # 한국 초·중등 수업 설계 (ko12-lesson-planning)
 
 Produces a teacher-ready, standards-aligned lesson plan + student-facing materials + teacher
-observation template as editable Word documents in a single output turn, rendered from one material-source JSON via
+observation template as editable 한글(HWPX) documents in a single output turn, rendered from one material-source JSON via
 bundled scripts. The science pedagogy and output mapping live in
 `references/science.md`. Works with or without the Korean curriculum learning-map MCPs
 (한국 교육과정 학습맵 — 초등·중등).
@@ -137,7 +137,7 @@ asked the same way as the clarify questions — through the structured question 
 one is available, in chat otherwise — as its own separate question, batched with Step 1's
 questions when there are any and asked on its own when there aren't.
 
-- Question: *교실에서 바로 쓸 전체 패키지(수업안 + 학생 자료 + 관찰 템플릿, 편집 가능한 워드
+- Question: *교실에서 바로 쓸 전체 패키지(수업안 + 학생 자료 + 관찰 템플릿, 편집 가능한 한글
   문서)를 만들까요, 아니면 빠른 초안을 먼저 보시겠어요?*
 - Options: **바로 만들어 주세요** · **초안 먼저 볼게요** — 수업의 뼈대를 채팅에서 한눈에
 
@@ -167,7 +167,7 @@ and sections are called what the plan will call them.
 Afterwards, ask what's next — a structured question, two options:
 
 - **수정할게요** — 초안에서 고치고 싶은 부분 반영
-- **자료 만들어 주세요** — 수업안·학생 자료·관찰 템플릿을 편집 가능한 워드 문서로
+- **자료 만들어 주세요** — 수업안·학생 자료·관찰 템플릿을 편집 가능한 한글 문서로
 
 Apply change requests to the draft in chat and re-present it — changes are quick at this
 stage. Step 5 runs in the turn the teacher gives the go-ahead ("Create the materials",
@@ -203,8 +203,8 @@ nothing this file doesn't already state.
 mention JSON, HTML, schemas, scripts, rendering, file names (`lesson.json`), or code in any
 teacher-facing message — and never link or name the `.html` files the render command also
 writes. Say *"수업안이 준비됐어요 — 학생 자료와 관찰 템플릿도 함께 왔습니다"*, not *"lesson.json을
-렌더링했어요"*. The only format word in your prose is
-"워드 문서". This
+렌더링했어요"*. The only format words in your prose are
+"한글 문서" / "한글 파일". This
 applies to every turn: presenting artifacts, the satisfaction ask, revision summaries, and
 error messages (if generation fails, say the documents couldn't be created — not that a
 script or JSON failed).
@@ -404,31 +404,30 @@ printed on it.
 | `answer_box` | Writing space after a task. With no `height_pt` it sizes itself to the grade band (K-2 ~200pt, 3-5 ~150pt, 6-8 ~130pt, 9-12 ~115pt). K-5 boxes draw ruled handwriting lines; `ruled: true` draws lines at any grade — the surface for answers of composed sentences — and `ruled: false` gives open space for drawing or model-sketching. A task answered in a `fill_table` or on a `number_line` already has its surface. |
 | `group` | Keeps a task's prompt, stimulus, supports, and answer box together so a page break never separates them. |
 
-### 5b. Render every Word document — one command, same turn
+### 5b. Render every document — one command, same turn
+
+Run this from the teacher's working folder (the one where you wrote `lesson.json`) and call
+the script by **absolute path** — when this skill runs as an installed plugin, the skill
+folder is nowhere near the working folder, so a relative `scripts/…` call fails. Do not `cd`
+into the skill folder.
 
 ```bash
-bash scripts/render_all.sh lesson.json "$OUTPUT_DIR"
+SKILL_DIR="<absolute path of the folder containing this SKILL.md>"
+bash "$SKILL_DIR/scripts/render_all.sh" lesson.json "$OUTPUT_DIR"
 ```
 
-This writes one editable `.docx` per `documents[]` entry, named by `id` (e.g.
-`$OUTPUT_DIR/lesson_plan.docx`, `student_materials.docx`, `observation_template.docx`,
-`source_packet.docx`), plus `.html` and `lesson.json` working files. Render straight into
-`$OUTPUT_DIR` and leave everything the script writes in place — later revision turns
-re-render from the working files even though the teacher only sees the Word documents. Then list `$OUTPUT_DIR`
-and confirm every document has both its `.docx` and `.html`; if either is missing or tiny,
-rerun the script. Present the Word documents to the teacher together — attach the lesson plan
-last so it lands on top (chat surfaces stack newest-first). If there is no `student_materials`
-document, say so plainly ("이 수업은 구두 활동 중심이라 학생 유인물이 없어요 — 학생들은
-…로 활동합니다"). If the script errors, fix `lesson.json` (it is almost always malformed JSON)
-and rerun. If file generation fails entirely, say so clearly — do not silently fall back to a
-chat-only delivery.
-
-교사가 **한글(HWP/HWPX) 파일**을 요청하면 같은 lesson.json에서 추가로 렌더한다 — docx를
-대체하지 않고 병행한다:
-
-```bash
-python3 scripts/render_lesson_hwpx.py lesson.json --outdir "$OUTPUT_DIR"
-```
+This writes one editable `.hwpx` (the teacher deliverable — opens in 한글) per `documents[]`
+entry, named by `id` (e.g. `$OUTPUT_DIR/lesson_plan.hwpx`, `student_materials.hwpx`,
+`observation_template.hwpx`, `source_packet.hwpx`), plus `.html` and `lesson.json` working
+files. Render straight into `$OUTPUT_DIR` and leave everything the script writes in place —
+later revision turns re-render from the working files even though the teacher only sees the
+한글 documents. Then list `$OUTPUT_DIR` and confirm every document has both its `.hwpx` and
+`.html`; if either is missing or tiny, rerun the script. Present the 한글 documents to the
+teacher together — attach the lesson plan last so it lands on top (chat surfaces stack
+newest-first). If there is no `student_materials` document, say so plainly ("이 수업은 구두
+활동 중심이라 학생 유인물이 없어요 — 학생들은 …로 활동합니다"). If the script errors, fix
+`lesson.json` (it is almost always malformed JSON) and rerun. If file generation fails
+entirely, say so clearly — do not silently fall back to a chat-only delivery.
 
 ### 5c. The satisfaction ask + iteration options (every output turn)
 

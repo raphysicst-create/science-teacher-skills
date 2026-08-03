@@ -440,7 +440,7 @@ def expand_document(data: dict, audience: str = "teacher") -> dict:
         for s in data.get("sections", [])
     ]
     # Print-safety repair pass — post-expansion so it covers model prose AND shared content,
-    # in every artifact and both output formats (HTML and docx render through here).
+    # in every artifact and both output formats (HTML and HWPX render through here).
     doc["sections"] = [
         {**s, "blocks": _pair_writing_space(
             [rb for b in s.get("blocks", [])
@@ -463,7 +463,7 @@ def expand_document(data: dict, audience: str = "teacher") -> dict:
 
 # ============================================================================
 # Shared rendering primitives — format-agnostic helpers used by every renderer.
-# Moved from render_lesson_html.py so render_lesson_docx.py can import the same
+# Moved from render_lesson_html.py so render_lesson_hwpx.py can import the same
 # theme, alias, callout, and grade-band logic without duplication.
 # ============================================================================
 
@@ -675,7 +675,7 @@ def md_tokens(text) -> list:
 def coerce_rows(rows) -> list[list]:
     """Normalize model-emitted table rows. Each row must be a list of cells, but models
     sometimes emit a bare string ("Total: $5.99"), a dict ({"label": ..., "value": ...}),
-    or null — coerce instead of crashing (docx KeyError) or garbling (one cell per
+    or null — coerce instead of crashing (renderer KeyError) or garbling (one cell per
     character); null becomes a blank write-in row."""
     if isinstance(rows, str):
         # The whole rows value drawn as one pipe string — restore rows and cells.
