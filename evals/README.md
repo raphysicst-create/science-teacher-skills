@@ -36,7 +36,25 @@ The review page sorts each change into one of three kinds, and the third is the 
 
 Two of the changes are *stricter* than upstream, not looser: `P1` now fails a lesson that claims 초등 text is verbatim, and `P4a` now fails a lesson carrying more than three anticipated-thinking entries. Neither failure mode existed before.
 
-**These rubrics have never been run.** There are no scores in this repository. As it stands `evals/` is a specification, not a measurement — and the criteria above are calibrated against the skill's spec, not against observed judge behaviour.
+## First run (2026-08-06)
+
+The rubrics have now been run. `runs/2026-08-06/` holds the scores: four lesson packages
+(초4 [4과10-02]; 중2 [9과12-01] ×3) × all 40 planning criteria = 160 cells, one LLM judge per
+package with the learning-map MCP called live to verify P1 (official text) and P2 (prerequisite
+edges) against ground truth rather than against the document's own claims.
+
+**149 pass / 6 fail / 5 skip — 96.1% of scored cells.** Five of the six fails were re-verified
+against the source documents by a second pass and confirmed as real defects; the sixth (`O3` on
+one package) was a judge-variance artifact — the same observation-grid layout passed in the other
+three packages, so the criterion, not the package, is what needs work. Per-criterion detail,
+including every explanation, is in [`runs/2026-08-06/`](runs/2026-08-06/); regenerate the summary
+with `python evals/runs/aggregate.py 2026-08-06`.
+
+What this does and does not establish: the port's criteria are no longer only calibrated against
+the skill's spec — they have now been calibrated against observed judge behaviour once, on a
+science-only, 4-package, single-judge sample with no 고교 lesson in it. `M3` could not be scored
+at all (it judges the chat response, and these are archived artifacts), and `R-S2` is skipped for
+초등 by its own conditional. Treat the pass rate as a first reading, not a benchmark.
 
 ---
 

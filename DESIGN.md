@@ -265,3 +265,4 @@ plugin/
 | docs/evals-port-review.html | evals 한국판 보정 전수 대조 — 항목별 원본/보정 나란히, 변경 성격 3분류(A 측정 대상 부재 / B 우리 스펙 편 / C 계측기 수리) | `docs/evals_port_review.py`가 생성 (2026-08-03). 판정표는 그 스크립트의 `CLASSIFICATION`에 있다 |
 | docs/evals-unchanged-criteria.md | 손대지 않은 38항목 전문 — 위 대조의 나머지 절반. "고장난 것만 고쳤다"를 독자가 대조로 확인할 수 있게 한다 | 동 스크립트 `--unchanged` (2026-08-03). 업스트림 원문 그대로, 번역하지 않음 |
 | evals/ | 산출물 채점 루브릭 (LLM-judge용, tests/의 결정론 검증을 보완) | **한국판 보정 완료 (2026-08-03)** — 69항목. 폴더명 `ko12-*`로 정렬. 재설계 4(P-S1·P-S4 NGSS 3차원→3범주, M-CLARIFY-STATE→학년 확인 + 초1–2 특례) · 보정 22 · 나머지 원본 유지. 채점 기준 열의 미국 체제 잔재 0건 전수 확인. 각 항목 Notes에 원본 대비 개변 사유 기록 |
+| evals/runs/ | 실채점 기록 — 판정 JSON(항목별 근거 포함) + 집계표 + `aggregate.py` | **1차 실행 완료 (2026-08-06)**: 파일럿 4패키지 × planning 40항목 = 160칸, PASS 149 / FAIL 6 / skip 5. fail 6건 재대조 결과 5건 실결함·1건(O3) 판정자 편차. 한계는 pilot-notes 참조 — 판정자 1명/패키지, pass 재대조 안 함, 고교 0건, M3 판정 불가, differentiation 루브릭 미채점 |
