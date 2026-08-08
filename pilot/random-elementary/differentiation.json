@@ -1,0 +1,501 @@
+{
+  "theme": { "primary": "#1f6f8b" },
+  "shared": {
+    "subject": "과학",
+    "grade": "Grade 5 · 초등학교 5학년",
+    "duration": 40,
+    "standard_code": "[6과03-03]",
+    "standard_text": "일상생활에서 용액이 쓰이는 사례를 조사하여 용액의 필요성을 알리는 자료를 만들고 공유할 수 있다.",
+
+    "t1": {
+      "teacher": {
+        "type": "list",
+        "items": [
+          "교탁에 식초 병, 손 소독제, 이온 음료를 상표가 보이게 놓는다.",
+          "'액체'라는 답이 나오면 우유를 들어 보인다 — 우유도 액체인데 왜 상에 없을까?",
+          "'무언가 녹아 있는 액체'라는 말이 나올 때까지 기다렸다가 지난 차시의 낱말(용액)을 붙인다.",
+          "탐구 질문을 칠판에 쓴다: 용액이 없어지면 우리 하루는 어떻게 될까?"
+        ]
+      },
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "공통점 찾기",
+        "text": "선생님이 보여 주는 세 가지 물건의 공통점은 무엇일까요? 지난 시간에 배운 낱말을 써서 한 문장으로 적어 보세요."
+      }
+    },
+
+    "t2": {
+      "teacher": {
+        "type": "list",
+        "items": [
+          "모둠마다 조사 장소를 하나씩 맡긴다: 부엌, 욕실, 보건실, 학교 앞 가게.",
+          "겪어 본 기억을 모으는 조사다 — 그 장소에서 본 액체 중 용액인 것을 표에 모은다.",
+          "'그게 정말 용액일까?'가 나오면 판별 기준을 되묻는다: 골고루 섞였는가, 가라앉는 것이 없는가.",
+          "쓰임새 칸이 비면 '누가 언제 쓰나'를 묻는다."
+        ]
+      },
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "우리 모둠 장소에서 용액 찾기",
+        "text": "모둠이 맡은 장소를 떠올려 보세요. 그곳에서 본 용액을 세 가지 이상 찾아 표에 쓰고, 무엇에 쓰이는지 함께 적으세요."
+      }
+    },
+
+    "survey_table": {
+      "type": "fill_table",
+      "headers": ["용액 이름", "어디에서 보았나", "무엇에 쓰이나"],
+      "blank_rows": 4,
+      "row_height_pt": 30
+    },
+
+    "t3": {
+      "teacher": "공유 직전에 30초를 준다. 처음 생각을 지우지 말고 그 옆에 쓰게 한다.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "생각을 확인해 보기",
+        "text": "수업 전에 용액을 어떤 것이라고 생각했나요? 조사를 하고 나니 어떻게 생각하나요? 위의 문장 지원을 골라 한 문장으로 쓰세요."
+      }
+    },
+
+    "t4": {
+      "teacher": "받는 사람이 정해져야 필요성이 문장에 들어온다. 그림 솜씨는 보지 않는다고 미리 말해 준다.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "알림 카드 만들기",
+        "text": "조사한 용액 중 하나를 고르세요. 그 용액이 꼭 필요한 사람을 한 명 정하고, 그 사람에게 알리는 카드를 만드세요. 그림 하나와 문장 두 개를 넣습니다."
+      }
+    },
+
+    "ext_c": {
+      "teacher": "다 모둠에만 인쇄된다. 카드 뒤에 두었다 — 판별 기준을 남의 주장 검증에 쓰는 자리다.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "생각을 시험해 보기",
+        "text": "어떤 친구가 '우유도 뿌옇게 잘 섞여 있으니 용액'이라고 말합니다. (1) 이 말이 맞다면 우유를 오래 두었을 때 어떻게 되어야 할까요? (2) 이 말이 맞는지 확인할 방법을 한 가지 설계해 쓰세요. (3) 확인 결과가 어떻게 나오면 이 말이 틀렸다고 할 수 있을까요?"
+      }
+    },
+
+    "exit_ticket": {
+      "teacher": "학습지 마지막 칸을 그대로 걷는다. 고른 용액과 두 문장을 함께 본다.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "정리 문항",
+        "text": "오늘 조사한 용액 중 하나가 내일부터 세상에서 사라진다고 상상해 보세요. 누가, 왜 곤란해질까요? 두 문장으로 써 보세요."
+      }
+    },
+
+    "anchor_activity": {
+      "type": "callout",
+      "kind": "student-task",
+      "label": "교실에서 더 찾아보기",
+      "text": "우리 교실에서 용액을 두 가지 더 찾아 적으세요. 그중 하나를 골라, 골고루 섞여 있고 가라앉는 것이 없는지 어떻게 확인할 수 있을지 한 문장으로 쓰세요."
+    },
+
+    "reflect_prompt": {
+      "type": "callout",
+      "kind": "student-task",
+      "label": "아직 궁금한 것",
+      "text": "아직 궁금한 것은 무엇인가요? 오늘 조사한 것 중에서 더 알고 싶은 것을 한 가지 쓰세요."
+    },
+
+    "vocabulary": {
+      "type": "table",
+      "rows": [
+        ["**용해**", "한 물질이 다른 물질에 골고루 섞여 들어가는 것."],
+        ["**용질**", "녹아 들어가는 물질. 소금물에서는 소금."],
+        ["**용매**", "녹이는 물질. 소금물에서는 물."],
+        ["**용액**", "용질이 용매에 골고루 섞여 있는 액체. 오래 두어도 가라앉지 않는다."]
+      ]
+    },
+
+    "sentence_frames": {
+      "type": "list",
+      "label": "다음 문장 지원을 쓸 수 있습니다",
+      "items": [
+        "____는 ____에 꼭 필요하다. 왜냐하면 ____이기 때문이다.",
+        "나는 용액이 ____라고 생각했는데, 조사해 보니 ____였다. 이제 나는 ____라고 생각한다.",
+        "만약 ____가 없다면 ____는 ____하게 된다."
+      ]
+    },
+
+    "misconceptions": {
+      "type": "table",
+      "headers": ["학생의 생각", "지속되는 이유", "교사의 대응"],
+      "rows": [
+        ["투명한 액체는 모두 용액이다.", "용액의 예로 본 것이 대부분 투명해서 투명함을 기준으로 삼는다.", "증류수를 보여 준다. 무엇이 녹아 있는지 묻고, 녹아 있는 것이 없으면 용액이 아님을 함께 확인한다."],
+        ["우유나 흙탕물도 용액이다.", "잘 섞여 보이면 용액이라고 판단한다. 가라앉거나 뜨는 알갱이를 확인해 본 적이 없다.", "흙탕물을 한 시간 둔 사진을 보여 준다. 가라앉은 것이 있으면 골고루 섞인 것이 아님을 되짚는다."],
+        ["용액은 과학실에만 있는 특별한 것이다.", "용액이라는 낱말을 실험 시간에만 들었다.", "조사표를 그대로 쓴다 — 부엌과 욕실에서 나온 사례 수를 세어 보게 한다."]
+      ]
+    },
+
+    "exit_sort": {
+      "type": "cards",
+      "items": [
+        { "title": "이해함", "text": "구체적인 용액을 골라 그것이 필요한 사람과 까닭을 이어 쓴다. 용액이라는 낱말을 바르게 쓴다." },
+        { "title": "거의", "text": "곤란해지는 상황은 쓰지만 누구에게 왜 필요한지가 빠져 있다. 또는 용액이 아닌 것(우유 등)을 골랐다." },
+        { "title": "재지도 필요", "text": "용액과 액체를 구분하지 못하거나 문장을 시작하지 못한다. 다음 차시 도입에서 조사표의 사례를 함께 다시 본다." }
+      ]
+    }
+  },
+
+  "documents": [
+    {
+      "id": "teacher_plan",
+      "audience": "teacher",
+      "eyebrow": "과학 · 초등학교 5학년 · 물질",
+      "title": "차별화 수업안 — 용액이 없어지면 우리 하루는 어떻게 될까",
+      "meta": "초등학교 5학년 · 40분 · [6과03-03] · 기초 / 보통 / 심화",
+      "sections": [
+        {
+          "heading": "한눈에 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "standard" },
+            { "type": "labeled", "label": "학생 정보", "text": "구체적인 학생 정보가 없어 보편적 설계 기본값을 적용했습니다. 세 수준 모두에 문장 지원과 어휘 정리가 들어 있습니다." },
+            { "type": "labeled", "label": "수업 흐름", "text": "현상 던지기 5분 → 사례 조사 12분 → 알림 카드 만들기 15분 → 공유와 정리 8분 (총 40분)" },
+            { "type": "labeled", "label": "앵커 현상", "text": "식초·손 소독제·이온 음료의 공통점 찾기. 세 수준이 같은 세 물건, 같은 질문에서 출발합니다." },
+            { "type": "callout", "kind": "teacher-note", "label": "편성은 오늘 하루짜리입니다", "text": "가·나·다 모둠 이름은 학생에게 수준으로 읽히지 않습니다. 오늘 조사표와 정리 문항이 나오면 다음 차시 편성은 그 증거로 다시 잡습니다." },
+            { "type": "list", "label": "준비물", "items": [
+              "식초 병, 손 소독제, 이온 음료 각 1개 (교탁용)",
+              "우유 1개 (반례용)",
+              "수준별 학습지 3종 — 학생 수에 맞춰 나누어 인쇄",
+              "색연필 또는 사인펜, 모둠당 1통",
+              "칠판"
+            ] }
+          ]
+        },
+        {
+          "heading": "3범주 지도",
+          "blocks": [
+            { "type": "labeled", "label": "지식·이해", "text": "골고루 섞여 가라앉지 않는다는 기준으로 생활 속 용액 가려내기" },
+            { "type": "labeled", "label": "과정·기능", "text": "쓰임 사례를 조사해 표로 정리하고, 받는 사람이 있는 알림 자료로 표현하기" },
+            { "type": "labeled", "label": "가치·태도", "text": "용액이 일상을 지탱함을 인식하고 친구 자료의 잘한 점을 말하기" },
+            { "type": "labeled", "label": "선수 학습", "text": "[6과03-02] 용질·용매의 양과 용액의 진하기 — 학습맵에 같은 단원 연계 기록이 있습니다. 가 모둠 스캐폴드가 이 낱말들에서 출발합니다." }
+          ]
+        },
+        {
+          "heading": "수준 편성",
+          "blocks": [
+            { "type": "list", "items": [
+              "기초(가 모둠) — 용액이라는 낱말은 알지만 판별 기준을 스스로 말하지 못하는 학생",
+              "보통(나 모둠) — 판별은 하지만 쓰임새를 사람과 이어 말하지 못하는 학생",
+              "심화(다 모둠) — 판별 기준을 들어 사례를 고르고 까닭까지 말하는 학생"
+            ] },
+            { "type": "paragraph", "text": "진단 자료 없음 — 기본 프로파일을 적용했습니다. 지난 차시([6과03-02]) 실험 기록이 있으면 그것으로 바꾸세요." },
+            { "type": "paragraph", "text": "수준 배정은 고정이 아닙니다. 조사표를 걷은 뒤 다시 봅니다." }
+          ]
+        },
+        {
+          "heading": "어휘",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" },
+            { "type": "callout", "kind": "teacher-note", "label": "낱말은 판별에 쓰일 때만", "text": "네 낱말은 모두 앞 차시에서 배웠습니다. 정의를 다시 외우게 하지 말고, 사례를 판별할 때 기준으로 쓰이는지만 봅니다." }
+          ]
+        },
+        {
+          "heading": "예상되는 학생 생각",
+          "blocks": [
+            { "type": "from_shared", "key": "misconceptions" }
+          ]
+        },
+        {
+          "heading": "수업 전개",
+          "blocks": [
+            { "type": "phase_header", "name": "현상 던지기 — 전체 활동", "minutes": 5 },
+            { "type": "from_shared", "key": "t1" },
+
+            { "type": "phase_header", "name": "사례 조사 — 수준별 활동", "minutes": 12 },
+            { "type": "labeled", "label": "모든 학생", "text": "같은 조사표, 같은 장소 나누기, 같은 목표(세 가지 이상). 조사표는 학습지 3종에 똑같이 인쇄되어 있습니다." },
+            { "type": "from_shared", "key": "t2" },
+            { "type": "table",
+              "headers": ["", "기초 (가 모둠)", "보통 (나 모둠)", "심화 (다 모둠)"],
+              "rows": [
+                ["학생이 하는 일",
+                 "같은 장소 조사. 낱말을 먼저 떠올리는 안내와 장소를 아침부터 저녁 순서로 훑는 안내 뒤에 표를 채운다. 카드는 계획 칸을 채운 뒤 만든다.",
+                 "같은 장소 조사. 표를 스스로 채우고 카드의 받는 사람을 스스로 정한다.",
+                 "같은 조사와 같은 카드. 이어서 '우유도 용액'이라는 주장을 확인할 방법을 설계한다."],
+                ["학습지 과제",
+                 "낱말 먼저 떠올리기(안내) + 과제 1, 장소 훑기 순서(안내) + 과제 2(조사표), 과제 3 생각 확인, 카드 계획 칸 + 과제 4 알림 카드, 정리 문항, 교실에서 더 찾아보기, 아직 궁금한 것",
+                 "과제 1, 과제 2(조사표), 과제 3 생각 확인, 과제 4 알림 카드, 정리 문항, 교실에서 더 찾아보기, 아직 궁금한 것",
+                 "과제 1, 과제 2(조사표), 과제 3 생각 확인, 과제 4 알림 카드, 생각을 시험해 보기(하위 문항 3개), 정리 문항, 교실에서 더 찾아보기, 아직 궁금한 것"]
+              ] },
+            { "type": "callout", "kind": "teacher-note", "label": "수준별로 볼 것", "text": "가 모둠 — 사례가 물건 이름에서 멈춥니다. '누가 언제 쓰나'를 물어 쓰임새 칸으로 넘겨 주세요.\n나 모둠 — 우유·주스류를 표에 올립니다. 가라앉는 것이 없는지 확인 기준을 되물으세요.\n다 모둠 — 확인 방법을 '오래 둔다'로만 씁니다. 무엇을 보면 판별되는지 한 문장 더 요구하세요." },
+
+            { "type": "phase_header", "name": "알림 카드 만들기 — 전체 활동", "minutes": 15 },
+            { "type": "from_shared", "key": "t4" },
+            { "type": "callout", "kind": "teacher-note", "label": "받는 사람이 핵심", "text": "카드의 질은 그림이 아니라 받는 사람이 정해져 있는지로 갈립니다. 사람이 정해지면 필요성이 문장에 저절로 들어옵니다." },
+            { "type": "callout", "kind": "teacher-note", "label": "다 모둠은 여기서 하나 더", "text": "다 모둠 학습지에는 카드 뒤에 우유 주장 검증 과제가 인쇄되어 있습니다. 카드를 먼저 끝낸 학생부터 들어갑니다." },
+            { "type": "from_shared", "key": "ext_c" },
+
+            { "type": "phase_header", "name": "공유와 정리 — 전체 활동", "minutes": 8 },
+            { "type": "paragraph", "text": "카드를 책상 위에 펼치고 모둠끼리 자리를 바꿔 봅니다. 돌아온 뒤 좋았던 카드 한 장과 그 까닭을 말하게 합니다." },
+            { "type": "list", "label": "발문", "items": [
+              "그 카드는 누구에게 말하고 있나요?",
+              "그 용액이 없어지면 무엇이 가장 먼저 곤란해질까요?",
+              "용액이 아닌 것을 고른 카드가 있다면, 무엇으로 확인할 수 있을까요?"
+            ] },
+            { "type": "from_shared", "key": "t3" },
+            { "type": "from_shared", "key": "exit_ticket" }
+          ]
+        },
+        {
+          "heading": "형성 확인",
+          "blocks": [
+            { "type": "labeled", "label": "수업 중간 확인", "text": "조사 12분이 끝나기 3분 전에 세 모둠의 조사표를 훑습니다. 우유나 주스만 적힌 표가 한 모둠에 둘 이상이면, 카드 만들기 전에 그 모둠으로 가서 가라앉는 것이 없는지 기준 하나만 되묻습니다." },
+            { "type": "labeled", "label": "정리 문항으로 볼 것", "text": "고른 것이 용액인지, 필요한 사람과 까닭이 이어졌는지 봅니다. 낱말이 정확하지 않아도 됩니다." },
+            { "type": "from_shared", "key": "exit_sort" }
+          ]
+        },
+        {
+          "heading": "앵커 활동",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "labeled", "label": "투입 시점", "text": "조사표를 일찍 채운 학생에게, 또는 카드를 일찍 끝낸 학생에게 넘깁니다. 학습지 3종에 같은 과제로 인쇄되어 있습니다." }
+          ]
+        },
+        {
+          "heading": "이 설계가 통하는 이유 (1)",
+          "blocks": [
+            { "type": "paragraph", "text": "가 모둠 학습지가 바꾼 것은 낱말을 먼저 떠올리는 한 줄, 장소를 훑는 순서 한 줄, 카드 앞의 계획 칸뿐입니다. 조사 장소·목표 수·카드 조건은 세 수준이 같습니다. 이 차시의 과정·기능 목표가 '조사해 표로 정리하고 알리는 자료로 표현하기'인데, 조사를 줄이면 그 목표 자체가 사라지기 때문입니다." }
+          ]
+        },
+        {
+          "heading": "이 설계가 통하는 이유 (2)",
+          "blocks": [
+            { "type": "paragraph", "text": "다 모둠 확장은 조사를 더 시키지 않고, 예상되는 학생 생각에 실제로 있는 '우유도 용액'이라는 주장을 검증하게 합니다. 5학년이 도달할 수 있는 가장 높은 사고는 사례를 더 모으는 것이 아니라 판별 기준으로 남의 주장을 확인할 방법을 설계하는 것입니다." }
+          ]
+        },
+        {
+          "heading": "다음 단계",
+          "blocks": [
+            { "type": "labeled", "label": "이해함", "text": "용해와 용액 단원을 닫고 다음 단원으로 넘어갑니다. 오늘 카드를 교실 뒤에 게시해 공유를 이어 갑니다." },
+            { "type": "labeled", "label": "거의", "text": "받는 사람 없이 쓴 학생을 네댓 명 모아 3분 소집단. 카드 하나를 골라 '누구에게 주면 좋을까'만 묻습니다." },
+            { "type": "labeled", "label": "재지도 필요", "text": "다음 차시 도입에서 흙탕물 사진과 소금물을 다시 나란히 봅니다. 결손이 [6과03-01]의 용해 개념까지 내려가면 수업 수준의 차별화를 넘어선 지원이 필요합니다." }
+          ]
+        },
+        {
+          "heading": "출처 확인",
+          "blocks": [
+            { "type": "paragraph", "text": "초등 성취기준 문장은 학습맵의 요약 필드에서 재구성된 것입니다. 공식 고시문과 대조해 확인하세요." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "worksheet_group_a",
+      "audience": "student",
+      "eyebrow": "초등학교 5학년 과학 · [6과03-03]",
+      "title": "가 모둠 — 용액이 없어지면 어떻게 될까",
+      "meta": "이름: ____________________    모둠: __________",
+      "sections": [
+        {
+          "heading": "낱말과 문장",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" },
+            { "type": "from_shared", "key": "sentence_frames" }
+          ]
+        },
+        {
+          "heading": "공통점을 찾아라",
+          "blocks": [
+            { "type": "h3", "text": "낱말 먼저 떠올리기" },
+            { "type": "paragraph", "text": "위의 낱말 상자에서 어울리는 낱말을 하나 골라 문장에 넣어 보세요." },
+            { "type": "from_shared", "key": "t1", "label": "1" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "우리 모둠 장소에서 용액 찾기",
+          "blocks": [
+            { "type": "h3", "text": "장소를 차례로 떠올리기" },
+            { "type": "paragraph", "text": "그 장소에서 아침부터 저녁까지 무슨 일이 있는지 차례로 떠올리고, 그때 쓰는 액체를 적어 보세요." },
+            { "type": "from_shared", "key": "t2", "label": "2" },
+            { "type": "from_shared", "key": "survey_table" }
+          ]
+        },
+        {
+          "heading": "처음 생각 다시 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "t3", "label": "3" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "알림 카드 만들기",
+          "blocks": [
+            { "type": "h3", "text": "카드 계획 칸" },
+            { "type": "fill_table", "headers": ["고른 용액", "받는 사람", "필요한 까닭 한 가지"], "blank_rows": 1, "row_height_pt": 36 },
+            { "type": "from_shared", "key": "t4", "label": "4" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "오늘 알게 된 것",
+          "blocks": [
+            { "type": "from_shared", "key": "exit_ticket" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "먼저 끝냈다면",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "되돌아보기",
+          "blocks": [
+            { "type": "from_shared", "key": "reflect_prompt" },
+            { "type": "workspace", "size": "small" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "worksheet_group_b",
+      "audience": "student",
+      "eyebrow": "초등학교 5학년 과학 · [6과03-03]",
+      "title": "나 모둠 — 용액이 없어지면 어떻게 될까",
+      "meta": "이름: ____________________    모둠: __________",
+      "sections": [
+        {
+          "heading": "낱말과 문장",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" },
+            { "type": "from_shared", "key": "sentence_frames" }
+          ]
+        },
+        {
+          "heading": "공통점을 찾아라",
+          "blocks": [
+            { "type": "from_shared", "key": "t1", "label": "1" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "우리 모둠 장소에서 용액 찾기",
+          "blocks": [
+            { "type": "from_shared", "key": "t2", "label": "2" },
+            { "type": "from_shared", "key": "survey_table" }
+          ]
+        },
+        {
+          "heading": "처음 생각 다시 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "t3", "label": "3" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "알림 카드 만들기",
+          "blocks": [
+            { "type": "from_shared", "key": "t4", "label": "4" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "오늘 알게 된 것",
+          "blocks": [
+            { "type": "from_shared", "key": "exit_ticket" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "먼저 끝냈다면",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "되돌아보기",
+          "blocks": [
+            { "type": "from_shared", "key": "reflect_prompt" },
+            { "type": "workspace", "size": "small" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "worksheet_group_c",
+      "audience": "student",
+      "eyebrow": "초등학교 5학년 과학 · [6과03-03]",
+      "title": "다 모둠 — 용액이 없어지면 어떻게 될까",
+      "meta": "이름: ____________________    모둠: __________",
+      "sections": [
+        {
+          "heading": "낱말과 문장",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" },
+            { "type": "from_shared", "key": "sentence_frames" }
+          ]
+        },
+        {
+          "heading": "공통점을 찾아라",
+          "blocks": [
+            { "type": "from_shared", "key": "t1", "label": "1" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "우리 모둠 장소에서 용액 찾기",
+          "blocks": [
+            { "type": "from_shared", "key": "t2", "label": "2" },
+            { "type": "from_shared", "key": "survey_table" }
+          ]
+        },
+        {
+          "heading": "처음 생각 다시 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "t3", "label": "3" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "알림 카드 만들기",
+          "blocks": [
+            { "type": "from_shared", "key": "t4", "label": "4" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "더 나아가기",
+          "blocks": [
+            { "type": "from_shared", "key": "ext_c" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "오늘 알게 된 것",
+          "blocks": [
+            { "type": "from_shared", "key": "exit_ticket" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "먼저 끝냈다면",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "되돌아보기",
+          "blocks": [
+            { "type": "from_shared", "key": "reflect_prompt" },
+            { "type": "workspace", "size": "small" }
+          ]
+        }
+      ]
+    }
+  ]
+}

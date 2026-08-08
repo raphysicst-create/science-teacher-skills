@@ -1,0 +1,511 @@
+{
+  "theme": { "primary": "#1f6f8b" },
+  "shared": {
+    "subject": "과학",
+    "grade": "Grade 4 · 초등학교 4학년",
+    "duration": 40,
+    "standard_code": "[4과10-02]",
+    "standard_text": "물이 얼 때, 얼음이 녹을 때, 물이 증발할 때와 끓을 때, 수증기가 응결할 때의 변화를 관찰할 수 있다.",
+
+    "t1": {
+      "teacher": {
+        "type": "list",
+        "items": [
+          "모둠마다 얼음물 컵을 놓는다. 수업 5분 전에 미리 따라 둔다.",
+          "컵 겉면을 손가락으로 만지게 하고 '젖었어요'가 나올 때까지 기다린다.",
+          "'물이 새어 나왔다'는 말이 나와도 정정하지 않는다. 칠판에 그대로 적는다.",
+          "탐구 질문을 크게 쓴다: 컵 겉면의 물방울은 어디에서 왔을까?"
+        ]
+      },
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "만져 보고 이야기해 보세요",
+        "text": "얼음물 컵의 겉면을 살짝 만져 보세요. 무엇이 느껴지나요? 무엇이 보이나요? 궁금한 것을 한 가지 써 보세요."
+      }
+    },
+
+    "t2": {
+      "teacher": {
+        "type": "list",
+        "items": [
+          "모둠마다 얼음물 컵과 같은 크기의 상온 물 컵을 나란히 놓는다.",
+          "지금 모습을 먼저 그리게 한다(2분). 젖은 종이 두 장을 창가와 그늘에 놓는다.",
+          "10분 뒤 두 컵과 두 종이를 같은 자리에 다시 그린다.",
+          "기다리는 동안 순회하며 관찰 포인트를 기록한다. 컵은 자리에 둔 채 관찰한다."
+        ]
+      },
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "두 번 보고 그리기",
+        "text": "지금 모습을 왼쪽 칸에 그리고, 10분 뒤 모습을 오른쪽 칸에 그리세요. 달라진 곳에 동그라미를 하고, 옆에 낱말로 적어 보세요."
+      }
+    },
+
+    "observe_table": {
+      "type": "fill_table",
+      "headers": ["무엇을", "지금 모습 (그림)", "10분 뒤 모습 (그림)"],
+      "rows": [
+        ["얼음물 컵 겉면", "", ""],
+        ["상온 물 컵 겉면", "", ""],
+        ["창가에 둔 젖은 종이", "", ""],
+        ["그늘에 둔 젖은 종이", "", ""]
+      ],
+      "row_height_pt": 74
+    },
+
+    "t3": {
+      "teacher": "의미 나누기 끝에 30초를 준다. 처음 생각을 지우지 말고 그 옆에 쓰게 한다.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "생각을 확인해 보기",
+        "text": "처음에 물방울이 어디에서 왔다고 생각했나요? 지금은 어떻게 생각하나요? 위의 문장 지원을 골라 한 문장으로 쓰세요."
+      }
+    },
+
+    "t4": {
+      "teacher": "보이는 것과 보이지 않는 것을 구분해 그리는 것이 핵심이다. 정답 그림을 먼저 보여 주지 않는다.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "그림으로 나타내기",
+        "text": "컵 겉면에 물방울이 생기는 일을 그림으로 그려 보세요. 눈에 보이는 것은 그냥 그리고, 눈에 보이지 않지만 있다고 생각하는 것은 점선으로 그리세요."
+      }
+    },
+
+    "ext_c": {
+      "teacher": "다 모둠에만 인쇄된다. 정리 문항 앞에 두었다 — 정리 문항의 답을 미리 주지 않는 자리다.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "생각을 시험해 보기",
+        "text": "어떤 친구가 '물방울은 컵 안의 물이 유리를 뚫고 나온 것'이라고 말합니다. (1) 이 말이 맞다면 컵 안의 물은 어떻게 되어야 할까요? (2) 오늘 교실에서 본 것 중 이 말과 맞지 않는 것을 하나 찾아 쓰세요. (3) 이 말이 틀렸다는 것을 보여 줄 방법을 한 가지 생각해 쓰세요."
+      }
+    },
+
+    "exit_ticket": {
+      "teacher": "학습지 마지막 칸을 그대로 걷는다. 그림과 한 문장을 함께 본다.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "정리 문항",
+        "text": "추운 날 아침, 교실 유리창 안쪽이 뿌옇게 흐려집니다. 왜 그럴까요? 그림으로 그리고, 왜 그렇게 생각했는지 한 문장으로 써 보세요."
+      }
+    },
+
+    "anchor_activity": {
+      "type": "callout",
+      "kind": "student-task",
+      "label": "교실에서 더 찾아보기",
+      "text": "교실에서 물방울이 생길 만한 곳을 두 군데 더 찾아 적으세요. 그중 한 곳을 골라 무엇이 차가웠고 물이 어디에 있었는지 그림으로 그려 보세요."
+    },
+
+    "reflect_prompt": {
+      "type": "callout",
+      "kind": "student-task",
+      "label": "아직 궁금한 것",
+      "text": "아직 궁금한 것은 무엇인가요? 오늘 본 것 중에서 더 알고 싶은 것을 한 가지 쓰세요."
+    },
+
+    "vocabulary": {
+      "type": "table",
+      "rows": [
+        ["**수증기**", "눈에 보이지 않는, 기체 상태의 물."],
+        ["**증발**", "물이 표면에서 수증기로 변해 공기 중으로 흩어지는 것."],
+        ["**응결**", "공기 중의 수증기가 차가운 것에 닿아 다시 물이 되는 것."],
+        ["**관찰**", "눈, 코, 손으로 살펴보고 달라진 점을 찾는 것."]
+      ]
+    },
+
+    "sentence_frames": {
+      "type": "list",
+      "label": "다음 문장 지원을 쓸 수 있습니다",
+      "items": [
+        "나는 ____라고 생각했는데 ____를 보았다. 이제 나는 ____라고 생각한다.",
+        "나는 ____라고 주장한다. 내가 본 것은 ____이다. 그래서 ____라고 생각한다.",
+        "____은 달라졌고, ____은 그대로였다."
+      ]
+    },
+
+    "misconceptions": {
+      "type": "table",
+      "headers": ["학생의 생각", "지속되는 이유", "교사의 대응"],
+      "rows": [
+        ["컵 안의 물이 유리를 뚫고 새어 나왔다.", "물방울이 물이 든 컵에만 생기니 안에서 왔다고 보는 것이 자연스럽다. 유리를 통과하지 못한다는 것을 확인해 본 적이 없다.", "뚜껑을 덮은 얼음물 컵을 하나 더 놓아 둔다. 뚜껑 위에도 물방울이 생기는지 함께 본다."],
+        ["젖은 종이가 마른 것은 물이 없어졌기 때문이다.", "사라진 것처럼 보이고, 수증기는 눈에 보이지 않는다.", "물이 어디로 갔을지 되묻는다. 컵 겉면의 물방울과 이어 생각하게 한다."],
+        ["물방울은 차가워서 저절로 생긴 것이다.", "차가움과 물방울이 늘 같이 나타나므로 원인을 차가움 자체로 본다.", "상온 물 컵을 가리킨다. 같은 공기 속에 있는데 왜 이 컵에는 안 생겼는지 묻는다."]
+      ]
+    },
+
+    "exit_sort": {
+      "type": "cards",
+      "items": [
+        { "title": "이해함", "text": "공기 중의 수증기가 차가운 유리에 닿아 물이 되었다는 뜻이 그림이나 문장에 담겨 있다. 낱말이 정확하지 않아도 된다." },
+        { "title": "거의", "text": "물방울이 생긴 것은 맞게 그렸으나 어디에서 온 물인지가 빠져 있다. 또는 '차가워서'에서 멈춘다." },
+        { "title": "재지도 필요", "text": "밖에서 비가 들어왔다거나 유리를 통과했다고 그린다. 다음 차시 도입에서 뚜껑 컵을 다시 보여 준다." }
+      ]
+    }
+  },
+
+  "documents": [
+    {
+      "id": "teacher_plan",
+      "audience": "teacher",
+      "eyebrow": "과학 · 초등학교 4학년 · 물질",
+      "title": "차별화 수업안 — 컵 겉면의 물방울은 어디에서 왔을까",
+      "meta": "초등학교 4학년 · 40분 · [4과10-02] · 기초 / 보통 / 심화",
+      "sections": [
+        {
+          "heading": "한눈에 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "standard" },
+            { "type": "labeled", "label": "학생 정보", "text": "구체적인 학생 정보가 없어 보편적 설계 기본값을 적용했습니다. 세 수준 모두에 문장 지원과 어휘 정리가 들어 있습니다." },
+            { "type": "labeled", "label": "수업 흐름", "text": "현상 던지기 8분 → 탐구 활동 15분 → 의미 나누기 9분 → 그림으로 나타내기 5분 → 정리 문항 3분 (총 40분)" },
+            { "type": "labeled", "label": "앵커 현상", "text": "얼음물 컵 겉면에 물방울이 맺힌다. 세 수준이 같은 컵, 같은 10분을 관찰합니다." },
+            { "type": "callout", "kind": "teacher-note", "label": "편성은 오늘 하루짜리입니다", "text": "가·나·다 모둠 이름은 학생에게 수준으로 읽히지 않습니다. 오늘 관찰 표와 정리 문항이 나오면 다음 차시 편성은 그 증거로 다시 잡습니다." },
+            { "type": "list", "label": "준비물", "items": [
+              "얼음물 컵, 모둠당 1개",
+              "상온 물 컵, 모둠당 1개 (같은 크기)",
+              "뚜껑 덮은 얼음물 컵 1개 (교탁용)",
+              "물에 적신 종이 수건, 모둠당 2장",
+              "수준별 학습지 3종 — 학생 수에 맞춰 나누어 인쇄",
+              "칠판"
+            ] }
+          ]
+        },
+        {
+          "heading": "3범주 지도",
+          "blocks": [
+            { "type": "labeled", "label": "지식·이해", "text": "공기 중 수증기가 차가운 물체에 닿아 물이 되는 변화" },
+            { "type": "labeled", "label": "과정·기능", "text": "같은 대상을 두 시점에 관찰해 그림과 낱말로 기록하고 비교하기" },
+            { "type": "labeled", "label": "가치·태도", "text": "친구의 다른 생각을 끝까지 듣고 본 것을 근거로 말하기" },
+            { "type": "labeled", "label": "선수 학습", "text": "[4과10-01] 물의 세 가지 상태와 주변의 예 — 학습맵에 같은 단원 연계 기록이 있습니다. 가 모둠 스캐폴드가 여기서 출발합니다." }
+          ]
+        },
+        {
+          "heading": "수준 편성",
+          "blocks": [
+            { "type": "list", "items": [
+              "기초(가 모둠) — 관찰은 하지만 본 것을 낱말로 옮기지 못하는 학생",
+              "보통(나 모둠) — 달라진 점은 쓰지만 두 컵을 이어 말하지 못하는 학생",
+              "심화(다 모둠) — 두 컵을 비교해 말하거나 보이지 않는 것을 그리는 학생"
+            ] },
+            { "type": "paragraph", "text": "진단 자료 없음 — 기본 프로파일을 적용했습니다. 지난 차시([4과10-01]) 활동 기록이 있으면 그것으로 바꾸세요." },
+            { "type": "paragraph", "text": "수준 배정은 고정이 아닙니다. 오늘 관찰 표를 걷은 뒤 다시 봅니다." }
+          ]
+        },
+        {
+          "heading": "어휘",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" },
+            { "type": "callout", "kind": "teacher-note", "label": "낱말은 관찰 뒤에", "text": "증발과 응결은 의미 나누기에서 학생이 본 것에 이름을 붙이는 방식으로 도입합니다. 도입에서 먼저 정의하지 마세요." }
+          ]
+        },
+        {
+          "heading": "예상되는 학생 생각",
+          "blocks": [
+            { "type": "from_shared", "key": "misconceptions" }
+          ]
+        },
+        {
+          "heading": "수업 전개",
+          "blocks": [
+            { "type": "phase_header", "name": "현상 던지기 — 전체 활동", "minutes": 8 },
+            { "type": "from_shared", "key": "t1" },
+
+            { "type": "phase_header", "name": "탐구 활동 — 수준별 활동", "minutes": 15 },
+            { "type": "labeled", "label": "모든 학생", "text": "같은 두 컵, 같은 젖은 종이 두 장, 같은 10분. 관찰 표는 학습지 3종에 똑같이 인쇄되어 있습니다." },
+            { "type": "from_shared", "key": "t2" },
+            { "type": "table",
+              "headers": ["", "기초 (가 모둠)", "보통 (나 모둠)", "심화 (다 모둠)"],
+              "rows": [
+                ["학생이 하는 일",
+                 "같은 두 컵을 관찰. 무엇을 볼지 짚어 주는 안내 뒤에 그린다. 그림 모형은 두 칸으로 나눈 뒤 그린다.",
+                 "같은 두 컵을 관찰하고 그린다. 달라진 곳에 낱말을 붙인다. 그림 모형을 스스로 구성한다.",
+                 "같은 관찰과 같은 그림 모형. 이어서 '물이 새어 나왔다'는 주장을 반박할 방법을 설계한다."],
+                ["학습지 과제",
+                 "손끝 관찰 안내 + 과제 1, 볼 순서 안내 + 과제 2(관찰 표), 과제 3 생각 확인, 나누어 보기 틀 + 과제 4 그림 모형, 정리 문항, 교실에서 더 찾아보기, 아직 궁금한 것",
+                 "과제 1, 과제 2(관찰 표), 과제 3 생각 확인, 과제 4 그림 모형, 정리 문항, 교실에서 더 찾아보기, 아직 궁금한 것",
+                 "과제 1, 과제 2(관찰 표), 과제 3 생각 확인, 과제 4 그림 모형, 생각을 시험해 보기(하위 문항 3개), 정리 문항, 교실에서 더 찾아보기, 아직 궁금한 것"]
+              ] },
+            { "type": "callout", "kind": "teacher-note", "label": "수준별로 볼 것", "text": "가 모둠 — 두 시점을 같은 그림으로 그리는 경우가 많습니다. '컵 겉면만 먼저 볼까?'로 시선을 좁혀 주세요.\n나 모둠 — '차가워서 생겼다'에서 멈춥니다. 상온 물 컵을 가리키며 왜 저기엔 없는지 물으세요.\n다 모둠 — 반박 방법을 '뚜껑을 덮는다'로만 씁니다. 무엇을 확인하려는 것인지 한 문장 더 요구하세요." },
+
+            { "type": "phase_header", "name": "의미 나누기 — 전체 활동", "minutes": 9 },
+            { "type": "paragraph", "text": "두 컵을 비교해 말한 학생부터 발표시킵니다. 학생들의 말을 칠판에 그대로 적고, 교사가 답을 내려 주지 않습니다." },
+            { "type": "list", "label": "발문", "items": [
+              "두 컵을 보면 무엇이 다른가요?",
+              "물방울이 컵 안에서 나왔다면, 뚜껑 위에는 왜 물방울이 있을까요?",
+              "젖은 종이의 물은 어디로 갔을까요?",
+              "컵 겉면의 물방울과 마른 종이는 무슨 관계가 있을까요?"
+            ] },
+            { "type": "callout", "kind": "teacher-note", "label": "여기서 이름 붙이기", "text": "학생들이 '공기에 있던 물'이라는 말을 만들어 낸 뒤에 수증기·응결·증발을 붙여 줍니다. 순서를 바꾸면 낱말만 남습니다." },
+            { "type": "from_shared", "key": "t3" },
+
+            { "type": "phase_header", "name": "그림으로 나타내기 — 전체 활동", "minutes": 5 },
+            { "type": "from_shared", "key": "t4" },
+            { "type": "callout", "kind": "teacher-note", "label": "다 모둠은 여기서 하나 더", "text": "다 모둠 학습지에는 이 자리 뒤에 반박 설계 과제가 인쇄되어 있습니다. 먼저 끝낸 학생부터 들어갑니다." },
+            { "type": "from_shared", "key": "ext_c" },
+
+            { "type": "phase_header", "name": "정리 문항 — 전체 활동", "minutes": 3 },
+            { "type": "from_shared", "key": "exit_ticket" }
+          ]
+        },
+        {
+          "heading": "형성 확인",
+          "blocks": [
+            { "type": "labeled", "label": "수업 중간 확인", "text": "10분 뒤 그림을 그리는 시점에 세 모둠의 관찰 표를 훑습니다. 두 시점 그림이 같은 학생이 한 모둠에 둘 이상이면, 의미 나누기를 시작하기 전에 그 모둠으로 가서 컵 겉면 한 곳만 다시 보게 합니다." },
+            { "type": "labeled", "label": "정리 문항으로 볼 것", "text": "그림이나 문장에 '공기 중에 있던 물'이라는 뜻이 담겼는지 봅니다. 낱말이 정확하지 않아도 됩니다." },
+            { "type": "from_shared", "key": "exit_sort" }
+          ]
+        },
+        {
+          "heading": "앵커 활동",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "labeled", "label": "투입 시점", "text": "10분을 기다리는 동안 먼저 그린 학생에게, 또는 그림으로 나타내기를 일찍 끝낸 학생에게 넘깁니다. 학습지 3종에 같은 과제로 인쇄되어 있습니다." }
+          ]
+        },
+        {
+          "heading": "이 설계가 통하는 이유 (1)",
+          "blocks": [
+            { "type": "paragraph", "text": "가 모둠 학습지가 바꾼 것은 관찰 순서를 짚어 주는 한 줄과, 그림 모형을 그리기 전 두 칸으로 나누는 틀뿐입니다. 관찰 대상과 기다리는 시간, 그릴 대상은 세 수준이 같습니다. 이 차시의 과정·기능 목표가 '두 시점을 비교해 기록하기'인데, 관찰을 줄이면 그 목표 자체가 사라지기 때문입니다." }
+          ]
+        },
+        {
+          "heading": "이 설계가 통하는 이유 (2)",
+          "blocks": [
+            { "type": "paragraph", "text": "다 모둠 확장은 관찰을 하나 더 시키지 않고, 학급에서 실제로 나온 '물이 새어 나왔다'는 생각을 반박할 방법을 설계하게 합니다. 4학년이 도달할 수 있는 가장 높은 사고는 관찰을 더 하는 것이 아니라 자기 관찰로 남의 주장을 검증하는 것입니다. 학습맵도 이 성취기준의 탐구 적용을 '결과를 기록하고 다음 시도에서 바꿀 점을 제시하는 것'으로 기술합니다." }
+          ]
+        },
+        {
+          "heading": "다음 단계",
+          "blocks": [
+            { "type": "labeled", "label": "이해함", "text": "얼음이 녹을 때와 물이 끓을 때를 다루는 다음 차시로 넘어갑니다. 오늘의 두 변화를 그 차시의 출발점으로 씁니다." },
+            { "type": "labeled", "label": "거의", "text": "'차가워서'에서 멈춘 학생을 네댓 명 모아 상온 물 컵 하나로 3분 소집단. 같은 공기 속인데 왜 저 컵에는 없는지만 묻습니다." },
+            { "type": "labeled", "label": "재지도 필요", "text": "다음 차시 도입에서 뚜껑 덮은 컵을 다시 보여 줍니다. 결손이 [4과10-01]의 세 상태 구분까지 내려가면 수업 수준의 차별화를 넘어선 지원이 필요합니다." }
+          ]
+        },
+        {
+          "heading": "출처 확인",
+          "blocks": [
+            { "type": "paragraph", "text": "초등 성취기준 문장은 학습맵의 요약 필드에서 재구성된 것입니다. 공식 고시문과 대조해 확인하세요." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "worksheet_group_a",
+      "audience": "student",
+      "eyebrow": "초등학교 4학년 과학 · [4과10-02]",
+      "title": "가 모둠 — 물방울은 어디에서 왔을까",
+      "meta": "이름: ____________________    모둠: __________",
+      "sections": [
+        {
+          "heading": "낱말과 문장",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" },
+            { "type": "from_shared", "key": "sentence_frames" }
+          ]
+        },
+        {
+          "heading": "무엇이 보이나요?",
+          "blocks": [
+            { "type": "h3", "text": "손끝으로 먼저 살펴보기" },
+            { "type": "paragraph", "text": "차가운가요? 젖었나요? 미끄러운가요? 느낀 것을 낱말로 먼저 말해 보세요." },
+            { "type": "from_shared", "key": "t1", "label": "1" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "10분 사이에 무엇이 달라질까",
+          "blocks": [
+            { "type": "h3", "text": "무엇을 볼지 정하기" },
+            { "type": "paragraph", "text": "볼 순서는 컵 겉면이 먼저, 종이가 나중입니다. 볼 때마다 '달라졌나, 그대로인가'를 먼저 정하고 그리세요." },
+            { "type": "from_shared", "key": "t2", "label": "2" },
+            { "type": "from_shared", "key": "observe_table" }
+          ]
+        },
+        {
+          "heading": "처음 생각 다시 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "t3", "label": "3" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "보이지 않는 것까지 그리기",
+          "blocks": [
+            { "type": "h3", "text": "그리기 전에 나누어 보기" },
+            { "type": "paragraph", "text": "그리려는 것을 두 칸에 먼저 적어 보세요." },
+            { "type": "fill_table", "headers": ["눈에 보이는 것", "눈에 보이지 않지만 있다고 생각하는 것"], "blank_rows": 2, "row_height_pt": 40 },
+            { "type": "from_shared", "key": "t4", "label": "4" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "오늘 알게 된 것",
+          "blocks": [
+            { "type": "from_shared", "key": "exit_ticket" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "먼저 끝냈다면",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "되돌아보기",
+          "blocks": [
+            { "type": "from_shared", "key": "reflect_prompt" },
+            { "type": "workspace", "size": "small" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "worksheet_group_b",
+      "audience": "student",
+      "eyebrow": "초등학교 4학년 과학 · [4과10-02]",
+      "title": "나 모둠 — 물방울은 어디에서 왔을까",
+      "meta": "이름: ____________________    모둠: __________",
+      "sections": [
+        {
+          "heading": "낱말과 문장",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" },
+            { "type": "from_shared", "key": "sentence_frames" }
+          ]
+        },
+        {
+          "heading": "무엇이 보이나요?",
+          "blocks": [
+            { "type": "from_shared", "key": "t1", "label": "1" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "10분 사이에 무엇이 달라질까",
+          "blocks": [
+            { "type": "from_shared", "key": "t2", "label": "2" },
+            { "type": "from_shared", "key": "observe_table" }
+          ]
+        },
+        {
+          "heading": "처음 생각 다시 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "t3", "label": "3" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "보이지 않는 것까지 그리기",
+          "blocks": [
+            { "type": "from_shared", "key": "t4", "label": "4" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "오늘 알게 된 것",
+          "blocks": [
+            { "type": "from_shared", "key": "exit_ticket" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "먼저 끝냈다면",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "되돌아보기",
+          "blocks": [
+            { "type": "from_shared", "key": "reflect_prompt" },
+            { "type": "workspace", "size": "small" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "worksheet_group_c",
+      "audience": "student",
+      "eyebrow": "초등학교 4학년 과학 · [4과10-02]",
+      "title": "다 모둠 — 물방울은 어디에서 왔을까",
+      "meta": "이름: ____________________    모둠: __________",
+      "sections": [
+        {
+          "heading": "낱말과 문장",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" },
+            { "type": "from_shared", "key": "sentence_frames" }
+          ]
+        },
+        {
+          "heading": "무엇이 보이나요?",
+          "blocks": [
+            { "type": "from_shared", "key": "t1", "label": "1" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "10분 사이에 무엇이 달라질까",
+          "blocks": [
+            { "type": "from_shared", "key": "t2", "label": "2" },
+            { "type": "from_shared", "key": "observe_table" }
+          ]
+        },
+        {
+          "heading": "처음 생각 다시 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "t3", "label": "3" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "보이지 않는 것까지 그리기",
+          "blocks": [
+            { "type": "from_shared", "key": "t4", "label": "4" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "더 나아가기",
+          "blocks": [
+            { "type": "from_shared", "key": "ext_c" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "오늘 알게 된 것",
+          "blocks": [
+            { "type": "from_shared", "key": "exit_ticket" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "먼저 끝냈다면",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "되돌아보기",
+          "blocks": [
+            { "type": "from_shared", "key": "reflect_prompt" },
+            { "type": "workspace", "size": "small" }
+          ]
+        }
+      ]
+    }
+  ]
+}

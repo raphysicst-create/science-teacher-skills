@@ -11,3 +11,4 @@ tests/smoke/out/
 
 # 스모크·검증 산출물 (재생성 가능 — 저장소에 두지 않는다)
 pilot/smoke-test/
+pilot/*/out-differentiation/

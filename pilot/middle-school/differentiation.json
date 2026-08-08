@@ -1,0 +1,567 @@
+{
+  "theme": { "primary": "#2e6f4e" },
+  "shared": {
+    "subject": "과학",
+    "grade": "Grade 8 · 중학교 2학년",
+    "duration": 45,
+    "standard_code": "[9과12-01]",
+    "standard_text": "광합성 과정을 이해하고, 환경 요인과 광합성의 관계를 탐구하는 실험을 설계할 수 있다.",
+
+    "t1": {
+      "teacher": {
+        "type": "list",
+        "items": [
+          "이틀 전 준비한 시험관 두 개를 나란히 세워 보인다. 둘 다 같은 검정말, 같은 물.",
+          "한쪽은 창가에, 한쪽은 종이상자 안에 두었다는 사실만 말한다. 왜 다른지는 말하지 않는다.",
+          "밝은 쪽 잎 끝에서 기포가 올라오는 것을 학생들이 직접 보게 한다.",
+          "'빛 때문'이라는 답이 나와도 '무엇이 그걸 확인해 줄까?'로 되받는다."
+        ]
+      },
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "먼저 써 보기 (30초)",
+        "text": "밝은 곳의 검정말에서만 기포가 올라옵니다. 왜 그럴까요? 지금 생각을 한 문장으로 쓰세요. 틀려도 됩니다 — 수업 끝에 다시 봅니다."
+      }
+    },
+
+    "t2": {
+      "teacher": {
+        "type": "list",
+        "items": [
+          "탐구 질문을 칠판에 건다: 빛의 세기가 광합성량에 어떤 영향을 주는가?",
+          "4인 모둠에 설계 과제를 준다. 실험을 실제로 하지 않고 설계만 한다는 것을 분명히 한다.",
+          "3분 지점에서 한 번 멈춘다: '다르게 하는 것이 두 개인 모둠 손 들어 보세요.'",
+          "측정 대상을 못 정하는 모둠에는 앵커 시험관을 다시 가리킨다."
+        ]
+      },
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "모둠 과제 — 실험 설계",
+        "text": "빛의 세기가 광합성량에 주는 영향을 알아보는 실험을 설계하세요. 설계표의 네 칸을 모두 채웁니다: 다르게 할 것 1개 / 같게 할 것 3개 이상 / 측정할 것과 측정 방법 / 신뢰도를 높이는 방법."
+      }
+    },
+
+    "design_table": {
+      "type": "fill_table",
+      "headers": ["설계 항목", "우리 모둠의 결정", "그렇게 정한 이유"],
+      "rows": [
+        ["다르게 할 것 (1개만)", "", ""],
+        ["같게 할 것 (3개 이상)", "", ""],
+        ["측정할 것 · 측정 방법", "", ""],
+        ["신뢰도를 높이는 방법", "", ""]
+      ],
+      "row_height_pt": 56
+    },
+
+    "bubble_data": {
+      "type": "table",
+      "headers": ["전구와의 거리 (cm)", "1분간 기포 수 (개)", "빛의 세기"],
+      "rows": [
+        ["10", "42", "가장 셈"],
+        ["20", "24", "약해짐"],
+        ["30", "12", "약해짐"],
+        ["40", "7", "약해짐"],
+        ["50", "5", "가장 약함"]
+      ]
+    },
+
+    "t3": {
+      "teacher": {
+        "type": "list",
+        "items": [
+          "설계표를 걷지 않은 채, 다른 반이 같은 설계로 측정한 자료라며 표를 가리킨다.",
+          "'거리가 멀어지면 줄어든다'에서 멈추지 않게 한다 — 얼마나 줄어드는지 숫자로 말하게 한다.",
+          "10에서 20으로 2배가 될 때 기포 수가 절반이 되지 않는다는 점을 짚을 학생을 찾아 둔다."
+        ]
+      },
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "표에서 읽어내기",
+        "text": "표를 보고 두 가지를 쓰세요. (1) 거리가 10 cm에서 20 cm로 2배가 될 때 기포 수는 몇 배가 되나요? (2) 거리가 30 cm에서 50 cm로 갈 때의 변화와 10 cm에서 30 cm로 갈 때의 변화를 숫자로 비교하면 무엇이 다른가요?"
+      }
+    },
+
+    "t4": {
+      "teacher": "증거 칸에 표의 숫자가 최소 두 개 들어가지 않으면 미완성으로 돌려보낸다.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "설명 쓰기 — 주장 · 증거 · 추론",
+        "text": "빛의 세기와 광합성량은 어떤 관계인가요? 주장을 한 문장으로 쓰고, 표에서 숫자를 두 개 이상 인용해 증거로 들고, 그 숫자가 왜 주장을 뒷받침하는지 추론으로 이으세요."
+      }
+    },
+
+    "t5": {
+      "teacher": "정리 문항을 걷기 전 30초. 도입에서 쓴 첫 문장을 지우지 말고 그 아래에 쓰게 한다. 걷지 않는다.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "생각을 확인해 보기",
+        "text": "수업을 시작할 때 쓴 첫 문장을 다시 보세요. 무엇이 달라졌나요? 위의 문장 지원을 골라 한 문장으로 쓰세요."
+      }
+    },
+
+    "ext_c": {
+      "teacher": "다 모둠에만 인쇄된다. 역제곱 관계를 알려 주지 않는 선은 그대로다 — 비율을 계산하되 결론은 '줄어드는 폭이 작아진다'까지.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "어디까지 통할까",
+        "text": "(1) 거리가 10 cm에서 20 cm로 갈 때와 20 cm에서 40 cm로 갈 때, 기포 수는 각각 몇 분의 몇으로 줄었나요? 두 값을 계산해 비교하세요. (2) 전구를 5 cm까지 가까이 가져가면 기포 수는 계속 늘어날까요? 어느 지점에서 더 늘지 않는다면 무엇이 그 한계를 만들지 한 가지 쓰세요. (3) 여러분의 (2)번 답을 반박하려면 어떤 자료가 필요한가요?"
+      }
+    },
+
+    "exit_ticket": {
+      "teacher": "반으로 접어 걷는다. 다르게 할 것이 하나이고, 같게 할 것이 실제로 광합성량에 영향을 주는 조건인지를 본다.",
+      "student": {
+        "type": "callout",
+        "kind": "student-task",
+        "label": "정리 문항",
+        "text": "이번에는 이산화 탄소 농도가 광합성량에 주는 영향을 알아보려고 합니다. (1) 다르게 할 것 1개, (2) 같게 할 것 2개, (3) 측정할 것과 그 방법을 쓰세요."
+      }
+    },
+
+    "anchor_activity": {
+      "type": "callout",
+      "kind": "student-task",
+      "label": "통제하지 않으면 어떻게 될까",
+      "text": "우리 모둠이 '같게 할 것'으로 정한 조건 중 하나를 고르세요. 그 조건을 통제하지 않으면 결과가 어떻게 달라질지 한 문장으로 쓰세요."
+    },
+
+    "reflect_prompt": {
+      "type": "callout",
+      "kind": "student-task",
+      "label": "아직 궁금한 것",
+      "text": "아직 궁금한 것은 무엇인가요? 오늘 설계한 실험에서 더 알아보고 싶은 것을 한 가지 쓰세요."
+    },
+
+    "vocabulary": {
+      "type": "table",
+      "rows": [
+        ["**광합성**", "식물이 빛 에너지를 이용해 이산화 탄소와 물로 양분을 만들고 산소를 내보내는 과정."],
+        ["**환경 요인**", "광합성량에 영향을 주는 조건. 빛의 세기, 이산화 탄소 농도, 온도 등."],
+        ["**변인**", "실험에서 값이 달라질 수 있는 조건."],
+        ["**변인 통제**", "알아보려는 것 하나만 다르게 하고 나머지는 모두 같게 하는 것."],
+        ["**광합성량**", "일정 시간 동안 일어난 광합성의 양. 이 수업에서는 1분간 나온 기포 수로 잰다."]
+      ]
+    },
+
+    "sentence_frames": {
+      "type": "list",
+      "label": "다음 문장 지원을 쓸 수 있습니다",
+      "items": [
+        "나는 ____라고 주장한다. 내 증거는 ____이다. 이것이 주장을 뒷받침하는 이유는 ____이다.",
+        "나는 ____라고 생각했는데 ____를 보았다. 이제 나는 ____라고 생각한다.",
+        "빛의 세기가 ____할수록 광합성량은 ____한다."
+      ]
+    },
+
+    "misconceptions": {
+      "type": "table",
+      "headers": ["학생의 생각", "지속되는 이유", "교사의 대응"],
+      "rows": [
+        ["다르게 할 것을 두 가지 이상 바꾼다.", "'조건을 여러 개 보면 더 많이 안다'고 느낀다. 원인을 하나로 좁혀야 한다는 필요를 아직 못 느낀다.", "결과가 달라졌을 때 무엇 때문인지 답할 수 있는지 묻는다. 둘 다 바꾸면 답할 수 없음을 스스로 말하게 한다."],
+        ["기포를 '공기' 또는 '물이 데워져 나온 김'이라고 부른다.", "눈에 보이는 것은 기포뿐이고, 산소라는 판단은 추리를 한 단계 더 요구한다.", "어두운 쪽 시험관도 같은 온도의 물인데 기포가 없다는 사실을 가리킨다. 무엇이 달랐는지 되묻는다."],
+        ["광합성은 낮에만, 호흡은 밤에만 일어난다고 말한다.", "낮과 밤을 대비시킨 도식을 여러 번 봤고, 두 과정이 동시에 일어나는 장면은 본 적이 없다.", "이 수업에서는 정정하지 않고 기록해 둔다. 다음 차시의 출발점으로 쓴다고 예고한다."]
+      ]
+    },
+
+    "exit_sort": {
+      "type": "cards",
+      "items": [
+        { "title": "이해함", "text": "다르게 할 것이 이산화 탄소 농도 하나이고, 같게 할 것 2개가 모두 광합성량에 실제로 영향을 주는 조건이며, 측정 방법에 시간이나 횟수가 들어 있다." },
+        { "title": "거의", "text": "변인 통제는 맞는데 측정 방법에 시간 단위가 빠져 있거나, 같게 할 것에 광합성과 무관한 조건이 섞여 있다." },
+        { "title": "재지도 필요", "text": "다르게 할 것이 두 개 이상이거나, 측정할 것을 정하지 못했다. 다음 차시 도입에서 설계표를 다시 채우게 한다." }
+      ]
+    }
+  },
+
+  "documents": [
+    {
+      "id": "teacher_plan",
+      "audience": "teacher",
+      "eyebrow": "과학 · 중학교 2학년 · 식물과 에너지",
+      "title": "차별화 수업안 — 빛의 세기와 광합성",
+      "meta": "중학교 2학년 · 45분 · [9과12-01] · 기초 / 보통 / 심화",
+      "sections": [
+        {
+          "heading": "한눈에 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "standard" },
+            { "type": "labeled", "label": "학생 정보", "text": "구체적인 학생 정보가 없어 보편적 설계 기본값을 적용했습니다. 세 수준 모두에 문장 지원과 어휘 정리가 들어 있습니다." },
+            { "type": "labeled", "label": "수업 흐름", "text": "현상 던지기 7분 → 실험 설계 15분 → 자료 해석 8분 → 논증 토의 7분 → 설명 쓰기 5분 → 정리 문항 3분 (총 45분)" },
+            { "type": "labeled", "label": "이 차시의 초점", "text": "광합성을 설명하는 것이 아니라 광합성을 확인할 실험을 설계하는 것이 성취기준의 요구입니다. 세 수준 모두 설계합니다." },
+            { "type": "callout", "kind": "teacher-note", "label": "편성은 오늘 하루짜리입니다", "text": "가·나·다 모둠 이름은 학생에게 수준으로 읽히지 않습니다. 오늘 설계표와 정리 문항이 나오면 다음 차시 편성은 그 증거로 다시 잡습니다." },
+            { "type": "callout", "kind": "teacher-note", "label": "이틀 전 준비", "text": "검정말 두 시험관을 같은 물·같은 양으로 준비해 한쪽만 상자에 넣어 둡니다. 수업 당일 아침에 상자를 열지 마세요." },
+            { "type": "list", "label": "준비물", "items": [
+              "검정말이 든 시험관 2개 (하나는 창가, 하나는 종이상자 안에서 이틀간 보관)",
+              "수준별 학습지 3종 — 모둠 편성에 맞춰 나누어 인쇄",
+              "자료 표 — 학습지 3종에 인쇄되어 있음",
+              "칠판 또는 화이트보드"
+            ] }
+          ]
+        },
+        {
+          "heading": "3범주 지도",
+          "blocks": [
+            { "type": "labeled", "label": "지식·이해", "text": "빛의 세기가 광합성량을 결정하는 환경 요인 중 하나임" },
+            { "type": "labeled", "label": "과정·기능", "text": "변인을 통제해 실험을 설계하고 측정 자료를 수치로 해석하기" },
+            { "type": "labeled", "label": "가치·태도", "text": "주장을 자료의 숫자로 뒷받침하고, 다른 설계의 허점을 근거를 들어 지적하기" },
+            { "type": "labeled", "label": "선수 학습", "text": "[9과02-01] 세포의 구조와 기능 — 추정 연계입니다. 학습맵에 이 두 성취기준을 잇는 선수 기록은 없습니다." },
+            { "type": "labeled", "label": "다음 연계", "text": "학습맵에 이 성취기준의 고교 전이 기록이 없습니다. 심화 확장은 전이가 아니라 오늘 자료 안에서 잡았습니다." }
+          ]
+        },
+        {
+          "heading": "수준 편성",
+          "blocks": [
+            { "type": "list", "items": [
+              "기초(가 모둠) — 무엇을 바꾸고 무엇을 묶어 둘지 구분하지 못하는 학생",
+              "보통(나 모둠) — 다르게 할 것은 하나로 좁히지만 측정 방법이 수치로 가지 않는 학생",
+              "심화(다 모둠) — 설계표를 스스로 채우고 자료의 숫자를 인용해 말하는 학생"
+            ] },
+            { "type": "paragraph", "text": "진단 자료 없음 — 기본 프로파일을 적용했습니다. 지난 차시의 설계 과제나 정리 문항 결과가 있으면 그것으로 바꾸세요." },
+            { "type": "paragraph", "text": "수준 배정은 고정이 아닙니다. 오늘 설계표를 걷은 뒤 다시 봅니다." }
+          ]
+        },
+        {
+          "heading": "어휘",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" }
+          ]
+        },
+        {
+          "heading": "예상되는 학생 생각",
+          "blocks": [
+            { "type": "from_shared", "key": "misconceptions" }
+          ]
+        },
+        {
+          "heading": "수업 전개",
+          "blocks": [
+            { "type": "phase_header", "name": "현상 던지기 — 전체 활동", "minutes": 7 },
+            { "type": "from_shared", "key": "t1" },
+
+            { "type": "phase_header", "name": "실험 설계 — 수준별 활동", "minutes": 15 },
+            { "type": "labeled", "label": "모든 학생", "text": "같은 두 시험관, 같은 탐구 질문, 같은 설계표 네 칸. 4인 모둠으로 설계만 하고 실험은 하지 않습니다." },
+            { "type": "from_shared", "key": "t2" },
+            { "type": "table",
+              "headers": ["", "기초 (가 모둠)", "보통 (나 모둠)", "심화 (다 모둠)"],
+              "rows": [
+                ["학생이 하는 일",
+                 "변인 후보를 먼저 모아 표시한 뒤 설계표 네 칸을 채운다. 자료 표는 한 줄씩 짝지어 읽고 해석한다.",
+                 "설계표 네 칸을 스스로 채운다. 자료에서 숫자를 인용해 설명을 쓴다.",
+                 "같은 설계와 같은 설명. 이어서 줄어드는 비율을 계산하고, 더 늘지 않는 지점과 반박 자료를 정한다."],
+                ["학습지 과제",
+                 "같고 다른 점 짚기 + 과제 1, 변인 후보 모으기 + 과제 2(설계표), 표 읽는 순서 + 과제 3 표에서 읽어내기(자료 표), 과제 4 설명 쓰기, 과제 5 생각 확인, 정리 문항, 통제하지 않으면 어떻게 될까, 아직 궁금한 것",
+                 "과제 1, 과제 2(설계표), 과제 3 표에서 읽어내기(자료 표), 과제 4 설명 쓰기, 과제 5 생각 확인, 정리 문항, 통제하지 않으면 어떻게 될까, 아직 궁금한 것",
+                 "과제 1, 과제 2(설계표), 과제 3 표에서 읽어내기(자료 표), 과제 4 설명 쓰기, 어디까지 통할까(하위 문항 3개), 과제 5 생각 확인, 정리 문항, 통제하지 않으면 어떻게 될까, 아직 궁금한 것"]
+              ] },
+            { "type": "callout", "kind": "teacher-note", "label": "수준별로 볼 것", "text": "가 모둠 — 후보를 다 적고도 하나를 고르지 못합니다. '결과가 달라지면 무엇 때문인지 답할 수 있나요?'로 좁혀 주세요.\n나 모둠 — 측정 방법이 '기포를 센다'에서 멈춥니다. '몇 분 동안?'만 물으면 스스로 고칩니다.\n다 모둠 — 비율 계산에서 역제곱을 말하려 합니다. '줄어드는 폭이 작아진다'까지가 오늘의 결론이라고 선을 그어 주세요." },
+
+            { "type": "phase_header", "name": "자료 해석 — 전체 활동", "minutes": 8 },
+            { "type": "from_shared", "key": "t3" },
+            { "type": "from_shared", "key": "bubble_data" },
+
+            { "type": "phase_header", "name": "논증 토의 — 전체 활동", "minutes": 7 },
+            { "type": "paragraph", "text": "설계표를 옆 모둠과 바꿔 읽고, 통제되지 않은 조건이 있으면 근거를 들어 지적합니다. 그다음 전체 토의로 올립니다." },
+            { "type": "list", "label": "발문", "items": [
+              "거리가 2배가 되면 기포 수도 절반이 되나요? 표의 숫자로 답하세요.",
+              "50 cm에서 기포가 0이 아니라 5개인 것은 무엇을 뜻하나요?",
+              "다른 모둠 설계에서 통제되지 않은 조건을 하나 찾는다면?",
+              "어떤 결과가 나왔다면 '빛의 세기는 상관없다'고 말할 수 있었을까요?"
+            ] },
+            { "type": "callout", "kind": "teacher-note", "label": "여기서 정리하지 않습니다", "text": "역제곱 관계를 알려 주지 마세요. 중학교 수준의 결론은 '멀어질수록 줄고, 줄어드는 폭도 작아진다'까지입니다." },
+
+            { "type": "phase_header", "name": "설명 쓰기 — 전체 활동", "minutes": 5 },
+            { "type": "from_shared", "key": "t4" },
+            { "type": "callout", "kind": "teacher-note", "label": "다 모둠은 여기서 하나 더", "text": "다 모둠 학습지에는 이 자리 뒤에 정량화와 반박 과제가 인쇄되어 있습니다. 설명을 끝낸 학생부터 들어갑니다." },
+            { "type": "from_shared", "key": "ext_c" },
+
+            { "type": "phase_header", "name": "정리 문항 — 전체 활동", "minutes": 3 },
+            { "type": "from_shared", "key": "t5" },
+            { "type": "from_shared", "key": "exit_ticket" }
+          ]
+        },
+        {
+          "heading": "형성 확인",
+          "blocks": [
+            { "type": "labeled", "label": "수업 중간 확인", "text": "설계 3분 지점에 '다르게 하는 것이 두 개인 모둠 손 들어 보세요'로 한 번 멈춥니다. 손을 든 모둠이 절반을 넘으면 자료 해석으로 넘어가지 말고, 한 모둠의 설계표를 칠판에 옮겨 함께 하나로 좁힙니다." },
+            { "type": "labeled", "label": "정리 문항으로 볼 것", "text": "다르게 할 것이 하나인가, 같게 할 것이 실제로 광합성량에 영향을 주는 조건인가, 측정 방법에 시간 단위가 있는가 — 이 셋입니다." },
+            { "type": "from_shared", "key": "exit_sort" }
+          ]
+        },
+        {
+          "heading": "앵커 활동",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "labeled", "label": "투입 시점", "text": "설계표를 일찍 끝낸 모둠에게 자료 해석으로 넘어가기 전에 넘깁니다. 학습지 3종에 같은 과제로 인쇄되어 있습니다." }
+          ]
+        },
+        {
+          "heading": "이 설계가 통하는 이유 (1)",
+          "blocks": [
+            { "type": "paragraph", "text": "성취기준이 요구하는 것은 광합성 설명이 아니라 실험 설계입니다. 가 모둠 학습지가 준 것은 변인 후보 목록 한 줄이지, 설계표를 대신 채운 칸이 아닙니다. 후보를 모으는 일과 그중 하나를 고르는 일은 다른 사고이고, 뒤엣것은 세 수준 모두 학생이 합니다." }
+          ]
+        },
+        {
+          "heading": "이 설계가 통하는 이유 (2)",
+          "blocks": [
+            { "type": "paragraph", "text": "학습맵에 이 성취기준의 고교 전이 기록이 없어, 다 모둠 확장을 다음 학년 내용이 아니라 오늘 자료 안의 정량화와 반박 자료 정하기로 잡았습니다. 원본 수업이 그은 선 — 역제곱 관계를 알려 주지 않는다 — 도 그대로 지킵니다. 비율은 계산하되 결론은 '줄어드는 폭이 작아진다'까지입니다." }
+          ]
+        },
+        {
+          "heading": "다음 단계",
+          "blocks": [
+            { "type": "labeled", "label": "이해함", "text": "다음 차시 호흡과 광합성의 관계로 넘어갑니다. 오늘 나온 '광합성은 낮에만'이라는 발언을 그 차시의 출발점으로 씁니다." },
+            { "type": "labeled", "label": "거의", "text": "측정 방법에 시간 단위가 빠진 학생을 모아 3분 소집단. '몇 분 동안 셀 것인가'만 다시 정하게 합니다." },
+            { "type": "labeled", "label": "재지도 필요", "text": "설계표를 이산화 탄소 농도 문항으로 한 번 더 채우게 합니다. 변인 구분 자체가 흔들리면 수업 수준의 차별화를 넘어선 지원이 필요합니다." }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "worksheet_group_a",
+      "audience": "student",
+      "eyebrow": "중학교 2학년 과학 · [9과12-01]",
+      "title": "가 모둠 — 빛의 세기와 광합성",
+      "meta": "모둠: ____________    이름: ____________________",
+      "sections": [
+        {
+          "heading": "낱말과 문장",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" },
+            { "type": "from_shared", "key": "sentence_frames" }
+          ]
+        },
+        {
+          "heading": "무엇이 보이나요?",
+          "blocks": [
+            { "type": "h3", "text": "무엇이 같고 무엇이 다른지" },
+            { "type": "paragraph", "text": "두 시험관에서 같은 것을 먼저 찾으세요: 검정말, 물, 시험관. 다른 것은 무엇인가요?" },
+            { "type": "from_shared", "key": "t1", "label": "1" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "실험 설계하기",
+          "blocks": [
+            { "type": "callout", "kind": "student-note", "label": "탐구 질문", "text": "빛의 세기가 광합성량에 어떤 영향을 주는가?" },
+            { "type": "h3", "text": "값이 달라질 수 있는 조건 모으기" },
+            { "type": "paragraph", "text": "이 실험에서 값이 달라질 수 있는 조건입니다: 전구와의 거리, 물의 양, 검정말의 양, 물의 온도, 측정하는 시간. 알아보려는 것 하나에 동그라미를 치고, 나머지에는 밑줄을 치세요." },
+            { "type": "from_shared", "key": "t2", "label": "2" },
+            { "type": "from_shared", "key": "design_table" }
+          ]
+        },
+        {
+          "heading": "자료 해석하기",
+          "blocks": [
+            { "type": "paragraph", "text": "다른 반이 같은 방법으로 측정한 자료입니다. 검정말을 넣은 시험관에 전구를 비추고 거리를 바꾸며 1분간 나온 기포 수를 세었습니다." },
+            { "type": "from_shared", "key": "bubble_data" },
+            { "type": "h3", "text": "표를 한 줄씩 읽기" },
+            { "type": "paragraph", "text": "첫 줄부터 두 숫자를 짝지어 읽어 보세요. 10 cm일 때 42개, 20 cm일 때 24개. 끝까지 읽은 뒤에 답하세요." },
+            { "type": "from_shared", "key": "t3", "label": "3" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "설명 쓰기",
+          "blocks": [
+            { "type": "from_shared", "key": "t4", "label": "4" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "첫 문장 다시 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "t5", "label": "5" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "오늘의 정리",
+          "blocks": [
+            { "type": "from_shared", "key": "exit_ticket" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "먼저 끝냈다면",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "되돌아보기",
+          "blocks": [
+            { "type": "from_shared", "key": "reflect_prompt" },
+            { "type": "workspace", "size": "small" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "worksheet_group_b",
+      "audience": "student",
+      "eyebrow": "중학교 2학년 과학 · [9과12-01]",
+      "title": "나 모둠 — 빛의 세기와 광합성",
+      "meta": "모둠: ____________    이름: ____________________",
+      "sections": [
+        {
+          "heading": "낱말과 문장",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" },
+            { "type": "from_shared", "key": "sentence_frames" }
+          ]
+        },
+        {
+          "heading": "무엇이 보이나요?",
+          "blocks": [
+            { "type": "from_shared", "key": "t1", "label": "1" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "실험 설계하기",
+          "blocks": [
+            { "type": "callout", "kind": "student-note", "label": "탐구 질문", "text": "빛의 세기가 광합성량에 어떤 영향을 주는가?" },
+            { "type": "from_shared", "key": "t2", "label": "2" },
+            { "type": "from_shared", "key": "design_table" }
+          ]
+        },
+        {
+          "heading": "자료 해석하기",
+          "blocks": [
+            { "type": "paragraph", "text": "다른 반이 같은 방법으로 측정한 자료입니다. 검정말을 넣은 시험관에 전구를 비추고 거리를 바꾸며 1분간 나온 기포 수를 세었습니다." },
+            { "type": "from_shared", "key": "bubble_data" },
+            { "type": "from_shared", "key": "t3", "label": "3" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "설명 쓰기",
+          "blocks": [
+            { "type": "from_shared", "key": "t4", "label": "4" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "첫 문장 다시 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "t5", "label": "5" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "오늘의 정리",
+          "blocks": [
+            { "type": "from_shared", "key": "exit_ticket" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "먼저 끝냈다면",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "되돌아보기",
+          "blocks": [
+            { "type": "from_shared", "key": "reflect_prompt" },
+            { "type": "workspace", "size": "small" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "worksheet_group_c",
+      "audience": "student",
+      "eyebrow": "중학교 2학년 과학 · [9과12-01]",
+      "title": "다 모둠 — 빛의 세기와 광합성",
+      "meta": "모둠: ____________    이름: ____________________",
+      "sections": [
+        {
+          "heading": "낱말과 문장",
+          "blocks": [
+            { "type": "from_shared", "key": "vocabulary" },
+            { "type": "from_shared", "key": "sentence_frames" }
+          ]
+        },
+        {
+          "heading": "무엇이 보이나요?",
+          "blocks": [
+            { "type": "from_shared", "key": "t1", "label": "1" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "실험 설계하기",
+          "blocks": [
+            { "type": "callout", "kind": "student-note", "label": "탐구 질문", "text": "빛의 세기가 광합성량에 어떤 영향을 주는가?" },
+            { "type": "from_shared", "key": "t2", "label": "2" },
+            { "type": "from_shared", "key": "design_table" }
+          ]
+        },
+        {
+          "heading": "자료 해석하기",
+          "blocks": [
+            { "type": "paragraph", "text": "다른 반이 같은 방법으로 측정한 자료입니다. 검정말을 넣은 시험관에 전구를 비추고 거리를 바꾸며 1분간 나온 기포 수를 세었습니다." },
+            { "type": "from_shared", "key": "bubble_data" },
+            { "type": "from_shared", "key": "t3", "label": "3" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "설명 쓰기",
+          "blocks": [
+            { "type": "from_shared", "key": "t4", "label": "4" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "더 나아가기",
+          "blocks": [
+            { "type": "from_shared", "key": "ext_c" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "첫 문장 다시 보기",
+          "blocks": [
+            { "type": "from_shared", "key": "t5", "label": "5" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "오늘의 정리",
+          "blocks": [
+            { "type": "from_shared", "key": "exit_ticket" },
+            { "type": "workspace", "size": "large" }
+          ]
+        },
+        {
+          "heading": "먼저 끝냈다면",
+          "blocks": [
+            { "type": "from_shared", "key": "anchor_activity" },
+            { "type": "workspace" }
+          ]
+        },
+        {
+          "heading": "되돌아보기",
+          "blocks": [
+            { "type": "from_shared", "key": "reflect_prompt" },
+            { "type": "workspace", "size": "small" }
+          ]
+        }
+      ]
+    }
+  ]
+}
