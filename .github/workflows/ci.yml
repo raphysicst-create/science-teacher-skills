@@ -1,0 +1,67 @@
+# SPDX-FileCopyrightText: 2026 science-teacher-skills contributors
+# SPDX-License-Identifier: Apache-2.0
+#
+# 표준 라이브러리 전용 검사 층만 돌린다 — 렌더 스모크(내장 최소 게이트 G1~G6 포함),
+# 한글 무결성, DoD, HWPX 구조 품질 검사기(S·F·C·P), 렌더러 사본 동일.
+# 렌더본은 저장소에 커밋하지 않는 정책(pilot/*/out*)이므로 CI가 파일럿을 매번 새로
+# 렌더해 검사한다 — 항상 현재 렌더러를 검사하게 된다.
+# 한컴 COM 실열림·PDF 쪽 채움 실측은 한글이 필요해 CI에 들어올 수 없다 —
+# 그 층은 로컬 품질 루프가 맡는다 (docs/hwpx-quality-loop.md).
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONIOENCODING: utf-8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 두 스킬이 렌더러를 각자 동봉한다 — "사본 동일" 원칙. 한쪽만 고친 PR을 여기서 막는다.
+      - name: 렌더러 사본 동일 (공유 파일 6종)
+        run: |
+          for f in check_hwpx_min.py lesson_common.py render_documents.py \
+                   render_lesson_html.py render_lesson_hwpx.py theme.css; do
+            cmp "plugin/skills/ko12-lesson-planning/scripts/$f" \
+                "plugin/skills/ko12-lesson-differentiation/scripts/$f"
+          done
+
+      - name: 스모크 렌더 + 한글 무결성
+        run: |
+          bash plugin/skills/ko12-lesson-planning/scripts/render_all.sh \
+            tests/smoke/korean_lesson.json /tmp/ci-smoke
+          python tests/smoke/check_hwpx.py /tmp/ci-smoke
+
+      # DoD는 완전한 수업 패키지의 계약(렌더 무결성·시간 합계·3범주·인용 1회) —
+      # 파일럿 4종을 새로 렌더한 산출물에 건다.
+      - name: 파일럿 수업 렌더 + DoD (4종)
+        run: |
+          for p in elementary middle-school random-elementary urgent-middle-school; do
+            bash plugin/skills/ko12-lesson-planning/scripts/render_all.sh \
+              "pilot/$p/lesson.json" "/tmp/out-$p"
+            python tests/check_lesson.py "pilot/$p/lesson.json" "/tmp/out-$p"
+          done
+
+      - name: 파일럿 차별화 렌더 (3종)
+        run: |
+          for p in elementary middle-school random-elementary; do
+            bash plugin/skills/ko12-lesson-differentiation/scripts/render_all.sh \
+              "pilot/$p/differentiation.json" "/tmp/diff-$p"
+          done
+
+      - name: HWPX 품질 검사기 — 렌더 산출물 전체
+        run: |
+          python tests/check_hwpx_quality.py /tmp/ci-smoke \
+            /tmp/out-elementary /tmp/out-middle-school \
+            /tmp/out-random-elementary /tmp/out-urgent-middle-school \
+            /tmp/diff-elementary /tmp/diff-middle-school /tmp/diff-random-elementary
