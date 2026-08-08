@@ -59,7 +59,9 @@ def answer_space(blk: dict, theme) -> str:
         n = max(2, int(round(h / gap)))
         lines = f"<div class=\"ansline\" style=\"height:{gap:g}pt\"></div>" * n
         return f"<div class=\"ans\">{lines}</div>"
-    return f"<div class=\"ans\" style=\"height:{h:g}pt\"></div>"
+    # 무괘선(그리기·자유 기록) 공간은 연한 테두리 상자로 — HWPX와 동일한 시각
+    # 요소를 양쪽에 두고(V8), 인쇄물에서 학생이 쓸 자리를 눈으로 알 수 있게.
+    return f"<div class=\"ans box\" style=\"height:{h:g}pt\"></div>"
 
 
 def css(theme: Theme) -> str:
@@ -95,6 +97,8 @@ def render_block(blk: dict, theme: Theme) -> str:
     if t == "labeled":
         lbl = label_text(blk)
         return f"<p><b>{md(lbl)}{label_sep(lbl)}</b> {md(blk.get('text', ''))}</p>"
+    if t == "h1":
+        return f"<div class=\"h1\"><span>{md(blk.get('text', ''))}</span></div>"
     if t == "h2":
         return f"<div class=\"h2\">{md(blk.get('text', ''))}</div>"
     if t == "h3":
@@ -137,7 +141,7 @@ def render_block(blk: dict, theme: Theme) -> str:
         return f"<p class=\"fillin-row\">{line}</p>"
     if t == "phase_header":
         mins = blk.get("minutes")
-        right = f"<span class=\"mins\">{md(mins)} min</span>" if mins is not None else ""
+        right = f"<span class=\"mins\">{md(mins)}분</span>" if mins is not None else ""
         return (f"<div class=\"h2 phase\"><span>{md(blk.get('name', ''))}</span>"
                 f"{right}</div>")
     if t == "group":
@@ -310,7 +314,7 @@ def render(data: dict) -> str:
     if data.get("footer_note"):
         out.append(f"<div class=\"footer\">{md(data['footer_note'])}</div>")
 
-    title = escape(str(data.get("title", "Lesson Plan")), quote=True)
+    title = escape(str(data.get("title", "수업안")), quote=True)
     return ("<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>" + title
             + "</title><style>" + css(theme) + "</style></head><body><div class=\"page\">"
             + "".join(out) + "</div></body></html>")

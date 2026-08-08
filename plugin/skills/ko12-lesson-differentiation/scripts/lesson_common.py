@@ -303,7 +303,7 @@ def _faceted(val: dict, audience: str) -> list[dict]:
             out.extend(t_blocks)
     s = _facet_text(val.get("student"))
     if s:
-        out.append({"type": "labeled", "label": "Students see", "text": s})
+        out.append({"type": "labeled", "label": "학생에게 보이는 과제", "text": s})
     else:
         out.extend(_as_blocks(val.get("student")))
     return out
@@ -324,8 +324,9 @@ def expand_from_shared(key: str, shared: dict, audience: str = "teacher",
     if key == "standard":
         if not (shared.get("standard_text") or shared.get("standard_code")):
             return []
+        code = str(shared.get("standard_code", "")).strip()
         return [{"type": "callout", "kind": "special",
-                 "label": f"{shared.get('standard_code', '')} — Target standard".strip(" —"),
+                 "label": f"성취기준 {code}".strip(),
                  "text": shared.get("standard_text", "")}]
 
     val = shared.get(key)
@@ -735,14 +736,15 @@ def preamble_blocks(data: dict) -> list[dict]:
     and the first section. Shared by both formats so the preamble can never drift."""
     blocks: list[dict] = []
     if data.get("standard_text"):
-        label = f"{data.get('standard_code', '')} — Target standard".strip(" —")
-        blocks.append({"type": "callout", "kind": "special", "label": label,
+        code = str(data.get("standard_code", "")).strip()
+        blocks.append({"type": "callout", "kind": "special",
+                       "label": f"성취기준 {code}".strip(),
                        "text": data["standard_text"]})
     if data.get("prerequisite_standard"):
-        blocks.append({"type": "labeled", "label": "Builds on",
+        blocks.append({"type": "labeled", "label": "선수 학습",
                        "text": data["prerequisite_standard"]})
     if data.get("smps"):
-        blocks.append({"type": "labeled", "label": "Mathematical practices",
+        blocks.append({"type": "labeled", "label": "수학적 실천",
                        "text": "; ".join(data["smps"])})
     return blocks
 
@@ -754,10 +756,10 @@ def build_header(data: dict) -> dict:
         bits = [data.get("standard_code"), data.get("grade"), data.get("duration"),
                 data.get("curriculum")]
         if data.get("materials"):
-            bits.append("Materials: " + ", ".join(data["materials"]))
+            bits.append("준비물: " + ", ".join(data["materials"]))
         meta = " · ".join(str(b) for b in bits if b)
     name_line = ""
-    if meta and data.get("audience") == "student" and re.search(r"name\s*:", meta, re.I):
+    if meta and data.get("audience") == "student" and re.search(r"name\s*:|이름\s*:", meta, re.I):
         name_line, meta = meta, ""
-    return {"eyebrow": data.get("eyebrow", ""), "title": data.get("title", "Lesson Plan"),
+    return {"eyebrow": data.get("eyebrow", ""), "title": data.get("title", "수업안"),
             "meta": meta, "name_line": name_line}

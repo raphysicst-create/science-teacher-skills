@@ -20,6 +20,10 @@ here="$(cd "$(dirname "$0")" && pwd)"
 mkdir -p "$outdir"
 python3 "$here/render_documents.py" "$json" --outdir "$outdir"
 python3 "$here/render_lesson_hwpx.py" "$json" --outdir "$outdir"
+# 최소 품질 게이트: 구조·인코딩·영어 크롬·마크다운 리터럴. 실패하면 여기서 멈춘다 —
+# 게이트에 걸린 산출물은 교사에게 전달하지 않는다. (전체 검사는 저장소의
+# tests/check_hwpx_quality.py — hwpx-quality-loop 참고.)
+python3 "$here/check_hwpx_min.py" "$outdir"
 # Persist the source JSON alongside the rendered artifacts so later revision
 # turns can re-render from it.
 cp "$json" "$outdir/lesson.json" 2>/dev/null || true
