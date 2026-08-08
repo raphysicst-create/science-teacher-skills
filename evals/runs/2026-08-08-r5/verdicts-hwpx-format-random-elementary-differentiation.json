@@ -1,0 +1,20 @@
+{
+ "package": "pilot/random-elementary",
+ "documents": ["out-differentiation/teacher_plan", "out-differentiation/worksheet_group_a", "out-differentiation/worksheet_group_b", "out-differentiation/worksheet_group_c"],
+ "rubrics": ["hwpx-format/rubrics/format.csv"],
+ "judge_model": "claude-fable-5",
+ "run_date": "2026-08-08",
+ "inputs": "일반화 시험 2부: 무작위 추첨 단원([6과03-03])의 차별화 4종(교사용 수업안 + 가/나/다 모둠 학습지, R1–R8 적용) 첫 렌더본. 한글 PDF 스냅샷(17쪽) 전 쪽 육안(결정 부위 180dpi 확대) + HTML 4종 전량 대조 + 자동 검사기 FAIL 0 + validate 4/4 + COM 실열림 4/4 + 쪽 채움·고아 꼬리 자동 측정 통과",
+ "verdicts": [
+  {"id": "V1", "pass": true, "explanation": "teacher_plan p1에서 성취기준(★·초록 테두리)과 교사 노트(◆·노랑), p2·p4에서 학생 과제(※·파랑)가 테두리색과 아이콘으로 즉시 구분되고, 학습지 3종의 과제 콜아웃도 전부 ※·파랑으로 일관된다. ★/※/◆ 아이콘이 모두 정상 렌더되어 흑백에서도 구분이 유지된다."},
+  {"id": "V2", "pass": true, "explanation": "어휘 표(teacher p2, 각 학습지 p1)는 라벨 약 30/서술 70이고, teacher p3의 4열 수준 표는 라벨 열이 좁고 세 수준 열이 서술을 나눠 가지며, 조사표·카드 계획 칸도 짧은 열이 좁다. 전 쪽에서 셀 텍스트 넘침이나 어색한 접힘이 없다."},
+  {"id": "V3", "pass": true, "explanation": "4개 문서의 모든 글머리 항목(teacher p1·p2·p4, 학습지 문장 지원 목록)이 글머리와 본문 정렬이 깨진 곳 없이 렌더되며, 두 줄로 접히는 항목 자체가 없어 둘째 줄 오정렬이 어디에도 나타나지 않는다."},
+  {"id": "V4", "pass": true, "explanation": "전 학습지에서 과제 콜아웃과 답란이 같은 쪽에서 시작한다 — group_a p2의 과제4는 콜아웃 아래 답줄이 p2에서 시작해 p3으로 이어지고(허용), group_b·c p1의 과제2 조사표도 콜아웃과 같은 쪽에서 시작해 p2로 이어진다. 지시문과 답란 사이를 쪽 경계가 가르는 곳이 없다."},
+  {"id": "V5", "pass": true, "explanation": "비마지막 쪽의 하단 공백은 최대 약 20%(group_b p3)로 1/3 미만이고, group_a·b p4의 큰 여백은 되돌아보기 절(제목+과제 콜아웃+답줄)이 온전히 실린 마지막 쪽의 자연 여백이라 답줄 조각만 남은 고아 쪽이 아니다."},
+  {"id": "V6", "pass": true, "explanation": "17쪽 전체에서 한글·영문·숫자·기호([6과03-03], 40분, →, 밑줄 빈칸)가 동일한 산세리프로 보이고, ★·※·◆·글머리점이 네모 폴백 없이 정상 렌더된다."},
+  {"id": "V7", "pass": true, "explanation": "4개 문서 17쪽 모두 하단 중앙에 '- N -' 쪽번호가 찍혀 있고, 첫 쪽 제목이 '차별화 수업안 -', '가/나/다 모둠 - 용액이 없어지면…'으로 문서·모둠을 식별시킨다."},
+  {"id": "V8", "pass": true, "explanation": "HTML 4종과 PDF를 대조한 결과 절 순서·콜아웃 종류와 위치·표 구조(어휘 4행, 조사표 3열 4행, 수준 4열, 카드 계획 1행)가 전부 일치하고, 가 모둠 전용 스캐폴드(낱말·장소 안내, 카드 계획 칸)와 다 모둠 전용 '더 나아가기'도 양쪽에 동일하게 존재한다. 차이는 아이콘 문자(📌→※ 등)와 형성 확인의 카드→3열 표 등 형식 차원뿐이며 한쪽에만 있는 시각 요소는 없다."},
+  {"id": "V9", "pass": true, "explanation": "쪽을 넘는 표는 group_b·group_c의 조사표(p1→p2)뿐인데, 두 문서 모두 p2 첫 행에 머리행(용액 이름/어디에서 보았나/무엇에 쓰이나)이 음영과 함께 반복된다(180dpi 확대로 확인). teacher_plan과 group_a에는 쪽을 넘는 표가 없다."},
+  {"id": "V10", "pass": true, "explanation": "제시된 실측 증거 — 한컴 COM 실열림 4/4, validate 4/4, 셀 높이가 최소 높이로 동작해 내용 초과 시 한글이 행을 늘린다는 프로브 결과 — 로 텍스트 추가 시 레이아웃이 무너지지 않음이 뒷받침되고, 각 문서가 본문 단락·답줄로 끝나 커서 배치도 문제없다."}
+ ]
+}

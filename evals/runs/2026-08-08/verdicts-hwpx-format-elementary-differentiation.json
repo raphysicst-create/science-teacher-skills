@@ -1,0 +1,20 @@
+{
+ "package": "pilot/elementary",
+ "documents": ["out-differentiation/teacher_plan", "out-differentiation/worksheet_group_a", "out-differentiation/worksheet_group_b", "out-differentiation/worksheet_group_c"],
+ "rubrics": ["hwpx-format/rubrics/format.csv"],
+ "judge_model": "claude-fable-5",
+ "run_date": "2026-08-08",
+ "inputs": "한글 PDF 내보내기 스냅샷(COM SaveAs, 19쪽) 전 쪽 육안 판정 + HTML 쌍둥이 구조 대조 + 자동 검사기 FAIL 0 리포트 + COM 실측(실열림·쪽수·셀 최소높이 프로브)",
+ "verdicts": [
+  {"id": "V1", "pass": true, "explanation": "teacher_plan p1–p5에서 ★ 성취기준(초록), ※ 학생 과제(파랑), ◆ 교사 노트(노랑) 콜아웃이 테두리색과 아이콘으로 즉시 구분되며, PDF 스트로크 색 실측도 #5BB088/#9FB8D8/#E8C98A로 확인됨. 아이콘 세 종이 모두 정상 렌더되어 흑백에서도 구분 유지."},
+  {"id": "V2", "pass": true, "explanation": "어휘 표는 4개 문서 모두 라벨 약 30/서술 70으로 좁고-넓게 잡혔고(teacher_plan p2, 각 학습지 p1), teacher_plan p4 수준 비교 표도 라벨 열이 좁다. 19쪽 어디에서도 셀 텍스트 넘침이나 어색한 접힘이 보이지 않음."},
+  {"id": "V3", "pass": true, "explanation": "전 19쪽의 글머리 목록(teacher_plan p1 준비물·수준 편성, p2 수업 전개, p4 발문, 학습지 문장 지원 등)에서 두 줄로 꺾이는 항목 자체가 없어 정렬 위반이 보이지 않고, 내어쓰기 정의는 자동 검사로 확인됨."},
+  {"id": "V4", "pass": false, "explanation": "worksheet_group_a/b/c 모두 p1 맨 아래에 '※ 2. 두 번 보고 그리기' 지시문 콜아웃이 있고 그 답란인 관찰 표(무엇을/지금 모습/10분 뒤 모습)는 p2 첫머리에 있어, 쪽 경계가 지시문과 답란 사이를 가른다."},
+  {"id": "V5", "pass": false, "explanation": "teacher_plan p3은 상단 콜아웃 하나 뒤로 쪽의 약 80%가 빈 공간(수준 비교 표가 통째로 p4로 밀림)이고, worksheet_group_a p4는 '먼저 끝냈다면' 제목 한 줄 외 전면이 공백(내용은 p5로 밀림) — 둘 다 마지막 쪽이 아님."},
+  {"id": "V6", "pass": true, "explanation": "전 19쪽에서 한글·숫자·괄호·밑줄 답란 표기([4과10-02], 40분, 10분 등)가 같은 산세리프로 일관되고, ★※◆·□ 아이콘·글머리 문자가 네모로 깨진 곳이 없음."},
+  {"id": "V7", "pass": true, "explanation": "4개 문서 19쪽 전부 하단에 '- N -' 쪽번호가 찍혀 있고, 첫 쪽 제목이 '차별화 수업안 —…', '가/나/다 모둠 — 물방울은 어디에서 왔을까'로 모둠명 포함 식별 가능."},
+  {"id": "V8", "pass": true, "explanation": "4쌍 모두 HTML과 PDF의 섹션 순서·표 구조(어휘 표, 관찰 표, 수준 비교 표, 나누어 보기 표)·콜아웃 위치·답란 줄 수가 일치하며, 차이는 아이콘 문자 치환(⭐📌✋→★※◆)과 형성 확인 카드의 3열 표 렌더 등 허용되는 형식 차이뿐 — 한쪽에만 있는 시각 요소 없음."},
+  {"id": "V9", "pass": "skip", "explanation": "4개 문서 어디에도 쪽을 넘어가는 표가 없음(관찰 표는 각 학습지 p2, 수준 비교 표는 teacher_plan p4, 형성 확인 표는 p5에 온전히 수용) — 조건 미해당."},
+  {"id": "V10", "pass": true, "explanation": "자동 검사에서 문서 끝 빈 문단·스타일 정의·표 높이 정합이 전부 통과했고, 한컴 COM 실열림 19/19 PASS에 셀이 최소 높이로 선언되어 내용 추가 시 늘어남이 프로브로 실측됨 — 편집 시 레이아웃 붕괴·커서 배치 문제의 증거 없음."}
+ ]
+}

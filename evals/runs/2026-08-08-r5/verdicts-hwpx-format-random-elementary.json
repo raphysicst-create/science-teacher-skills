@@ -1,0 +1,20 @@
+{
+ "package": "pilot/random-elementary",
+ "documents": ["out/lesson_plan", "out/observation_template", "out/student_materials"],
+ "rubrics": ["hwpx-format/rubrics/format.csv"],
+ "judge_model": "claude-fable-5",
+ "run_date": "2026-08-08",
+ "inputs": "일반화 시험: 5회차 수렴 후 무작위 추첨 단원([6과03-03] 용해와 용액, 조사·공유형 — 학습맵 MCP 실호출로 원문·선수 soft 엣지 확인)으로 새로 저작한 패키지의 첫 렌더본. 한글 PDF 스냅샷(8쪽) 전 쪽 육안 + HTML 구조 대조(답줄 수 픽셀 대조 포함) + 자동 검사기 FAIL 0 + DoD + validate 3/3 + COM 실열림 3/3 + 쪽 채움·고아 꼬리 자동 측정 통과",
+ "verdicts": [
+  {"id": "V1", "pass": true, "explanation": "lesson_plan p1에서 성취기준(초록 테두리+★), 수업 전 준비(노랑+◆), p2·p3의 학생 과제(파랑+※)가 테두리색과 아이콘으로 명확히 구분됨. 아이콘이 실제 글리프로 렌더되어 흑백에서도 ★/※/◆만으로 구분 유지 (student_materials·observation_template도 동일 체계)."},
+  {"id": "V2", "pass": true, "explanation": "lesson_plan p2 어휘 표가 라벨 약 28% / 서술 72%로 적정하고, observation_template p1 학생/본 것/다음에 할 일 표도 라벨 열이 좁음. 4열 이상 표 없음, 전 8쪽에서 셀 텍스트 접힘·넘침 없음."},
+  {"id": "V3", "pass": true, "explanation": "lesson_plan p3 '순회하며 볼 것'과 observation_template p1 '관찰 포인트'의 두 줄 항목('— 한 명을 정하게 한다.', '다시 묻는다.' 등) 둘째 줄이 글머리가 아닌 첫 줄 본문 시작에 맞춰 내어쓰기됨."},
+  {"id": "V4", "pass": true, "explanation": "student_materials p1에 공통점 찾기 지시문+답줄 5개, 용액 찾기 지시문+표 4행이 함께 있고, p2에 알림 카드 지시문+카드 상자, 정리 문항+답줄 5개가 함께 있음. 쪽 경계가 지시문과 답란을 가르는 곳 없음."},
+  {"id": "V5", "pass": true, "explanation": "중간 쪽(lesson_plan p1–p3, observation p1, student p1)은 모두 하단까지 채워짐. 마지막 쪽들(lesson_plan p4는 분류 기준 표+설계 노트 4문단, observation p2는 분류표+집계표, student p2는 답줄 5개까지)도 실질 내용을 담아 고아 쪽 아님 — 남는 여백은 문서 끝의 자연스러운 여백."},
+  {"id": "V6", "pass": true, "explanation": "전 문서에서 한글·영문([6과03-03])·숫자·단위(40분, 12분)가 동일 산세리프 계열로 보이고, ★·※·◆·•·— 등 아이콘·기호 문자가 네모 폴백 없이 정상 렌더됨."},
+  {"id": "V7", "pass": true, "explanation": "lesson_plan 4쪽(- 1 -~- 4 -), observation_template 2쪽, student_materials 2쪽 모두 하단 중앙에 쪽번호가 찍혀 있고, 각 첫 쪽 제목('용액이 없어지면 우리 하루는 어떻게 될까' / '용액 조사 수업 — 관찰 기록' / '용액이 없어지면 어떻게 될까')으로 문서 식별 가능."},
+  {"id": "V8", "pass": true, "explanation": "세 문서 모두 HTML과 섹션 순서·표 구조(어휘 표, 예상 생각 3열, 관찰 10행, 조사 3열 4행, 집계 6행)·콜아웃 위치·답줄 수(5/5)·카드 상자가 일치. 차이는 아이콘 대체(⭐📌✋→★※◆), HTML 카드 3분할이 HWPX에서 3열 표로 렌더된 것, 이탤릭→정자 등 허용되는 형식 차이뿐이며 한쪽에만 있는 시각 요소 없음."},
+  {"id": "V9", "pass": true, "explanation": "쪽을 넘는 표는 observation_template의 '예상되는 학생 생각' 표 하나(p1→p2)이며, p2 첫 행에 머리행(학생의 생각/지속되는 이유/교사의 대응)이 반복된 뒤 이어지는 셀 내용('아님을 함께 확인한다.')이 옴."},
+  {"id": "V10", "pass": true, "explanation": "제시된 증거로 판단: 한컴 COM 실열림 3/3 PASS로 편집 가능한 정상 문서임이 확인되고, 셀 높이가 최소 높이로 동작함이 프로브로 실측되어(내용이 넘치면 한글이 셀을 늘림) 셀에 텍스트를 추가해도 레이아웃이 무너지지 않음."}
+ ]
+}

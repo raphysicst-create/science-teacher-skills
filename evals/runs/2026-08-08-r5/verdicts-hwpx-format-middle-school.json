@@ -1,0 +1,20 @@
+{
+ "package": "pilot/middle-school",
+ "documents": ["out/lesson_plan", "out/observation_template", "out/student_materials"],
+ "rubrics": ["hwpx-format/rubrics/format.csv"],
+ "judge_model": "claude-fable-5",
+ "run_date": "2026-08-08",
+ "inputs": "5회차 수정(어울림 표 행 분할·keepWithNext·답란 열폭·h1 구분선·est 캘리브레이션) 후 재렌더본. 한글 PDF 스냅샷(10쪽) 전 쪽 육안 + HTML 구조 대조 + 자동 검사기 FAIL 0 + COM 실측 + 쪽 채움 자동 측정 통과",
+ "verdicts": [
+  {"id": "V1", "pass": true, "explanation": "lesson_plan 1쪽 성취기준(★, 초록 테두리)·이틀 전 준비(◆, 노랑), 3쪽 학생 과제(※, 파랑), student_materials 1쪽 탐구 질문(◆, 노랑) 등 전 파일에서 테두리색과 아이콘이 함께 찍혀 kind 구분이 명확하고, 아이콘만으로도 흑백 구분이 유지된다."},
+  {"id": "V2", "pass": true, "explanation": "lesson_plan 2쪽 어휘 표는 라벨 열 약 25~30%/서술 열 70%로 적정하고, student_materials 1쪽 설계표·observation_template 1쪽 관찰표 모두 라벨 열이 좁다. 4열 이상 표는 없으며 어느 쪽에서도 셀 텍스트가 어색하게 접히거나 넘치는 곳이 없다."},
+  {"id": "V3", "pass": true, "explanation": "lesson_plan 3쪽 '자료 해석에서 숫자를 인용한다…' 및 '거리가 10에서 20으로…' 두 줄 항목의 둘째 줄이 글머리가 아닌 첫 줄 본문에 맞춰 내어쓰기 되어 있고(220dpi 확대 확인), observation_template 1쪽 관찰 포인트도 동일하다."},
+  {"id": "V4", "pass": true, "explanation": "student_materials 1쪽(먼저 써 보기+답란, 모둠 과제+설계표), 2쪽(자료 해석·설명 쓰기 지시문+답란), 3쪽(정리 문항+답란) 모두 지시문과 답란이 같은 쪽에 있으며 쪽 경계가 그 사이를 가르는 곳이 없다."},
+  {"id": "V5", "pass": true, "explanation": "비마지막 쪽(lesson_plan 1~4쪽, observation_template 1쪽, student_materials 1~2쪽)은 모두 본문이 쪽의 85% 이상까지 차 있다. lesson_plan 5쪽·student_materials 3쪽의 큰 여백은 문서 마지막 쪽이라 결함이 아니다."},
+  {"id": "V6", "pass": true, "explanation": "세 파일 전 쪽에서 한글·영문(cm)·숫자·괄호가 동일한 산세리프 고딕 계열로 보이고, ★·※·◆·↓·→ 등 기호가 네모 폴백 없이 정상 렌더링된다(확대 크롭에서 ◆ 확인)."},
+  {"id": "V7", "pass": true, "explanation": "세 문서 전 10쪽 하단 중앙에 '- N -' 쪽번호가 모두 찍혀 있고, 각 첫 쪽 제목(실험을 설계한다/관찰 기록/실험을 설계해 봅시다)으로 문서를 식별할 수 있다."},
+  {"id": "V8", "pass": true, "explanation": "세 쌍 모두 섹션 순서·표 구조(어휘 2열, 학생 생각 3열, 설계표 3열 4행, 자료 표 5행)·콜아웃 위치·굵은 강조·답란이 HTML과 일치한다. HTML의 카드 3장이 HWPX에서 3열 표로, 이모지 아이콘(⭐📌✋)이 ★※◆로 바뀐 것은 형식 차이이며 한쪽에만 있는 시각 요소는 없다."},
+  {"id": "V9", "pass": true, "explanation": "쪽을 넘는 표는 observation_template의 '예상되는 학생 생각'(1→2쪽)뿐이며, 2쪽 첫 행에 머리행(학생의 생각/지속되는 이유/교사의 대응)이 굵게 반복된다(확대 크롭 확인). 다른 두 문서에는 쪽을 넘는 표가 없다."},
+  {"id": "V10", "pass": true, "explanation": "제시된 실측 증거로 판단: 한컴 COM 실열림 전 파일 PASS, 셀 높이가 최소 높이로 동작해 내용 추가 시 한글이 행을 늘리며(프로브 실측), 문서 끝 문단 검사 FAIL 0으로 커서를 문서 끝에 놓을 수 있다."}
+ ]
+}

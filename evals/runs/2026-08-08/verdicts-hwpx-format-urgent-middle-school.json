@@ -1,0 +1,20 @@
+{
+ "package": "pilot/urgent-middle-school",
+ "documents": ["out/lesson_plan", "out/observation_template", "out/student_materials"],
+ "rubrics": ["hwpx-format/rubrics/format.csv"],
+ "judge_model": "claude-fable-5",
+ "run_date": "2026-08-08",
+ "inputs": "한글 PDF 내보내기 스냅샷(COM SaveAs, 9쪽) 전 쪽 육안 판정 + HTML 쌍둥이 구조 대조 + 자동 검사기 FAIL 0 리포트 + COM 실측(실열림·쪽수·셀 최소높이 프로브)",
+ "verdicts": [
+  {"id": "V1", "pass": true, "explanation": "lesson_plan 1쪽 확대 확인 결과 성취기준 상자는 초록 테두리+★, 교사 노트는 노랑 테두리+◆, 학생 과제는 파랑 테두리+※로 세 문서 전체에서 일관되게 구분되며, 아이콘이 네모로 깨진 곳이 없어 흑백에서도 아이콘만으로 구분된다."},
+  {"id": "V2", "pass": false, "explanation": "student_materials 1쪽 설계표에서 라벨 열(설계 항목)이 실측 305pt(약 62%), 학생이 쓰는 서술 열(우리 모둠의 계획)이 190pt(약 38%)로 라벨 좁게·서술 넓게 원칙이 뒤집혀 있다(라벨은 한 줄 뒤 빈 공간, 답란이 더 좁음). lesson_plan 2쪽 어휘 표는 약 27/73으로 적정."},
+  {"id": "V3", "pass": true, "explanation": "lesson_plan 1쪽 범주별 학습 목표와 3쪽 돌아보며 볼 것, observation_template 1쪽 관찰 포인트의 두 줄 항목(예: '한 문장으로 말하게 한다.') 둘째 줄이 글머리가 아닌 첫 줄 본문 위치에 맞춰 내어쓰기되어 있음을 확대로 확인했다."},
+  {"id": "V4", "pass": false, "explanation": "student_materials에서 '설명 쓰기' 과제 지시문(※ 콜아웃)은 2쪽 하단에 있고 그 답란 5줄은 3쪽 상단에 있어 쪽 경계가 지시문과 답란 사이를 가른다. 나머지 과제(무엇이 보이나요·실험 설계하기 1쪽, 자료 해석하기·검토하기 2쪽)는 동반 배치됨."},
+  {"id": "V5", "pass": true, "explanation": "비마지막 쪽 중 최대 공백은 student_materials 2쪽 하단 약 15%와 observation_template 1쪽 하단 약 10%로 모두 본문 1/3에 못 미치고, lesson_plan 1–3쪽은 하단까지 채워져 있다(각 문서 마지막 쪽 여백은 자연 여백)."},
+  {"id": "V6", "pass": true, "explanation": "lesson_plan 3쪽 자료 표 확대에서 숫자(10~50, 45~7)·영문 단위(cm)가 한글과 같은 산세리프로 렌더되고, 세 문서 전 쪽에서 ★※◆·아이콘과 글머리 문자가 폴백 네모 없이 정상 표시된다."},
+  {"id": "V7", "pass": true, "explanation": "9쪽 전부 하단 중앙에 '- N -' 쪽번호가 찍혀 있고, 각 문서 첫 쪽에 식별 가능한 제목(빛의 세기와 광합성: 실험을 설계하다 / 광합성 실험 설계 관찰 기록 / 빛의 세기와 광합성 — 실험 설계)이 있다."},
+  {"id": "V8", "pass": true, "explanation": "세 HTML 쌍둥이와 PDF의 절 순서·표 구조(어휘 2열, 예상 생각 3열, 자료 2열, 설계표 6행, 관찰표 8행)·콜아웃 위치·답란 줄 수가 모두 일치하며 한쪽에만 있는 시각 요소가 없다. 학생 답 분류가 HTML은 카드 3장, HWPX는 3열 표인 것은 허용되는 형식 차이."},
+  {"id": "V9", "pass": "skip", "explanation": "9쪽 전부 확인 결과 쪽 경계를 넘어 이어지는 표가 없다(모든 표가 한 쪽 안에 완결) — 조건부 기준 미적용."},
+  {"id": "V10", "pass": true, "explanation": "프로브 실측으로 셀이 최소 높이로 동작해 내용 추가 시 잘리지 않고 늘어남이 확인됐고, 자동 검사기가 세 파일 모두 문서 끝 빈 문단(커서 위치)을 통과시켰으며 한컴 COM 실열림 19/19 PASS로 편집 가능성이 증거로 뒷받침된다."}
+ ]
+}

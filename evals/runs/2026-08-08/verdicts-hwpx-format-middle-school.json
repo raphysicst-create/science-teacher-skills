@@ -1,0 +1,20 @@
+{
+ "package": "pilot/middle-school",
+ "documents": ["out/lesson_plan", "out/observation_template", "out/student_materials"],
+ "rubrics": ["hwpx-format/rubrics/format.csv"],
+ "judge_model": "claude-fable-5",
+ "run_date": "2026-08-08",
+ "inputs": "한글 PDF 내보내기 스냅샷(COM SaveAs, 10쪽) 전 쪽 육안 판정 + HTML 쌍둥이 구조 대조 + 자동 검사기 FAIL 0 리포트 + COM 실측(실열림·쪽수·셀 최소높이 프로브)",
+ "verdicts": [
+  {"id": "V1", "pass": true, "explanation": "lesson_plan 1쪽에서 ★ 성취기준(초록 테두리)·◆ 이틀 전 준비/선수 학습(노랑), lesson_plan 3~5쪽·student_materials 1~3쪽·observation_template 2쪽에서 ※ 과제(파랑)가 테두리색과 아이콘 모두로 한눈에 구분되고, 아이콘이 폴백 네모 없이 렌더되어 흑백에서도 구분이 유지된다."},
+  {"id": "V2", "pass": false, "explanation": "student_materials 1쪽 설계표에서 라벨 열(설계 항목)이 표 폭 495pt 중 190pt(38%)로 가장 넓고 학생이 서술할 '우리 모둠의 결정'·'그렇게 정한 이유' 열은 각 31%로 더 좁아 '라벨 열은 좁고 서술 열은 넓다'를 위반한다. observation_template 1쪽 모둠 표도 짧은 식별용 '모둠' 열이 서술용 '본 것' 열과 같은 30% 폭을 차지한다(어휘 표는 31/69로 적정)."},
+  {"id": "V3", "pass": true, "explanation": "두 줄 이상 글머리 항목이 있는 lesson_plan 4쪽과 observation_template 1쪽에서 둘째 줄('동안?…', '여는 발언이다.')이 글머리 기호가 아니라 첫 줄 본문 위치에 맞춰 내어쓰기 정렬되어 있다."},
+  {"id": "V4", "pass": true, "explanation": "student_materials 1쪽(먼저 써 보기+답란 5줄, 모둠 과제+설계표), 2쪽(자료 해석 지시문+답란, 설명 쓰기 지시문+빈칸 문장+답란), 3쪽(정리 문항+답란)이 모두 같은 쪽에 동반 배치되어 쪽 경계가 지시문과 답란을 가르지 않는다."},
+  {"id": "V5", "pass": false, "explanation": "lesson_plan 2쪽 — 본문이 쪽 상단 '어휘' 제목(841pt 중 y≈114)에서 끝나고 어휘 표 전체가 3쪽으로 밀려나 마지막 쪽이 아닌 2쪽 하단에 약 80%의 빈 공간이 생겼다(1/3 기준을 크게 초과)."},
+  {"id": "V6", "pass": true, "explanation": "세 문서 전 쪽에서 한글·영문·숫자·단위(student_materials 2쪽 '10 cm', '42개', lesson_plan 1쪽 '45분', '[9과12-01]')가 같은 산세리프 계열로 보이고, ★※◆•↓ 등 아이콘 문자가 네모로 깨진 곳이 없다."},
+  {"id": "V7", "pass": true, "explanation": "lesson_plan 1~5쪽, observation_template 1~2쪽, student_materials 1~3쪽 모든 쪽 하단 중앙에 '- n -' 쪽번호가 찍혀 있고, 각 첫 쪽 제목(실험을 설계한다/관찰 기록/실험을 설계해 봅시다)으로 문서를 식별할 수 있다."},
+  {"id": "V8", "pass": true, "explanation": "세 쌍 모두 HTML과 내용 순서·표 구조(어휘 머리행 없는 5행, 자료 표 머리행+5행, 모둠 빈 표 8행, 분류 빈 표 6행)·콜아웃 위치·답란 줄 수(각 5줄)·빈칸 문장이 일치하며, 차이는 아이콘 글리프(📌→※ 등)와 카드→3열 표 같은 허용된 형식 차이뿐이다."},
+  {"id": "V9", "pass": "skip", "explanation": "세 PDF 10쪽 전부를 확인한 결과 쪽 경계를 넘는 표가 없어(모든 표가 한 쪽 안에 완결) 조건부 기준이 적용되지 않는다."},
+  {"id": "V10", "pass": true, "explanation": "자동 검사에서 문서 끝 빈 문단·표 높이 정합이 전 파일 통과했고, 한컴 COM 실열림 19/19와 셀 '최소 높이 선언' 프로브 실측(내용 초과 시 셀이 늘어나 잘리지 않음)으로 텍스트 추가 시 레이아웃 유지와 문서 끝 커서 배치가 확인된다."}
+ ]
+}

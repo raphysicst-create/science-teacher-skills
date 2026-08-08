@@ -1,0 +1,20 @@
+{
+ "package": "pilot/middle-school",
+ "documents": ["out-differentiation/teacher_plan", "out-differentiation/worksheet_group_a", "out-differentiation/worksheet_group_b", "out-differentiation/worksheet_group_c"],
+ "rubrics": ["hwpx-format/rubrics/format.csv"],
+ "judge_model": "claude-fable-5",
+ "run_date": "2026-08-08",
+ "inputs": "한글 PDF 내보내기 스냅샷(COM SaveAs, 23쪽) 전 쪽 육안 판정 + HTML 쌍둥이 구조 대조 + 자동 검사기 FAIL 0 리포트 + COM 실측(실열림·쪽수·셀 최소높이 프로브)",
+ "verdicts": [
+  {"id": "V1", "pass": true, "explanation": "네 파일 모두에서 성취기준(초록 테두리+★, teacher_plan 1쪽), 학생 과제(파랑+※, 전 파일), 교사 노트/탐구 질문(노랑+◆, teacher_plan 1·5·6쪽, 학습지 1쪽)이 테두리색과 아이콘으로 한눈에 구분되고, 아이콘이 온전히 렌더되어 흑백에서도 구분이 유지된다."},
+  {"id": "V2", "pass": true, "explanation": "어휘 표는 전 파일에서 라벨 약 30 / 서술 약 70으로 잡혀 있고, 유일한 4열 표(teacher_plan 5쪽 수준별 표)는 라벨 열이 좁고 내용 3열이 넓게 배분되었으며, 어느 표에서도 셀 텍스트가 어색하게 접히거나 넘치는 곳이 없다."},
+  {"id": "V3", "pass": true, "explanation": "네 파일의 글머리 목록(teacher_plan 1·3·5·6쪽, 학습지 1쪽 문장 지원)에서 항목이 모두 한 줄에 들어가 둘째 줄 정렬 위반이 관찰되지 않았고, 자동 검사의 내어쓰기 정의 통과와 합쳐 위반 없음으로 판정한다."},
+  {"id": "V4", "pass": false, "explanation": "worksheet_group_b 2쪽과 worksheet_group_c 2쪽은 '※2 모둠 과제-실험 설계' 지시문만 있고 답란인 설계표는 3쪽으로 넘어가 쪽 경계가 지시문과 답란을 가르며, worksheet_group_a 4쪽→5쪽과 worksheet_group_c 5쪽→6쪽에서도 '통제하지 않으면 어떻게 될까' 지시문과 답란 상자가 분리되어 있다."},
+  {"id": "V5", "pass": false, "explanation": "teacher_plan 2쪽('어휘' 제목 아래 약 80% 공백)과 4쪽(콜아웃 하나 뒤 약 85% 공백), worksheet_group_b 2쪽·worksheet_group_c 2쪽(지시문 콜아웃 하나 뒤 약 85% 공백)에서 표가 통째로 다음 쪽에 밀리며 본문 1/3을 훨씬 넘는 하단 공백이 생겼다."},
+  {"id": "V6", "pass": true, "explanation": "네 파일 전 쪽에서 한글·숫자·단위(10 cm, 42개 등)가 같은 산세리프 계열로 보이고 영문이 세리프/고정폭으로 튀는 곳이 없으며, ★·※·◆·글머리 기호가 네모로 깨진 사례가 없다."},
+  {"id": "V7", "pass": true, "explanation": "teacher_plan 1–7쪽, 학습지 가 1–5쪽, 나 1–5쪽, 다 1–6쪽 전부 하단 중앙에 '- N -' 쪽번호가 찍혔고, 첫 쪽 제목('차별화 수업안 - 빛의 세기와 광합성', '가/나/다 모둠 - 빛의 세기와 광합성')으로 문서·모둠 식별이 된다."},
+  {"id": "V8", "pass": true, "explanation": "네 쌍 모두 섹션 순서·표 구조(어휘 표, 설계표, 자료 표, 수준별 표)·콜아웃 위치가 HTML과 일치하고, 차이는 아이콘 문자(📌✋⭐↔※◆★)와 teacher_plan의 이해함/거의/재지도 카드가 HWPX에서 3열 표로 렌더된 형식 차이뿐으로 한쪽에만 있는 시각 요소는 없다."},
+  {"id": "V9", "pass": "skip", "explanation": "네 파일 23쪽 전체에서 쪽 경계를 넘어 이어지는 표가 없다(표가 걸릴 때마다 통째로 다음 쪽으로 밀림) — 조건 미해당으로 skip."},
+  {"id": "V10", "pass": true, "explanation": "자동 검사에서 문서 끝 빈 문단(커서 위치)과 표 구조가 확인되고, 한컴 COM 실열림 19/19 및 셀 최소 높이 프로브(내용 초과 시 셀이 늘어나 잘리지 않음)로 텍스트 추가 시 레이아웃 유지가 실측 확인되었다."}
+ ]
+}

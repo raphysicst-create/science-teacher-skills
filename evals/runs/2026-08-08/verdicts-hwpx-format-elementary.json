@@ -1,0 +1,20 @@
+{
+ "package": "pilot/elementary",
+ "documents": ["out/lesson_plan", "out/observation_template", "out/student_materials"],
+ "rubrics": ["hwpx-format/rubrics/format.csv"],
+ "judge_model": "claude-fable-5",
+ "run_date": "2026-08-08",
+ "inputs": "한글 PDF 내보내기 스냅샷(COM SaveAs, 9쪽) 전 쪽 육안 판정 + HTML 쌍둥이 구조 대조 + 자동 검사기 FAIL 0 리포트 + COM 실측(실열림·쪽수·셀 최소높이 프로브)",
+ "verdicts": [
+  {"id": "V1", "pass": true, "explanation": "성취기준 콜아웃은 초록 테두리+★(lesson_plan 1쪽), 학생 과제는 파랑 테두리+※(lesson_plan 2·3쪽, student_materials 1·3쪽, observation_template 2쪽), 교사 노트는 노랑 테두리+◆(lesson_plan 1·2·3쪽)로 전 파일에서 한눈에 구분되고, 아이콘이 모두 정상 글리프로 찍혀 흑백에서도 구분이 유지된다."},
+  {"id": "V2", "pass": true, "explanation": "어휘 표(lesson_plan 2쪽)는 라벨 열이 좁고 서술 열이 넓은 약 30/70 배분이고, student_materials 2쪽 관찰 표도 라벨 열(무엇을)이 그림 열보다 좁으며, 3열 서술 표들(예상되는 학생 생각, 분류 기준)에서 셀 텍스트가 어색하게 접히거나 넘치는 곳이 없다."},
+  {"id": "V3", "pass": true, "explanation": "두 줄 이상 글머리 항목(lesson_plan 3쪽 '순회하며 볼 것', observation_template 1쪽 '관찰 포인트')의 둘째 줄이 글머리가 아닌 첫 줄 본문 시작 위치에 맞춰 내어쓰기 정렬되어 있다."},
+  {"id": "V4", "pass": false, "explanation": "student_materials 1쪽 하단의 '두 번 보고 그리기' 과제 지시 콜아웃과 그 답란인 그리기 표(무엇을/지금 모습/10분 뒤 모습)가 쪽 경계로 갈라져 표 전체가 2쪽으로 넘어갔다. 2쪽에서도 '그림으로 나타내기' 제목만 남고 지시문·그림 상자는 3쪽에 있다."},
+  {"id": "V5", "pass": false, "explanation": "student_materials 1쪽은 지시 콜아웃 아래부터 쪽번호까지 본문의 약 40~45%가 빈 공간(고정 높이 그리기 표가 통째로 2쪽으로 밀림)이고, 2쪽도 중간의 '그림으로 나타내기' 제목 아래 약 절반이 비어 있다 — 둘 다 마지막 쪽이 아니다."},
+  {"id": "V6", "pass": true, "explanation": "전 9쪽에서 한글·숫자·영문([4과10-02], 10분, 40분 등)이 동일한 산세리프 계열로 보이고 영문·숫자만 세리프/고정폭으로 튀는 곳이 없으며, ★※◆·글머리 · 등 아이콘 문자가 네모 폴백 없이 정상 렌더링된다."},
+  {"id": "V7", "pass": true, "explanation": "lesson_plan 1–4쪽, observation_template 1–2쪽, student_materials 1–3쪽 모두 하단 중앙에 '- N -' 쪽번호가 찍혀 있고, 각 첫 쪽 제목(컵 겉면의 물방울은 어디에서 왔을까 / 물방울은 어디에서 왔을까 — 관찰 기록 / 물방울은 어디에서 왔을까)으로 문서가 식별된다."},
+  {"id": "V8", "pass": false, "explanation": "내용 순서와 표 구조는 세 문서 모두 일치하나, HTML의 모든 h1 절 제목 위 구분선(border-top)이 HWPX에는 전무하고(lesson_plan 1쪽 '한눈에 보기', 2쪽 '수업 전개' 300dpi 확대로 확인), 반대로 student_materials 3쪽의 그리기 답란 테두리 상자는 HTML 쌍둥이(.ans, 무테두리)에는 없다 — 한쪽에만 있는 구분선·상자."},
+  {"id": "V9", "pass": "skip", "explanation": "세 문서 전 쪽을 확인한 결과 쪽 경계를 넘어 이어지는 표가 없다(모든 표가 한 쪽 안에 완결) — 조건부 기준 미적용."},
+  {"id": "V10", "pass": true, "explanation": "자동 검사에서 문서 끝 빈 문단·스타일 정의·표 높이 정합이 17파일 전부 통과했고, 한컴 COM 실열림 19/19에 셀 높이가 '최소 높이'로 동작해 내용 초과 시 셀이 늘어나 잘리지 않음이 프로브로 실측되어, 셀 텍스트 추가와 문서 끝 커서 배치가 모두 증거로 뒷받침된다."}
+ ]
+}

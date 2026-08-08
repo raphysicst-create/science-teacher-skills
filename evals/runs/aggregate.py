@@ -14,17 +14,17 @@ from collections import Counter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 EVALS = os.path.dirname(HERE)
-RUBRICS = [
-    os.path.join(EVALS, "ko12-lesson-planning", "rubrics", "shared.csv"),
-    os.path.join(EVALS, "ko12-lesson-planning", "rubrics", "science.csv"),
-]
+# 판정 파일이 "rubrics" 필드로 자기 루브릭을 선언하지 않던 초기 실행(2026-08-06
+# 이전 형식) 호환용 기본값.
+DEFAULT_RUBRICS = ["ko12-lesson-planning/rubrics/shared.csv",
+                   "ko12-lesson-planning/rubrics/science.csv"]
 MARK = {True: "○", False: "×", "skip": "–"}
 
 
-def rubric_order():
+def rubric_order(rubrics):
     order, meta = [], {}
-    for path in RUBRICS:
-        with open(path, encoding="utf-8-sig", newline="") as f:
+    for rel in rubrics:
+        with open(os.path.join(EVALS, rel), encoding="utf-8-sig", newline="") as f:
             for row in csv.DictReader(f):
                 cid = row["ID"].strip()
                 order.append(cid)
@@ -42,12 +42,29 @@ def main():
     if not files:
         sys.exit(f"판정 파일 없음: {run_dir}")
 
-    order, meta = rubric_order()
-    runs = {}
+    # 같은 날짜 디렉터리에 서로 다른 루브릭의 판정이 섞일 수 있다(예: planning과
+    # hwpx-format). 판정 파일이 선언한 루브릭 목록별로 묶어 따로 집계한다.
+    groups: dict[tuple, dict] = {}
     for fname in files:
         with open(os.path.join(run_dir, fname), encoding="utf-8") as f:
             data = json.load(f)
-        runs[data["package"].split("/")[-1]] = {v["id"]: v for v in data["verdicts"]}
+        key = tuple(data.get("rubrics") or DEFAULT_RUBRICS)
+        name = data["package"].split("/")[-1]
+        if fname.startswith("verdicts-hwpx-format-"):
+            name = fname[len("verdicts-hwpx-format-"):-len(".json")]
+        groups.setdefault(key, {})[name] = {v["id"]: v for v in data["verdicts"]}
+
+    sections = []
+    for rubrics, runs in groups.items():
+        sections.append(aggregate_group(run, list(rubrics), runs))
+    text = "\n".join(sections)
+    with open(os.path.join(run_dir, "summary.md"), "w", encoding="utf-8") as f:
+        f.write(text)
+    sys.stdout.write(text)
+
+
+def aggregate_group(run, rubrics, runs):
+    order, meta = rubric_order(rubrics)
     pkgs = list(runs)
 
     problems = []
@@ -57,7 +74,8 @@ def main():
         for cid in sorted(set(order) - set(vs)):
             problems.append(f"{p}: 미판정 {cid}")
 
-    out = [f"# evals 실채점 집계 — {run}", ""]
+    family = os.path.dirname(os.path.dirname(rubrics[0])) or rubrics[0]
+    out = [f"# evals 실채점 집계 — {run} — {family}", ""]
     out.append(f"루브릭 {len(order)}항목 × 패키지 {len(pkgs)}종 = {len(order) * len(pkgs)}칸")
     out.append("무결성: " + ("OK — 전수 판정, 루브릭 외 ID 0" if not problems else "; ".join(problems)))
     out.append("")
@@ -105,10 +123,7 @@ def main():
     out.append("")
     out.append("○ pass · × fail · – skip (조건 미충족 또는 판정 불가)")
 
-    text = "\n".join(out) + "\n"
-    with open(os.path.join(run_dir, "summary.md"), "w", encoding="utf-8") as f:
-        f.write(text)
-    sys.stdout.write(text)
+    return "\n".join(out) + "\n"
 
 
 if __name__ == "__main__":

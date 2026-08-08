@@ -1,0 +1,20 @@
+{
+ "package": "pilot/middle-school",
+ "documents": ["out-differentiation/teacher_plan", "out-differentiation/worksheet_group_a", "out-differentiation/worksheet_group_b", "out-differentiation/worksheet_group_c"],
+ "rubrics": ["hwpx-format/rubrics/format.csv"],
+ "judge_model": "claude-fable-5",
+ "run_date": "2026-08-08",
+ "inputs": "5회차 수정(어울림 표 행 분할·keepWithNext·답란 열폭·h1 구분선·est 캘리브레이션) 후 재렌더본. 한글 PDF 스냅샷(22쪽) 전 쪽 육안 + HTML 구조 대조 + 자동 검사기 FAIL 0 + COM 실측 + 쪽 채움 자동 측정 통과",
+ "verdicts": [
+  {"id": "V1", "pass": true, "explanation": "teacher_plan p1에서 ★ 성취기준(초록, 실측 #5CB087≈#5BB088), ※ 학생 과제(파랑 #9EB7D9≈#9FB8D8), ◆ 교사 노트(노랑 #E8C98A)가 테두리색·아이콘으로 즉시 구분되고, 학습지 3종(각 p1 ◆ 탐구 질문·※ 과제)에서도 같은 대응이 일관됨. 아이콘이 실제 문자 글리프라 흑백에서도 구분 유지."},
+  {"id": "V2", "pass": true, "explanation": "어휘 표(teacher p2, 학습지 각 p1)는 라벨 열 약 30/70, 설계표(학습지 각 p2)와 비교표(teacher p3)는 라벨 열이 좁고 서술 열이 넓음. 4열 표는 teacher p3 비교표뿐인데 행 라벨 열만 좁고 세 수준 열이 균등해 적정하며, 어떤 셀에서도 어색한 접힘·넘침이 없음."},
+  {"id": "V3", "pass": true, "explanation": "전 22쪽의 글머리 항목을 좌표로 전수 확인한 결과 두 줄로 꺾이는 목록 항목이 하나도 없어(모두 한 줄) 둘째 줄 정렬 위반이 존재하지 않으며, 글머리(x≈72)와 본문(x≈81)이 분리된 내어쓰기 구조로 조판되어 있음."},
+  {"id": "V4", "pass": true, "explanation": "학습지 3종의 모든 과제(가 p1–p5, 나 p1–p5, 다 p1–p6)에서 지시문 콜아웃과 답란(상자·설계표)이 같은 쪽에 동반 배치됨. 과제 2 지시문과 설계표도 세 학습지 모두 p2에서 함께 시작하며 쪽 경계가 지시문-답란 사이를 가르는 곳이 없음."},
+  {"id": "V5", "pass": true, "explanation": "비마지막 쪽 하단 공백을 실측한 최대치는 나·다 모둠 p2의 31.4%(자료 표 종료 후)로 1/3 미만이고 나머지는 모두 23.2% 이하. 마지막 쪽(teacher p6 60.6%, 가/나 p5 45.0%, 다 p6 77.4%)은 문서 끝 자연 여백."},
+  {"id": "V6", "pass": true, "explanation": "본문 한글·영문·숫자·단위(cm)는 전 문서 HCRDotum(산세리프)으로 일관되고, HCRBatang은 기호 글리프(★◆※→•—)에만 폴백으로 쓰였는데 모두 정상 렌더되어 네모 깨짐이 없음."},
+  {"id": "V7", "pass": true, "explanation": "4개 문서 전 쪽 하단 중앙에 '- N -' 쪽번호가 찍혀 있고, 첫 쪽 제목이 '차별화 수업안 — 빛의 세기와 광합성', '가/나/다 모둠 — 빛의 세기와 광합성'으로 모둠명 포함 식별 가능."},
+  {"id": "V8", "pass": true, "explanation": "4쌍 모두 절 순서·표 구조(어휘·설계표·자료 표·비교표)·콜아웃 위치·답란 상자가 1:1로 대응하며 한쪽에만 있는 시각 요소 없음. 차이는 아이콘 글리프(HTML ⭐📌✋ ↔ HWPX ★※◆)와 teacher_plan 형성 확인의 카드 3개 ↔ 3열 표 렌더 등 허용되는 형식 차이뿐."},
+  {"id": "V9", "pass": "skip", "explanation": "4개 PDF 전 쪽 확인 결과 쪽 경계를 넘는 표가 없음(가장 큰 teacher p3 비교표와 학습지 설계표 모두 한 쪽 안에 완결)."},
+  {"id": "V10", "pass": true, "explanation": "제시된 증거로 판단: 셀 높이가 최소 높이로 동작함이 프로브로 실측되어(내용 초과 시 한글이 행을 늘림) 텍스트 추가에도 레이아웃이 유지되고, 문서 끝 문단 검사 FAIL 0건과 한컴 COM 실열림 전 파일 PASS로 문서 끝 커서 배치가 확인됨."}
+ ]
+}

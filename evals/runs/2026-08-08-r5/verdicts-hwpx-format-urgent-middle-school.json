@@ -1,0 +1,20 @@
+{
+ "package": "pilot/urgent-middle-school",
+ "documents": ["out/lesson_plan", "out/observation_template", "out/student_materials"],
+ "rubrics": ["hwpx-format/rubrics/format.csv"],
+ "judge_model": "claude-fable-5",
+ "run_date": "2026-08-08",
+ "inputs": "5회차 수정(어울림 표 행 분할·keepWithNext·답란 열폭·h1 구분선·est 캘리브레이션) 후 재렌더본. 한글 PDF 스냅샷(10쪽) 전 쪽 육안 + 테두리색 픽셀 실측 + 답란 줄 수·표 열폭 벡터 실측 + HTML 전문 대조 + 자동 검사기 FAIL 0 + COM 실측 + 쪽 채움 자동 측정 통과",
+ "verdicts": [
+  {"id": "V1", "pass": true, "explanation": "전 쪽 픽셀 실측으로 성취기준 ★ 초록(96,178,138)≈#5BB088, 학생 과제 ※ 파랑(160,185,216)≈#9FB8D8, 교사 노트 ◆ 노랑(231,200,140)≈#E8C98A 테두리를 확인(lesson_plan p1–p4, observation p2, student p1–p3). 아이콘이 kind별로 일관되어 흑백에서도 구분된다."},
+  {"id": "V2", "pass": true, "explanation": "벡터 실측: 어휘 표 33/67(lesson_plan p2), 학생 설계표 38/62(student p1)로 라벨 열이 좁고, 4열 이상 표는 패키지에 없다. 전 쪽에서 셀 텍스트 접힘·넘침이 보이지 않는다(설계표 라벨 전부 한 줄 수용)."},
+  {"id": "V3", "pass": true, "explanation": "lesson_plan p1 범주별 학습 목표·p3 돌아보며 볼 것·p4 발문, observation p1 관찰 포인트의 두 줄 항목 모두 둘째 줄이 글머리가 아닌 첫 줄 본문에 맞춰 내어쓰기돼 있다."},
+  {"id": "V4", "pass": true, "explanation": "student_materials 5개 과제 모두 지시문 콜아웃과 답란이 같은 쪽에서 시작한다(p1 무엇이 보이나요+4줄·설계표, p2 자료 해석+5줄·검토+3줄, p3 점검+4줄). 설명 쓰기만 답란이 p2에서 시작해 p3으로 이어지는데 이는 허용 사례다."},
+  {"id": "V5", "pass": true, "explanation": "비마지막 쪽(lesson p1–p4, observation p1, student p1–p2) 모두 본문이 하단 근처까지 차 있고, 큰 공백은 문서 마지막 쪽(lesson p5, observation p2, student p3)에만 있어 결함이 아니다. 자동 실측(최대 33% 미만)과도 일치한다."},
+  {"id": "V6", "pass": true, "explanation": "3개 문서 전 쪽에서 한글·영문(cm)·숫자가 동일한 산세리프로 보이고, ★·※·◆·• 아이콘 문자가 네모 폴백 없이 전부 정상 렌더링됐다."},
+  {"id": "V7", "pass": true, "explanation": "전 10쪽 하단 중앙에 '- N -' 쪽번호가 찍혀 있고(lesson 1–5, observation 1–2, student 1–3), 각 문서 첫 쪽 제목(빛의 세기와 광합성: 실험을 설계하다 / 광합성 실험 설계 관찰 기록 / 빛의 세기와 광합성 — 실험 설계)으로 식별 가능하다."},
+  {"id": "V8", "pass": true, "explanation": "3종 모두 HTML과 섹션 순서·표 구조·콜아웃 위치가 일치하며, 답란 줄 수까지 벡터 실측으로 HTML과 동일함을 확인(student 4/5/3/5/4줄). 카드 3종이 3열 표로, 이모지 아이콘이 ★※◆로 바뀐 것은 허용되는 형식 차이이고 누락된 시각 요소는 없다."},
+  {"id": "V9", "pass": true, "explanation": "패키지에서 쪽을 넘는 표는 observation_template의 예상되는 학생 생각 표(p1→p2) 하나이며, p2 첫 행에 머리행(학생의 생각/지속되는 이유/교사의 대응)이 회색 배경으로 반복된 것을 확인했다."},
+  {"id": "V10", "pass": true, "explanation": "제시 증거로 판정: 셀 높이가 최소 높이로 동작함이 프로브 실측됐고(내용 초과 시 한글이 늘림), 문서 끝 문단 검사와 한컴 COM 실열림이 전 파일 통과해 커서 배치와 셀 추가 입력 시 레이아웃 유지가 뒷받침된다."}
+ ]
+}
